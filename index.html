@@ -26,8 +26,8 @@
       <p class="section-eyebrow">GIS Developer · Spatial Data Engineer</p>
       <h1 class="hero-h1">
         Charles Ramey<br>
-        <span class="hero-accent">Building spatial tools</span><br>
-        that drive decisions.
+        <span class="hero-accent">Writing the code</span><br>
+        geospatial runs on.
       </h1>
       <p class="hero-desc">
         I design and build GIS systems, spatial data pipelines, and geospatial
@@ -57,35 +57,52 @@
       <h2 class="section-h2">Projects</h2>
 
       <div class="project-card">
-        <h3 class="project-title">Project Title</h3>
-        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 20XX &nbsp;·&nbsp; Organization</p>
+        <h3 class="project-title">
+          <a href="https://fiber-route-analyzer.streamlit.app/" target="_blank" rel="noopener" class="project-title-link">Fiber Route Analyzer ↗</a>
+        </h3>
+        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
+        <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
+          <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
+        </button>
+        <div class="screenshots-gallery" data-project="project1" hidden>
+          <div class="screenshot-grid"></div>
+        </div>
         <div class="project-body">
           <div class="project-col">
             <p class="project-col-label">Problem</p>
-            <p>Brief description of the problem that needed solving — what was broken, slow, or missing before this work.</p>
+            <p>Fiber permitting requires identifying every road, rail, water, bridge, and pipeline crossing along a proposed route. The process was manual, error-prone, and impossible to repeat quickly across multiple route alternatives.</p>
           </div>
           <div class="project-col">
             <p class="project-col-label">Approach</p>
-            <p>Key technical decisions made — what you chose and why over the alternatives available.</p>
+            <p>Built a Streamlit app that ingests KML, KMZ, GeoJSON, and Shapefile routes, detects crossing conflicts against live ArcGIS FeatureSever layers (with retry/backoff and TTL cache), classifies risk by crossing type, and generates permit corridor polygons with city, county, road name, and confidence scores.</p>
           </div>
           <div class="project-col">
             <p class="project-col-label">Outcome</p>
-            <p>What changed as a result — time saved, scale achieved, decisions enabled.</p>
+            <p>Delivers operator-ready exports including KMZ, Shapefiles, Markdown report, and an Excel workbook with data quality sheets, enabling permit prep that previously took days to complete in a single session. Shareable snapshot links support run replay and stakeholder review.</p>
           </div>
         </div>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
-          <span class="tech-tag">PostGIS</span>
-          <span class="tech-tag">ArcPy</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">GeoPandas</span>
+          <span class="tech-tag">ArcGIS FeatureServer</span>
+          <span class="tech-tag">KML/KMZ</span>
+          <span class="tech-tag">Shapefile</span>
         </div>
         <div class="project-outcome">
-          ★ Key result: Measurable outcome — e.g., "Reduced processing time from 4 hours to 12 minutes"
+          ★ Automated multi-layer conflict detection across roads, rail, water, bridges, gas/oil pipelines, and parcels, with risk-classified permit corridors exported in one click
         </div>
       </div>
 
       <div class="project-card">
         <h3 class="project-title">Project Title</h3>
-        <p class="project-meta">GIS Analyst &nbsp;·&nbsp; 20XX &nbsp;·&nbsp; Organization</p>
+        <p class="project-meta">GIS Analyst &nbsp;·&nbsp; 20XX</p>
+        <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
+          <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
+        </button>
+        <div class="screenshots-gallery" data-project="project2" hidden>
+          <div class="screenshot-grid"></div>
+        </div>
         <div class="project-body">
           <div class="project-col">
             <p class="project-col-label">Problem</p>
@@ -112,7 +129,13 @@
 
       <div class="project-card">
         <h3 class="project-title">Project Title</h3>
-        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 20XX &nbsp;·&nbsp; Organization</p>
+        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 20XX</p>
+        <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
+          <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
+        </button>
+        <div class="screenshots-gallery" data-project="project3" hidden>
+          <div class="screenshot-grid"></div>
+        </div>
         <div class="project-body">
           <div class="project-col">
             <p class="project-col-label">Problem</p>
@@ -196,7 +219,7 @@
       <div class="resume-panel">
         <div class="resume-text">
           <h2 class="resume-title">Resume</h2>
-          <p class="resume-desc">Full work history, education, and certifications — PDF, one click.</p>
+          <p class="resume-desc">Full work history, education, and certifications. PDF, one click.</p>
         </div>
         <a href="assets/resume.pdf" download class="btn-primary">Download PDF ↓</a>
       </div>
@@ -230,6 +253,16 @@
   <footer>
     <p>cwramey.github.io &nbsp;·&nbsp; Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
   </footer>
+
+  <div id="lightbox" class="lightbox" hidden onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" onclick="lightboxNav(-1, event)" aria-label="Previous">&#8592;</button>
+    <button class="lightbox-next" onclick="lightboxNav(1, event)" aria-label="Next">&#8594;</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" src="" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
 
   <script src="script.js"></script>
 </body>
