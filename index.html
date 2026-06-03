@@ -11,11 +11,16 @@
 
   <nav id="nav">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="Charles Ramey - Home">CR</a>
+      <div class="nav-left">
+        <a href="#hero" class="nav-logo" aria-label="Charles Ramey - Home">CR</a>
+        <span class="nav-name">Charles Ramey</span>
+      </div>
       <div class="nav-links">
-        <a href="#projects">Work</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact" class="nav-resume">Contact</a>
+        <a href="about.html" class="nav-contact-link" aria-label="About Me">About Me</a>
+        <a href="mailto:cwramey@gmail.com" class="nav-contact-link" aria-label="Contact">
+          <span class="contact-icon" aria-hidden="true">✉</span>
+          Contact
+        </a>
       </div>
     </div>
   </nav>
@@ -41,17 +46,11 @@
         <span class="tag">FME</span>
         <span class="tag">Web Maps</span>
       </div>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">View Projects ↓</a>
-        <a href="assets/resume.pdf" download class="btn-secondary">Download Resume</a>
-      </div>
     </div>
   </section>
 
-  <hr class="divider">
-
   <section id="projects">
-    <div class="section-wrapper">
+    <div class="section-wrapper section-wrapper--flush-top">
       <p class="section-eyebrow">Selected Work</p>
       <h2 class="section-h2">Projects</h2>
 
@@ -63,7 +62,7 @@
         <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
           <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
         </button>
-        <div class="screenshots-gallery" data-project="project1" hidden>
+        <div class="screenshots-gallery" data-project="project1" data-manifest='[{"file":"fiber_route1.png"},{"file":"fiber_route2.png"},{"file":"fiber_route3.png"},{"file":"fiber_route4.png"},{"file":"fiber_route5.png"}]' hidden>
           <div class="screenshot-grid"></div>
         </div>
         <div class="project-body">
@@ -170,30 +169,6 @@
     </div>
   </section>
 
-
-  <hr class="divider">
-
-  <section id="contact">
-    <div class="section-wrapper">
-      <p class="section-eyebrow">Get In Touch</p>
-      <h2 class="section-h2">Contact</h2>
-      <p class="contact-tagline">Open to full-time roles and contract work in GIS development and spatial data engineering.</p>
-      <div class="contact-links">
-        <a href="mailto:cwramey@gmail.com" class="contact-link">
-          <span class="contact-icon" aria-hidden="true">✉</span>
-          cwramey@gmail.com
-        </a>
-        <a href="https://github.com/cwramey" class="contact-link" target="_blank" rel="noopener">
-          <span class="contact-icon" aria-hidden="true">◆</span>
-          GitHub
-        </a>
-        <a href="#" class="contact-link" target="_blank" rel="noopener">
-          <span class="contact-icon" aria-hidden="true">in</span>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
 
   <footer>
     <p>cwramey.github.io &nbsp;·&nbsp; Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
