@@ -117,7 +117,7 @@ sections.forEach(s => observer.observe(s));
 
 // Pre-warm the Streamlit app so it's live by the time the visitor clicks the link.
 // Streamlit Community Cloud hibernates after inactivity; a HEAD request wakes it up.
-// no-cors: Streamlit doesn't send CORS headers, so we can't read the response — that's fine.
+// no-cors: Streamlit doesn't send CORS headers, so we can't read the response (that's fine).
 // keepalive: survives navigation. Errors are silently ignored (best-effort only).
 fetch('https://fiber-route-analyzer.streamlit.app/', { method: 'GET', mode: 'no-cors', keepalive: true })
   .catch(() => {});

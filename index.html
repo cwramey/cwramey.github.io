@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Charles Ramey — GIS Developer and Spatial Data Engineer. Portfolio of geospatial systems, data pipelines, and mapping applications.">
-  <title>Charles Ramey — GIS Developer</title>
+  <meta name="description" content="Charles Ramey - GIS Developer and Spatial Data Engineer. Portfolio of geospatial systems, data pipelines, and mapping applications.">
+  <title>Charles Ramey - GIS Developer</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <nav id="nav">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="Charles Ramey — Home">CR</a>
+      <a href="#hero" class="nav-logo" aria-label="Charles Ramey - Home">CR</a>
       <div class="nav-links">
         <a href="#projects">Work</a>
-        <a href="#oss">Open Source</a>
         <a href="#contact">Contact</a>
-        <a href="assets/resume.pdf" download class="nav-resume">Resume ↓</a>
+        <a href="#contact" class="nav-resume">Contact</a>
       </div>
     </div>
   </nav>
@@ -132,8 +131,10 @@
       </div>
 
       <div class="project-card">
-        <h3 class="project-title">Project Title</h3>
-        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 20XX</p>
+        <h3 class="project-title">
+          <a href="https://design-pdf-analyzer.netlify.app/" target="_blank" rel="noopener" class="project-title-link">Permit PDF Analyzer ↗</a>
+        </h3>
+        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
         <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
           <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
         </button>
@@ -143,92 +144,32 @@
         <div class="project-body">
           <div class="project-col">
             <p class="project-col-label">Problem</p>
-            <p>Description of the challenge faced.</p>
+            <p>Reviewing telecom design PDFs to extract fiber and duct measurements, count poles, and calculate total route footage was a slow, error-prone manual process repeated across every permit submission.</p>
           </div>
           <div class="project-col">
             <p class="project-col-label">Approach</p>
-            <p>Technical solution chosen and key decisions made.</p>
+            <p>Built a Streamlit app backed by a FastAPI/Netlify Functions serverless handler that parses multi-page design PDFs using PyMuPDF block-level extraction. A four-strategy fallback engine (summary footer, station-chain, E-LASH span, callout span) automatically selects the best parsing method per sheet while filtering out legend and title block contamination.</p>
           </div>
           <div class="project-col">
             <p class="project-col-label">Outcome</p>
-            <p>Measurable result of the work.</p>
+            <p>Extracts total footage, pole count, per-segment spans, and the logic path used, all surfaced in a live-progress UI with an expandable JSON debug view. Reduces per-permit measurement review from manual calculation to seconds.</p>
           </div>
         </div>
         <div class="project-tech">
           <span class="tech-tag">Python</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Leaflet</span>
+          <span class="tech-tag">PyMuPDF</span>
+          <span class="tech-tag">Streamlit</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Netlify Functions</span>
         </div>
         <div class="project-outcome">
-          ★ Key result: Measurable outcome
+          ★ Automated fiber/duct measurement extraction from telecom design PDFs using a four-strategy parser, eliminating manual permit review calculations
         </div>
       </div>
 
     </div>
   </section>
 
-  <hr class="divider">
-
-  <section id="oss">
-    <div class="section-wrapper">
-      <p class="section-eyebrow">Open Source</p>
-      <h2 class="section-h2">Public Work</h2>
-      <p class="oss-intro">Repos, tools, and contributions showing how I think and build.</p>
-      <div class="oss-grid">
-
-        <a href="#" class="oss-card" target="_blank" rel="noopener">
-          <h3 class="oss-name">repo-name-placeholder</h3>
-          <p class="oss-desc">Short description of what this tool or library does and who uses it.</p>
-          <div class="oss-stats">
-            <span class="oss-stat">⭐ 0</span>
-            <span class="oss-stat">Python</span>
-          </div>
-        </a>
-
-        <a href="#" class="oss-card" target="_blank" rel="noopener">
-          <h3 class="oss-name">repo-name-placeholder</h3>
-          <p class="oss-desc">Short description of what this tool or library does.</p>
-          <div class="oss-stats">
-            <span class="oss-stat">⭐ 0</span>
-            <span class="oss-stat">JavaScript</span>
-          </div>
-        </a>
-
-        <a href="#" class="oss-card" target="_blank" rel="noopener">
-          <h3 class="oss-name">repo-name-placeholder</h3>
-          <p class="oss-desc">Short description of what this tool or library does.</p>
-          <div class="oss-stats">
-            <span class="oss-stat">⭐ 0</span>
-            <span class="oss-stat">Python</span>
-          </div>
-        </a>
-
-        <a href="#" class="oss-card" target="_blank" rel="noopener">
-          <h3 class="oss-name">repo-name-placeholder</h3>
-          <p class="oss-desc">Short description of what this tool or library does.</p>
-          <div class="oss-stats">
-            <span class="oss-stat">⭐ 0</span>
-            <span class="oss-stat">SQL</span>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section id="resume">
-    <div class="section-wrapper">
-      <div class="resume-panel">
-        <div class="resume-text">
-          <h2 class="resume-title">Resume</h2>
-          <p class="resume-desc">Full work history, education, and certifications. PDF, one click.</p>
-        </div>
-        <a href="assets/resume.pdf" download class="btn-primary">Download PDF ↓</a>
-      </div>
-    </div>
-  </section>
 
   <hr class="divider">
 
