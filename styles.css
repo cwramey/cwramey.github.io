@@ -204,11 +204,12 @@ hr.divider {
 }
 
 .tag {
-  background: var(--bg-tag);
-  color: var(--accent);
+  background: var(--bg-tag-tech);
+  color: var(--accent-soft);
   font-size: 11px;
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
 }
 
 .hero-cta {
