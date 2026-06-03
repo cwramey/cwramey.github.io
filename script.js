@@ -1,41 +1,42 @@
-// Load screenshot manifests and populate galleries on page load
+// Populate screenshot galleries from inline data-manifest attribute
 document.querySelectorAll('.screenshots-gallery[data-project]').forEach(gallery => {
   const project = gallery.dataset.project;
   const base = `assets/screenshots/${project}`;
-  fetch(`${base}/manifest.json`)
-    .then(r => r.ok ? r.json() : [])
-    .then(items => {
-      items.sort((a, b) => {
-        const n = s => parseInt(s.file.match(/(\d+)(?=\.\w+$)/) || [0, 0], 10);
-        return n(a) - n(b);
-      });
-      const grid = gallery.querySelector('.screenshot-grid');
-      const pill = gallery.closest('.project-card').querySelector('.screenshots-pill');
-      const countEl = pill.querySelector('.pill-count');
-      countEl.textContent = items.length;
-      if (items.length === 0) {
-        pill.style.display = 'none';
-        return;
-      }
-      items.forEach(item => {
-        const src = `${base}/${item.file}`;
-        const btn = document.createElement('button');
-        btn.className = 'screenshot-thumb';
-        btn.dataset.src = src;
-        btn.dataset.caption = item.caption || '';
-        btn.onclick = () => openLightbox(btn);
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = item.caption || '';
-        img.loading = 'lazy';
-        btn.appendChild(img);
-        grid.appendChild(btn);
-      });
-    })
-    .catch(() => {
-      const pill = gallery.closest('.project-card').querySelector('.screenshots-pill');
-      if (pill) pill.style.display = 'none';
-    });
+  const pill = gallery.closest('.project-card').querySelector('.screenshots-pill');
+  const countEl = pill ? pill.querySelector('.pill-count') : null;
+
+  let items = [];
+  try {
+    items = JSON.parse(gallery.dataset.manifest || '[]');
+  } catch (e) {}
+
+  items.sort((a, b) => {
+    const n = s => parseInt((s.file.match(/(\d+)(?=\.\w+$)/) || [0, 0])[1], 10);
+    return n(a) - n(b);
+  });
+
+  if (items.length === 0) {
+    if (pill) pill.style.display = 'none';
+    return;
+  }
+
+  if (countEl) countEl.textContent = items.length;
+
+  const grid = gallery.querySelector('.screenshot-grid');
+  items.forEach(item => {
+    const src = `${base}/${item.file}`;
+    const btn = document.createElement('button');
+    btn.className = 'screenshot-thumb';
+    btn.dataset.src = src;
+    btn.dataset.caption = item.caption || '';
+    btn.onclick = () => openLightbox(btn);
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = item.caption || '';
+    img.loading = 'lazy';
+    btn.appendChild(img);
+    grid.appendChild(btn);
+  });
 });
 
 // Screenshot gallery toggle
