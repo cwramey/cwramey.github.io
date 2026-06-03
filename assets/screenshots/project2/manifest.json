@@ -1,1 +1,7 @@
-[]
+[
+  { "file": "gis_tool1.png", "caption": "" },
+  { "file": "gis_tool2.png", "caption": "" },
+  { "file": "gis_tool3.png", "caption": "" },
+  { "file": "gis_tool4.png", "caption": "" },
+  { "file": "gis_tool5.png", "caption": "" }
+]
