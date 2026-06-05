@@ -180,32 +180,96 @@ hr.divider {
   padding-bottom: 32px;
 }
 
+.hero-eyebrow {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #4ade80;
+  opacity: 0.75;
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+}
+
+.hero-eyebrow::before {
+  content: '> ';
+}
+
 .hero-h1 {
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(26px, 5vw, 38px);
   font-weight: 800;
   color: var(--text-head);
-  line-height: 1.15;
-  margin-top: 10px;
+  line-height: 1.1;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.hero-name {
+  display: block;
+  color: var(--text-head);
 }
 
 .hero-accent {
+  display: block;
   color: var(--accent);
 }
 
-.hero-industry {
+.hero-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 3px;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+.hero-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-skill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-skill-label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  min-width: 40px;
+}
+
+.hero-skill-label::after {
+  content: ':';
+}
+
+.tag-green {
+  background: #052e16;
+  color: #4ade80;
+  border: 1px solid #166534;
+}
+
+.tag-blue {
+  background: var(--bg-tag-tech);
   color: var(--accent-soft);
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 10px;
-  letter-spacing: 0.01em;
+  border: 1px solid var(--border);
 }
 
 .hero-desc {
   color: var(--text-muted);
-  font-size: 15px;
-  max-width: 540px;
-  margin-top: 12px;
-  line-height: 1.7;
+  font-size: 14px;
+  max-width: 520px;
+  margin-top: 0;
+  margin-bottom: 24px;
+  line-height: 1.75;
 }
 
 .hero-scroll-nudge {
@@ -226,20 +290,11 @@ hr.divider {
   color: var(--accent);
 }
 
-.hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-
 .tag {
-  background: var(--bg-tag-tech);
-  color: var(--accent-soft);
-  font-size: 11px;
-  padding: 3px 9px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  padding: 2px 8px;
   border-radius: 3px;
-  border: 1px solid var(--border);
 }
 
 .hero-cta {
