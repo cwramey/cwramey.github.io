@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How to structure ArcPy scripts so QA checks, reporting, and map exports run from a single config instead of a pile of one-off tools — a maintainable reporting pipeline in ArcGIS Pro.">
+  <meta name="theme-color" content="#0f172a">
+  <title>Building a Reusable ArcPy Reporting Pipeline - Charles Ramey</title>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Building a Reusable ArcPy Reporting Pipeline">
+  <meta property="og:description" content="Turn a pile of one-off ArcPy scripts into a single config-driven pipeline for QA, reporting, and map exports in ArcGIS Pro.">
+  <meta property="og:url" content="https://cwramey.github.io/posts/building-a-reusable-arcpy-reporting-pipeline.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://cwramey.github.io/posts/building-a-reusable-arcpy-reporting-pipeline.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Building a Reusable ArcPy Reporting Pipeline",
+    "description": "How to structure ArcPy scripts so QA checks, reporting, and map exports run from a single config instead of a pile of one-off tools.",
+    "author": { "@type": "Person", "name": "Charles Ramey", "url": "https://cwramey.github.io/" },
+    "mainEntityOfPage": "https://cwramey.github.io/posts/building-a-reusable-arcpy-reporting-pipeline.html",
+    "keywords": "ArcPy, ArcGIS Pro, automation, reporting, QA, arcpy.mp, map export, GIS pipeline",
+    "publisher": { "@type": "Person", "name": "Charles Ramey" }
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-inner nav-inner--centered">
+      <a href="../index.html" class="nav-item">Home</a>
+      <a href="../about.html" class="nav-item">About Me</a>
+      <a href="../resume.html" class="nav-item">Resume</a>
+      <a href="../index.html#projects" class="nav-item">Portfolio</a>
+      <a href="../blog.html" class="nav-item active">Blog</a>
+    </div>
+  </nav>
+
+  <article id="post">
+    <div class="section-wrapper post-wrapper">
+
+      <a href="../blog.html" class="post-back">← All posts</a>
+
+      <p class="post-meta">ArcPy &nbsp;·&nbsp; Automation &nbsp;·&nbsp; 9 min read</p>
+      <h1 class="post-title">Building a Reusable ArcPy Reporting Pipeline</h1>
+
+      <div class="post-body">
+
+        <p>Most GIS automation starts the same way: someone needs a map exported and a summary table by Friday, so you write a script. It works. Next month a different team needs almost the same thing with a different layer and a different title block, so you copy the script and tweak it. Do that for a year and you have <strong>fourteen near-identical scripts</strong>, each with its own hard-coded paths, and a bug fixed in one that still lives in the other thirteen.</p>
+
+        <p>The fix isn't more scripts — it's one pipeline driven by configuration. Here's how I structure ArcPy work so QA, reporting, and map exports all run from a single source of truth.</p>
+
+        <h2>1. Put everything that changes in a config</h2>
+
+        <p>The first move is to separate <em>what</em> a run does from <em>how</em> it does it. Every value that differs between jobs — workspace, layers, output folder, the layout to export — goes into a config file, not the code:</p>
+
+        <pre><code>{
+  "workspace": "C:/projects/fiber/data.gdb",
+  "output_dir": "C:/projects/fiber/output",
+  "aprx": "C:/projects/fiber/maps/report.aprx",
+  "layouts": ["Overview", "Detail"],
+  "qa_checks": ["null_geometry", "missing_status", "duplicate_ids"]
+}</code></pre>
+
+        <p>Now a new job is a new JSON file — not a new copy of 400 lines of Python.</p>
+
+        <pre><code>import json, arcpy
+
+with open("job.json") as f:
+    cfg = json.load(f)
+
+arcpy.env.workspace = cfg["workspace"]
+arcpy.env.overwriteOutput = True</code></pre>
+
+        <h2>2. Make QA checks small, named functions</h2>
+
+        <p>QA is where one-off scripts rot fastest, because the checks live inline and can't be reused. Instead, make each check a function with the same signature, and register them in a dictionary keyed by name:</p>
+
+        <pre><code>def check_null_geometry(fc):
+    bad = [r[0] for r in arcpy.da.SearchCursor(fc, ["OID@", "SHAPE@"])
+           if r[1] is None]
+    return f"{len(bad)} features with null geometry", bad
+
+def check_missing_status(fc):
+    bad = [r[0] for r in arcpy.da.SearchCursor(fc, ["OID@", "status"])
+           if not r[1]]
+    return f"{len(bad)} features missing status", bad
+
+CHECKS = {
+    "null_geometry": check_null_geometry,
+    "missing_status": check_missing_status,
+}</code></pre>
+
+        <p>The config lists which checks to run; the pipeline just looks them up and calls them. Adding a new check never means touching the runner:</p>
+
+        <pre><code>results = []
+for fc in arcpy.ListFeatureClasses():
+    for name in cfg["qa_checks"]:
+        check = CHECKS.get(name)
+        if check:
+            summary, _ = check(fc)
+            results.append((fc, name, summary))</code></pre>
+
+        <p class="post-callout">The pattern that makes this scale: the runner knows nothing about individual checks. It just iterates the config and dispatches by name. New requirements become new entries, not new branches.</p>
+
+        <h2>3. Drive map exports through <code>arcpy.mp</code></h2>
+
+        <p>ArcGIS Pro's mapping module (<code>arcpy.mp</code>) lets you open a project, find a layout, and export it without ever touching the GUI. Because the layouts to export are in the config, the same code handles one map or twenty:</p>
+
+        <pre><code>import os
+
+aprx = arcpy.mp.ArcGISProject(cfg["aprx"])
+
+for layout_name in cfg["layouts"]:
+    layout = aprx.listLayouts(layout_name)[0]
+    out_pdf = os.path.join(cfg["output_dir"], f"{layout_name}.pdf")
+    layout.exportToPDF(out_pdf, resolution=300)
+    print(f"Exported {out_pdf}")
+
+del aprx  # release the project file lock</code></pre>
+
+        <p>That <code>del aprx</code> at the end matters — ArcGIS Pro holds a lock on the project file, and leaving it open will block the next run.</p>
+
+        <h2>4. Write one report, every run</h2>
+
+        <p>Finally, fold the QA results and the export list into a single report so each run leaves a record of what happened. Even a plain Markdown or CSV file beats results that only ever printed to a console someone closed:</p>
+
+        <pre><code>report = os.path.join(cfg["output_dir"], "run_report.md")
+with open(report, "w") as f:
+    f.write("# Run Report\n\n## QA\n")
+    for fc, name, summary in results:
+        f.write(f"- **{fc}** / {name}: {summary}\n")
+    f.write("\n## Exports\n")
+    for layout_name in cfg["layouts"]:
+        f.write(f"- {layout_name}.pdf\n")</code></pre>
+
+        <h2>The payoff</h2>
+
+        <p>Once the pipeline exists, the fourteen scripts collapse into one runner plus a folder of small config files. A bug fixed in a check is fixed everywhere. Onboarding a new report is editing JSON, not reading Python. And every run is reproducible — same config in, same outputs out, with a report to prove it.</p>
+
+        <p>This is the backbone of my <a href="../index.html#projects">ArcPy Reporting &amp; QA Suite</a>, which runs reporting, validation, status snapshots, and cleanup from a shared core. <a href="https://gis-automation-tools.netlify.app/" target="_blank" rel="noopener">See the live demo →</a></p>
+
+      </div>
+
+      <div class="post-footer">
+        <p>Drowning in one-off ArcPy scripts? <a href="mailto:cwramey@gmail.com">Let's talk →</a></p>
+        <a href="../blog.html" class="post-back">← All posts</a>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
+    <p class="footer-links">
+      <a href="mailto:cwramey@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
+    </p>
+  </footer>
+
+</body>
+</html>

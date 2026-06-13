@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Using PyMuPDF to turn unstructured telecom design PDFs into clean, queryable data — extracting fiber footage, duct measurements, and pole counts with text search and regex.">
+  <meta name="theme-color" content="#0f172a">
+  <title>Pulling Footage &amp; Pole Counts from Telecom Design PDFs - Charles Ramey</title>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pulling Footage & Pole Counts from Telecom Design PDFs">
+  <meta property="og:description" content="Turn unstructured telecom design sheets into clean, queryable measurements with PyMuPDF, text search, and regex.">
+  <meta property="og:url" content="https://cwramey.github.io/posts/extracting-footage-and-pole-counts-from-telecom-design-pdfs.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://cwramey.github.io/posts/extracting-footage-and-pole-counts-from-telecom-design-pdfs.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Pulling Footage & Pole Counts from Telecom Design PDFs",
+    "description": "Using PyMuPDF to turn unstructured telecom design PDFs into clean, queryable data — fiber footage, duct measurements, and pole counts.",
+    "author": { "@type": "Person", "name": "Charles Ramey", "url": "https://cwramey.github.io/" },
+    "mainEntityOfPage": "https://cwramey.github.io/posts/extracting-footage-and-pole-counts-from-telecom-design-pdfs.html",
+    "keywords": "PyMuPDF, fitz, PDF parsing, telecom, fiber footage, pole count, regex, data extraction",
+    "publisher": { "@type": "Person", "name": "Charles Ramey" }
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-inner nav-inner--centered">
+      <a href="../index.html" class="nav-item">Home</a>
+      <a href="../about.html" class="nav-item">About Me</a>
+      <a href="../resume.html" class="nav-item">Resume</a>
+      <a href="../index.html#projects" class="nav-item">Portfolio</a>
+      <a href="../blog.html" class="nav-item active">Blog</a>
+    </div>
+  </nav>
+
+  <article id="post">
+    <div class="section-wrapper post-wrapper">
+
+      <a href="../blog.html" class="post-back">← All posts</a>
+
+      <p class="post-meta">AI &nbsp;·&nbsp; PDF Parsing &nbsp;·&nbsp; 8 min read</p>
+      <h1 class="post-title">Pulling Footage &amp; Pole Counts from Telecom Design PDFs</h1>
+
+      <div class="post-body">
+
+        <p>Telecom design sheets are full of numbers a permit team needs: fiber footage, duct sizes and lengths, pole counts, handhole tallies. The problem is <em>where</em> those numbers live — scattered across a multi-page PDF in callouts, legends, and summary tables, in a layout designed for a human with a highlighter, not a database.</p>
+
+        <p>Reviewing one by hand is 20–30 minutes of careful counting. <a href="https://pymupdf.readthedocs.io/" target="_blank" rel="noopener">PyMuPDF</a> (imported as <code>fitz</code>) turns that into seconds. Here's the approach.</p>
+
+        <h2>1. Open the PDF and pull its text</h2>
+
+        <p>PyMuPDF reads the text layer of a PDF directly — no OCR needed as long as the PDF has real text (most CAD/design exports do). Start by concatenating the text of every page:</p>
+
+        <pre><code>import fitz  # PyMuPDF
+
+doc = fitz.open("design_sheet.pdf")
+
+text = ""
+for page in doc:
+    text += page.get_text()</code></pre>
+
+        <p>If a sheet is a scanned image with no text layer, <code>get_text()</code> comes back empty — that's your signal to route it through OCR first. Worth checking for explicitly so a scanned page doesn't silently report zero footage.</p>
+
+        <h2>2. Match the measurements with regex</h2>
+
+        <p>Design callouts are remarkably consistent within a given standard — something like <code>1,250 LF</code> for linear feet of fiber, or <code>(2) 2" PVC</code> for duct. That regularity is exactly what a regular expression is for:</p>
+
+        <pre><code>import re
+
+# Linear footage: "1,250 LF" or "1250 ft"
+footage = re.findall(r"([\d,]+)\s*(?:LF|FT|ft)\b", text)
+total_lf = sum(int(f.replace(",", "")) for f in footage)
+
+print(f"Total fiber footage: {total_lf:,} LF")</code></pre>
+
+        <p>The same idea handles duct measurements — capture the count, the size, and the material in named groups so the result is structured, not just a string:</p>
+
+        <pre><code>duct_pattern = re.compile(
+    r'\((?P&lt;count&gt;\d+)\)\s*(?P&lt;size&gt;\d+(?:\.\d+)?)"?\s*(?P&lt;material&gt;PVC|HDPE|RGS)'
+)
+
+ducts = [m.groupdict() for m in duct_pattern.finditer(text)]
+# -> [{'count': '2', 'size': '2', 'material': 'PVC'}, ...]</code></pre>
+
+        <h2>3. Count poles without double-counting</h2>
+
+        <p>Poles are usually labeled (<code>P-101</code>, <code>P-102</code>…), and the same pole often appears on more than one sheet where routes overlap. Counting every match inflates the total. Collect the <em>identifiers</em> into a set instead, so each pole is counted once no matter how many times it's drawn:</p>
+
+        <pre><code>pole_ids = set(re.findall(r"\bP-\d{3,}\b", text))
+print(f"Unique poles: {len(pole_ids)}")</code></pre>
+
+        <p class="post-callout">The recurring lesson in document parsing: count unique entities, not raw matches. A regex that finds "every pole label" and one that finds "every distinct pole" give very different — and only one correct — answers.</p>
+
+        <h2>4. Use position when text order fails</h2>
+
+        <p>Sometimes the plain text comes out jumbled because the PDF stores fragments in draw order, not reading order. When that happens, ask PyMuPDF for the text <em>with coordinates</em> and use position to reconstruct meaning — for example, to find the value sitting just to the right of a label:</p>
+
+        <pre><code>for page in doc:
+    words = page.get_text("words")  # (x0, y0, x1, y1, "word", ...)
+    for w in words:
+        x0, y0, x1, y1, word = w[:5]
+        if word == "TOTAL":
+            # grab words on the same line, to the right
+            same_line = [t for t in words
+                         if abs(t[1] - y0) < 2 and t[0] > x1]
+            print("TOTAL ->", [t[4] for t in same_line])</code></pre>
+
+        <p>This is the difference between a parser that breaks on the first oddly-formatted sheet and one that holds up across a whole project's worth of them.</p>
+
+        <h2>5. Emit structured output</h2>
+
+        <p>With the numbers captured, the last step is to hand them off in a form the next system can use — a dict that becomes JSON for an API, or rows for a spreadsheet the permit team already lives in:</p>
+
+        <pre><code>summary = {
+    "total_footage_lf": total_lf,
+    "ducts": ducts,
+    "pole_count": len(pole_ids),
+}
+
+import json
+print(json.dumps(summary, indent=2))</code></pre>
+
+        <h2>Why it's worth it</h2>
+
+        <p>A person reviewing a design sheet is slow not because the work is hard, but because it's tedious and unforgiving — one miscounted pole or transposed digit and the permit is wrong. A parser does the boring part identically every time, leaving the reviewer to do what they're actually good at: catching the cases that don't fit the pattern.</p>
+
+        <p>That's the core of my <a href="../index.html#projects">Design PDF Analyzer</a>, which pulls footage, duct, and pole data from telecom design PDFs in under 30 seconds per sheet. <a href="https://design-pdf-analyzer.netlify.app/" target="_blank" rel="noopener">Try the live demo →</a></p>
+
+      </div>
+
+      <div class="post-footer">
+        <p>Have a stack of PDFs hiding the data you need? <a href="mailto:cwramey@gmail.com">Let's talk →</a></p>
+        <a href="../blog.html" class="post-back">← All posts</a>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
+    <p class="footer-links">
+      <a href="mailto:cwramey@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
+    </p>
+  </footer>
+
+</body>
+</html>

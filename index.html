@@ -4,30 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Charles Ramey - GIS Developer and Spatial Data Engineer specializing in ArcPy automation, PostGIS, fiber route permitting, and geospatial data pipelines for telecom, utilities, and infrastructure.">
+  <meta name="theme-color" content="#0f172a">
   <title>Charles Ramey - GIS Developer</title>
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Charles Ramey — GIS Developer">
+  <meta property="og:description" content="Spatial data pipelines, GIS automation tools, and AI-assisted workflows that replace days of manual work with a single script.">
+  <meta property="og:url" content="https://cwramey.github.io/">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/project1/fiber_route1.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://cwramey.github.io/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured data: helps search engines build a rich profile / knowledge panel -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Charles Ramey",
+    "url": "https://cwramey.github.io/",
+    "jobTitle": "GIS Developer",
+    "description": "GIS Developer and Spatial Data Engineer specializing in ArcPy automation, spatial data pipelines, and AI-assisted geospatial workflows for telecom, utilities, and infrastructure.",
+    "knowsAbout": ["GIS", "ArcPy", "ArcGIS Pro", "GeoPandas", "Spatial Data Engineering", "Python Automation", "PostGIS", "Fiber Route Permitting", "Geospatial Data Pipelines"],
+    "sameAs": [
+      "https://www.linkedin.com/in/chramey/",
+      "https://github.com/cwramey"
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <nav id="nav">
-    <div class="nav-inner">
-      <div class="nav-left">
-        <a href="#hero" class="nav-logo" aria-label="Charles Ramey - Home">CR</a>
-        <span class="nav-name">Charles Ramey</span>
-      </div>
-      <div class="nav-links">
-        <a href="about.html" class="nav-contact-link" aria-label="About Me">About Me</a>
-        <a href="mailto:cwramey@gmail.com" class="nav-contact-link" aria-label="Contact">
-          <span class="contact-icon" aria-hidden="true">✉</span>
-          Contact
-        </a>
-      </div>
+    <div class="nav-inner nav-inner--centered">
+      <a href="#hero" class="nav-item active">Home</a>
+      <a href="about.html" class="nav-item">About Me</a>
+      <a href="resume.html" class="nav-item">Resume</a>
+      <a href="#projects" class="nav-item">Portfolio</a>
+      <a href="blog.html" class="nav-item">Blog</a>
     </div>
   </nav>
 
   <section id="hero">
-    <div class="section-wrapper hero-wrapper">
-      <p class="hero-eyebrow">GIS Developer · Spatial Data Engineer</p>
+    <div class="section-wrapper hero-wrapper hero-wrapper--centered">
+      <p class="section-eyebrow hero-section-eyebrow">// GIS Developer · Spatial Data Engineer</p>
       <h1 class="hero-h1">
         <span class="hero-name">Charles Ramey</span>
         <span class="hero-accent">GIS + Code + AI<span class="hero-cursor"></span></span>
@@ -35,168 +58,127 @@
       <p class="hero-desc">
         I build spatial data pipelines, GIS automation tools, and AI-assisted workflows that replace days of manual work with a single script. From database architecture to production-ready apps, I handle the full stack of geospatial development.
       </p>
-      <div class="hero-skills">
-        <div class="hero-skill-row">
-          <span class="hero-skill-label">gis</span>
-          <span class="tag tag-green">arcpy</span>
-          <span class="tag tag-green">postgis</span>
-          <span class="tag tag-green">geopandas</span>
-          <span class="tag tag-green">fme</span>
-        </div>
-        <div class="hero-skill-row">
-          <span class="hero-skill-label">code</span>
-          <span class="tag tag-blue">python</span>
-          <span class="tag tag-blue">react</span>
-          <span class="tag tag-blue">sql</span>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       FEATURED PROJECT — hidden for now.
+       To bring it back, delete this opening comment line and the closing
+       comment line ("END FEATURED PROJECT") below.
+  ====================================================================
+  <section id="featured">
+    <div class="section-wrapper section-wrapper--flush-top">
+      <p class="section-eyebrow section-eyebrow--heading">// Featured Work</p>
+      <div class="featured-wrap">
+        <button class="featured-img-pane" onclick="openLightbox('project1')" aria-label="View 5 screenshots of the Fiber Route Conflict Analyzer">
+          <img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber Route Conflict Analyzer screenshot" decoding="async">
+          <div class="featured-img-badge">▦ &nbsp;5 screenshots</div>
+        </button>
+        <div class="featured-content">
+          <p class="featured-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
+          <h3 class="featured-title">Fiber Route Conflict Analyzer</h3>
+          <p class="featured-desc">Ingests KML, KMZ, GeoJSON, and Shapefile routes, detects crossing conflicts against live ArcGIS FeatureServer layers, classifies risk by crossing type, and generates permit corridor polygons with city, county, road name, and confidence scores. Delivers operator-ready exports including KMZ, Shapefiles, Markdown report, and Excel workbook — reducing permit prep from 2–3 days of manual work to under an hour.</p>
+          <div class="featured-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">GeoPandas</span>
+            <span class="tech-tag">ArcGIS FeatureServer</span>
+            <span class="tech-tag">KML/KMZ</span>
+          </div>
+          <div class="featured-actions">
+            <a href="https://fiber-route-analyzer.netlify.app/" class="featured-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  END FEATURED PROJECT ==================================================== -->
 
-  <div class="hero-scroll-nudge">
-    <a href="#projects">↓ See what I've built</a>
-  </div>
-
+  <!-- PORTFOLIO GRID -->
   <section id="projects">
-    <div class="section-wrapper section-wrapper--flush-top">
-      <p class="section-eyebrow">Selected Work</p>
-      <h2 class="section-h2">Projects</h2>
+    <div class="section-wrapper section-wrapper--wide">
+      <p class="section-eyebrow section-eyebrow--heading">// Latest Work</p>
+      <p class="portfolio-sub">Production tools built for real GIS and telecom workflows.</p>
+      <div class="portfolio-grid">
 
-      <div class="project-card">
-        <h3 class="project-title">
-          <a href="https://fiber-route-analyzer.netlify.app/" target="_blank" rel="noopener" class="project-title-link">Fiber Route Analyzer ↗</a>
-        </h3>
-        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
-        <div class="project-body">
-          <div class="project-col">
-            <p class="project-col-label">Problem</p>
-            <p>Fiber permitting requires identifying every road, rail, water, bridge, and pipeline crossing along a proposed route. The process was manual, error-prone, and impossible to repeat quickly across multiple route alternatives.</p>
+        <div class="portfolio-card">
+          <div class="portfolio-body">
+            <p class="portfolio-cat">GIS &nbsp;·&nbsp; Permitting</p>
+            <h3>Fiber Route Analyzer</h3>
+            <p>Automated crossing conflict detection across roads, rail, water, bridges, gas/oil pipelines, and parcels — with permit corridor exports in one click.</p>
+            <div class="portfolio-footer">
+              <div class="portfolio-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">GeoPandas</span>
+                <span class="tech-tag">ArcGIS FeatureServer</span>
+                <span class="tech-tag">KML/KMZ</span>
+              </div>
+              <div class="portfolio-actions">
+                <button class="portfolio-shots-btn" onclick="openLightbox('project1')">▦ &nbsp;View 5 Screenshots</button>
+                <a href="https://fiber-route-analyzer.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+              </div>
+            </div>
           </div>
-          <div class="project-col">
-            <p class="project-col-label">Approach</p>
-            <p>Built a Streamlit app that ingests KML, KMZ, GeoJSON, and Shapefile routes, detects crossing conflicts against live ArcGIS FeatureSever layers (with retry/backoff and TTL cache), classifies risk by crossing type, and generates permit corridor polygons with city, county, road name, and confidence scores.</p>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="portfolio-body">
+            <p class="portfolio-cat">GIS &nbsp;·&nbsp; Automation &nbsp;·&nbsp; QA</p>
+            <h3>ArcPy Reporting &amp; QA Suite</h3>
+            <p>14 production ArcPy scripts across reporting, QA/QC validation, status snapshots, and data cleanup — delivering map exports and reports in under 15 minutes.</p>
+            <div class="portfolio-footer">
+              <div class="portfolio-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">ArcPy</span>
+                <span class="tech-tag">ArcGIS Pro</span>
+              </div>
+              <div class="portfolio-actions">
+                <button class="portfolio-shots-btn" onclick="openLightbox('project2')">▦ &nbsp;View 5 Screenshots</button>
+                <a href="https://gis-automation-tools.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+              </div>
+            </div>
           </div>
-          <div class="project-col">
-            <p class="project-col-label">Outcome</p>
-            <p>Delivers operator-ready exports including KMZ, Shapefiles, Markdown report, and an Excel workbook with data quality sheets, reducing permit prep from 2–3 days of manual work to under an hour. Shareable snapshot links support run replay and stakeholder review.</p>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="portfolio-body">
+            <p class="portfolio-cat">AI &nbsp;·&nbsp; PDF Parsing &nbsp;·&nbsp; Telecom</p>
+            <h3>Design PDF Analyzer</h3>
+            <p>Extracts fiber footage, duct measurements, and pole counts from telecom design PDFs — reducing per-permit review from 20–30 min to under 30 seconds.</p>
+            <div class="portfolio-footer">
+              <div class="portfolio-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">PyMuPDF</span>
+                <span class="tech-tag">FastAPI</span>
+              </div>
+              <div class="portfolio-actions">
+                <button class="portfolio-shots-btn" onclick="openLightbox('project3')">▦ &nbsp;View 3 Screenshots</button>
+                <a href="https://design-pdf-analyzer.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+              </div>
+            </div>
           </div>
         </div>
-        <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
-          <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
-        </button>
-        <div class="screenshots-gallery" data-project="project1" data-manifest='[{"file":"fiber_route1.png"},{"file":"fiber_route2.png"},{"file":"fiber_route3.png"},{"file":"fiber_route4.png"},{"file":"fiber_route5.png"}]' hidden>
-          <div class="screenshot-grid"></div>
-        </div>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Streamlit</span>
-          <span class="tech-tag">GeoPandas</span>
-          <span class="tech-tag">ArcGIS FeatureServer</span>
-          <span class="tech-tag">KML/KMZ</span>
-          <span class="tech-tag">Shapefile</span>
-        </div>
-        <div class="project-outcome">
-          ★ Automated multi-layer conflict detection across roads, rail, water, bridges, gas/oil pipelines, and parcels, with risk-classified permit corridors exported in one click
-        </div>
+
       </div>
-
-      <div class="project-card">
-        <h3 class="project-title">
-          <a href="https://gis-automation-tools.netlify.app/" target="_blank" rel="noopener" class="project-title-link">ArcPy Reporting &amp; QA Suite ↗</a>
-        </h3>
-        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
-        <div class="project-body">
-          <div class="project-col">
-            <p class="project-col-label">Problem</p>
-            <p>Manual GIS reporting, QA/QC, and data cleanup workflows are time-consuming, error-prone, and hard to repeat consistently across projects.</p>
-          </div>
-          <div class="project-col">
-            <p class="project-col-label">Approach</p>
-            <p>Built a suite of 14 production ArcPy scripts across four categories (reporting automation, QA/QC validation, status snapshots, and data cleanup) with a live demo interface and dry-run safety mode.</p>
-          </div>
-          <div class="project-col">
-            <p class="project-col-label">Outcome</p>
-            <p>Delivers map exports, Excel/Word/PDF reports, geometry validation, and field normalization in under 15 minutes, with downloadable sample outputs for stakeholder review.</p>
-          </div>
-        </div>
-        <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
-          <span class="pill-icon">▦</span> <span class="pill-count">0</span> screenshots
-        </button>
-        <div class="screenshots-gallery" data-project="project2" data-manifest='[{"file":"gis_tool1.png"},{"file":"gis_tool2.png"},{"file":"gis_tool3.png"},{"file":"gis_tool4.png"},{"file":"gis_tool5.png"}]' hidden>
-          <div class="screenshot-grid"></div>
-        </div>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">ArcPy</span>
-          <span class="tech-tag">ArcGIS Pro</span>
-          <span class="tech-tag">Excel/Word Automation</span>
-          <span class="tech-tag">QA/QC</span>
-        </div>
-        <div class="project-outcome">
-          ★ Automated 14 GIS workflows across reporting, validation, status tracking, and data cleanup, reducing manual prep from hours to minutes
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3 class="project-title">
-          <a href="https://design-pdf-analyzer.netlify.app/" target="_blank" rel="noopener" class="project-title-link">Design PDF Analyzer ↗</a>
-        </h3>
-        <p class="project-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
-        <div class="project-body">
-          <div class="project-col">
-            <p class="project-col-label">Problem</p>
-            <p>Reviewing telecom design PDFs to extract fiber and duct measurements, count poles, and calculate total route footage was a slow, error-prone manual process repeated across every permit submission.</p>
-          </div>
-          <div class="project-col">
-            <p class="project-col-label">Approach</p>
-            <p>Built a Streamlit app backed by a FastAPI/Netlify Functions serverless handler that parses multi-page design PDFs using PyMuPDF block-level extraction. A four-strategy fallback engine (summary footer, station-chain, E-LASH span, callout span) automatically selects the best parsing method per sheet while filtering out legend and title block contamination.</p>
-          </div>
-          <div class="project-col">
-            <p class="project-col-label">Outcome</p>
-            <p>Extracts total footage, pole count, per-segment spans, and the logic path used, all surfaced in a live-progress UI with an expandable JSON debug view. Reduces per-permit measurement review from 20–30 minutes of manual calculation to under 30 seconds.</p>
-          </div>
-        </div>
-        <button class="screenshots-pill" onclick="toggleScreenshots(this)" aria-expanded="false">
-          <span class="pill-icon">▦</span> <span class="pill-count">3</span> screenshots
-        </button>
-        <div class="screenshots-gallery" data-project="project3" data-manifest='[{"file":"pdf_tool1.png"},{"file":"pdf_tool2.png"},{"file":"pdf_tool3.png"}]' hidden>
-          <div class="screenshot-grid"></div>
-        </div>
-        <div class="project-tech">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">PyMuPDF</span>
-          <span class="tech-tag">Streamlit</span>
-          <span class="tech-tag">FastAPI</span>
-          <span class="tech-tag">Netlify Functions</span>
-        </div>
-        <div class="project-outcome">
-          ★ Automated fiber/duct measurement extraction from telecom design PDFs using a four-strategy parser, eliminating manual permit review calculations
-        </div>
-      </div>
-
     </div>
   </section>
 
   <section id="contact">
-    <div class="section-wrapper" style="padding-top:0;">
-      <p class="section-eyebrow">Get In Touch</p>
-      <h2 class="section-h2">Let's work together</h2>
-      <p class="hero-desc">Open to GIS development, spatial data engineering, and geospatial automation projects. Reach out and let's talk.</p>
+    <div class="section-wrapper contact-center">
+      <p class="section-eyebrow section-eyebrow--heading">// Get In Touch</p>
+      <p class="hero-desc contact-desc">Open to GIS development, spatial data engineering, and geospatial automation projects. Reach out and let's talk.</p>
+      <div class="contact-outline-btns">
+        <a href="mailto:cwramey@gmail.com" class="contact-outline-btn">✉ Email Me</a>
+        <a href="https://www.linkedin.com/in/chramey/" class="contact-outline-btn contact-outline-btn--dim" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>cwramey.github.io &nbsp;·&nbsp; Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
-    <p style="margin-top:8px;">
-      <a href="mailto:cwramey@gmail.com" class="nav-contact-link" aria-label="Contact" style="display:inline-flex;">
-        <span class="contact-icon" aria-hidden="true">✉</span>
-        Contact
-      </a>
-      &nbsp;·&nbsp;
-      <a href="https://www.linkedin.com/in/chramey/" class="nav-contact-link" target="_blank" rel="noopener" aria-label="LinkedIn" style="display:inline-flex;">
-        <span class="contact-icon" aria-hidden="true">in</span>
-        LinkedIn
-      </a>
+    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
+    <p class="footer-links">
+      <a href="mailto:cwramey@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
     </p>
   </footer>
 
