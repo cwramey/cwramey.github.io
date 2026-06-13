@@ -1,80 +1,42 @@
-// Populate screenshot galleries from inline data-manifest attribute
-document.querySelectorAll('.screenshots-gallery[data-project]').forEach(gallery => {
-  const project = gallery.dataset.project;
-  const base = `assets/screenshots/${project}`;
-  const pill = gallery.closest('.project-card').querySelector('.screenshots-pill');
-  const countEl = pill ? pill.querySelector('.pill-count') : null;
+// === Screenshot lightbox =====================================================
+// Each project's screenshots live in assets/screenshots/<project>/.
+// openLightbox(project) is called from inline onclick handlers on the featured
+// pane and on each portfolio card thumbnail.
+const SCREENSHOTS = {
+  project1: ['fiber_route1.png', 'fiber_route2.png', 'fiber_route3.png', 'fiber_route4.png', 'fiber_route5.png'],
+  project2: ['gis_tool1.png', 'gis_tool2.png', 'gis_tool3.png', 'gis_tool4.png', 'gis_tool5.png'],
+  project3: ['pdf_tool1.png', 'pdf_tool2.png', 'pdf_tool3.png'],
+};
 
-  let items = [];
-  try {
-    items = JSON.parse(gallery.dataset.manifest || '[]');
-  } catch (e) {}
+let _lbImages = [];
+let _lbIndex = 0;
 
-  items.sort((a, b) => {
-    const n = s => parseInt((s.file.match(/(\d+)(?=\.\w+$)/) || [0, 0])[1], 10);
-    return n(a) - n(b);
-  });
-
-  if (items.length === 0) {
-    if (pill) pill.style.display = 'none';
-    return;
-  }
-
-  if (countEl) countEl.textContent = items.length;
-
-  const grid = gallery.querySelector('.screenshot-grid');
-  items.forEach(item => {
-    const src = `${base}/${item.file}`;
-    const btn = document.createElement('button');
-    btn.className = 'screenshot-thumb';
-    btn.dataset.src = src;
-    btn.dataset.caption = item.caption || '';
-    btn.onclick = () => openLightbox(btn);
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = item.caption || '';
-    img.loading = 'lazy';
-    btn.appendChild(img);
-    grid.appendChild(btn);
-  });
-});
-
-// Screenshot gallery toggle
-function toggleScreenshots(btn) {
-  const card = btn.closest('.project-card');
-  if (!card) return;
-  const gallery = card.querySelector('.screenshots-gallery');
-  const open = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', String(!open));
-  gallery.hidden = open;
-}
-
-// Lightbox state
-let _lightboxThumbs = [];
-let _lightboxIndex = 0;
-
-function openLightbox(thumb) {
-  const card = thumb.closest('.project-card');
-  _lightboxThumbs = Array.from(card.querySelectorAll('.screenshot-thumb'));
-  _lightboxIndex = _lightboxThumbs.indexOf(thumb);
-  _showLightboxFrame(_lightboxIndex);
+function openLightbox(project) {
+  const files = SCREENSHOTS[project];
+  if (!files || !files.length) return;
+  _lbImages = files.map(f => `assets/screenshots/${project}/${f}`);
+  _lbIndex = 0;
+  _renderLightboxFrame();
   document.getElementById('lightbox').hidden = false;
   document.body.style.overflow = 'hidden';
 }
 
-function _showLightboxFrame(index) {
-  const thumb = _lightboxThumbs[index];
-  document.getElementById('lightbox-img').src = thumb.dataset.src;
-  document.getElementById('lightbox-img').alt = thumb.dataset.caption || '';
-  document.getElementById('lightbox-caption').textContent = thumb.dataset.caption || '';
-  document.querySelector('.lightbox-prev').style.display = _lightboxThumbs.length > 1 ? '' : 'none';
-  document.querySelector('.lightbox-next').style.display = _lightboxThumbs.length > 1 ? '' : 'none';
+function _renderLightboxFrame() {
+  const img = document.getElementById('lightbox-img');
+  const cap = document.getElementById('lightbox-caption');
+  img.src = _lbImages[_lbIndex];
+  img.alt = `Screenshot ${_lbIndex + 1} of ${_lbImages.length}`;
+  const multi = _lbImages.length > 1;
+  document.querySelector('.lightbox-prev').style.display = multi ? '' : 'none';
+  document.querySelector('.lightbox-next').style.display = multi ? '' : 'none';
+  cap.textContent = multi ? `${_lbIndex + 1} / ${_lbImages.length}` : '';
 }
 
 function lightboxNav(dir, e) {
   if (e) e.stopPropagation();
-  _lightboxIndex = (_lightboxIndex + dir + _lightboxThumbs.length) % _lightboxThumbs.length;
-  _showLightboxFrame(_lightboxIndex);
+  if (!_lbImages.length) return;
+  _lbIndex = (_lbIndex + dir + _lbImages.length) % _lbImages.length;
+  _renderLightboxFrame();
 }
 
 function closeLightbox(e) {
@@ -85,14 +47,14 @@ function closeLightbox(e) {
 
 document.addEventListener('keydown', e => {
   const lb = document.getElementById('lightbox');
-  if (lb.hidden) return;
+  if (!lb || lb.hidden) return;
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') lightboxNav(-1);
   if (e.key === 'ArrowRight') lightboxNav(1);
 });
 
-// Smooth scroll for nav anchor links (skip bare # hrefs)
-document.querySelectorAll('a[href^="#"][href!="#"]').forEach(link => {
+// === Smooth scroll for in-page anchor links (skip bare "#") ==================
+document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(link => {
   link.addEventListener('click', e => {
     const target = document.querySelector(link.getAttribute('href'));
     if (target) {
@@ -102,23 +64,20 @@ document.querySelectorAll('a[href^="#"][href!="#"]').forEach(link => {
   });
 });
 
-// Highlight active nav link based on scroll position
+// === Highlight active nav link based on scroll position ======================
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-
-const observer = new IntersectionObserver(entries => {
+const navObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    const href = '#' + entry.target.id;
-    const link = document.querySelector(`.nav-links a[href="${href}"]`);
+    const link = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
     if (link) link.classList.toggle('active', entry.isIntersecting);
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => navObserver.observe(s));
 
-sections.forEach(s => observer.observe(s));
-
-// Pre-warm the Streamlit app so it's live by the time the visitor clicks the link.
-// Streamlit Community Cloud hibernates after inactivity; a HEAD request wakes it up.
-// no-cors: Streamlit doesn't send CORS headers, so we can't read the response (that's fine).
-// keepalive: survives navigation. Errors are silently ignored (best-effort only).
-fetch('https://fiber-route-analyzer.streamlit.app/', { method: 'GET', mode: 'no-cors', keepalive: true })
+// === Pre-warm the demo app ===================================================
+// Streamlit Community Cloud hibernates after inactivity; a best-effort request
+// wakes it so it's live by the time a visitor clicks "Launch Demo".
+// no-cors: the app doesn't send CORS headers (we can't read the response — fine).
+// keepalive: survives navigation. Errors are silently ignored.
+fetch('https://fiber-route-analyzer.netlify.app/', { method: 'GET', mode: 'no-cors', keepalive: true })
   .catch(() => {});

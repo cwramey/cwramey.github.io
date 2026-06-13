@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A practical walkthrough of detecting fiber route conflicts — road, rail, water, and pipeline crossings — using GeoPandas spatial joins and the correct projected coordinate system.">
+  <meta name="theme-color" content="#0f172a">
+  <title>Detecting Fiber Route Conflicts with GeoPandas - Charles Ramey</title>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Detecting Fiber Route Conflicts with GeoPandas">
+  <meta property="og:description" content="Find every road, rail, water, and pipeline crossing on a proposed fiber route with a few lines of GeoPandas instead of days of manual map review.">
+  <meta property="og:url" content="https://cwramey.github.io/posts/detecting-fiber-route-conflicts-with-geopandas.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://cwramey.github.io/posts/detecting-fiber-route-conflicts-with-geopandas.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Detecting Fiber Route Conflicts with GeoPandas",
+    "description": "A practical walkthrough of detecting fiber route conflicts — road, rail, water, and pipeline crossings — using GeoPandas spatial joins and the correct projected coordinate system.",
+    "author": { "@type": "Person", "name": "Charles Ramey", "url": "https://cwramey.github.io/" },
+    "mainEntityOfPage": "https://cwramey.github.io/posts/detecting-fiber-route-conflicts-with-geopandas.html",
+    "keywords": "GeoPandas, fiber route, spatial join, GIS automation, conflict detection, CRS, telecom permitting",
+    "publisher": { "@type": "Person", "name": "Charles Ramey" }
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-inner nav-inner--centered">
+      <a href="../index.html" class="nav-item">Home</a>
+      <a href="../about.html" class="nav-item">About Me</a>
+      <a href="../resume.html" class="nav-item">Resume</a>
+      <a href="../index.html#projects" class="nav-item">Portfolio</a>
+      <a href="../blog.html" class="nav-item active">Blog</a>
+    </div>
+  </nav>
+
+  <article id="post">
+    <div class="section-wrapper post-wrapper">
+
+      <a href="../blog.html" class="post-back">← All posts</a>
+
+      <p class="post-meta">GeoPandas &nbsp;·&nbsp; Spatial Analysis &nbsp;·&nbsp; 8 min read</p>
+      <h1 class="post-title">Detecting Fiber Route Conflicts with GeoPandas</h1>
+
+      <div class="post-body">
+
+        <p>When a fiber route is proposed, every place it crosses a road, rail line, waterway, or buried pipeline is a permit, a bore, or a risk. On a large build, finding those crossings by eye in a desktop GIS can eat <strong>days</strong> of an engineer's week — and a missed crossing is an expensive surprise in the field.</p>
+
+        <p>This is a problem spatial libraries solve well. Here's the approach I use to detect crossings programmatically with <a href="https://geopandas.org/" target="_blank" rel="noopener">GeoPandas</a>, reduced to its essentials.</p>
+
+        <h2>1. Load the route and the layers it might cross</h2>
+
+        <p>The route is a line. Each conflict layer — roads, rail, hydrology, pipelines — is its own set of features. GeoPandas reads almost anything (Shapefile, GeoJSON, KML, GeoPackage, PostGIS) into a <code>GeoDataFrame</code>:</p>
+
+        <pre><code>import geopandas as gpd
+
+route = gpd.read_file("proposed_route.geojson")
+roads = gpd.read_file("roads.shp")
+rail  = gpd.read_file("rail.shp")
+water = gpd.read_file("hydrology.shp")</code></pre>
+
+        <h2>2. Get everything into the same projected CRS</h2>
+
+        <p>This is the step that quietly breaks most first attempts. If your layers are in different coordinate reference systems, the geometries won't line up and your intersections will be wrong — or empty. And if you stay in a <em>geographic</em> CRS like WGS&nbsp;84 (EPSG:4326), any distance or length you compute comes out in degrees, which is meaningless on the ground.</p>
+
+        <p>Reproject every layer to a <em>projected</em> CRS appropriate for your area — a UTM zone or a State Plane zone — so units are in meters or feet:</p>
+
+        <pre><code># Example: UTM zone 17N (meters). Use the zone that fits your project.
+TARGET_CRS = "EPSG:26917"
+
+route = route.to_crs(TARGET_CRS)
+roads = roads.to_crs(TARGET_CRS)
+rail  = rail.to_crs(TARGET_CRS)
+water = water.to_crs(TARGET_CRS)</code></pre>
+
+        <p class="post-callout">Rule of thumb: do all spatial math in a projected CRS, and only convert back to lat/long at the very end for export or display.</p>
+
+        <h2>3. Find the crossings with a spatial join</h2>
+
+        <p>A spatial join pairs every route feature with every layer feature it interacts with. Using the <code>intersects</code> predicate, you get one row per crossing — and you keep the attributes of the thing being crossed (road name, rail owner, stream name), which is exactly what a permit packet needs:</p>
+
+        <pre><code>road_hits = gpd.sjoin(
+    route,
+    roads[["name", "class", "geometry"]],
+    how="inner",
+    predicate="intersects",
+)
+
+print(f"{len(road_hits)} road crossings found")</code></pre>
+
+        <p>Run the same join against each layer and tag the results so you know what type of crossing each one is:</p>
+
+        <pre><code>layers = {"road": roads, "rail": rail, "water": water}
+hits = []
+
+for kind, layer in layers.items():
+    joined = gpd.sjoin(route, layer, how="inner", predicate="intersects")
+    joined["crossing_type"] = kind
+    hits.append(joined)
+
+import pandas as pd
+conflicts = pd.concat(hits, ignore_index=True)</code></pre>
+
+        <h2>4. Get the actual crossing points</h2>
+
+        <p>A spatial join tells you <em>that</em> two features intersect; the <code>intersection</code> overlay tells you <em>where</em>. That geometry — usually a point — is what you drop a station on, label, or hand to a bore crew:</p>
+
+        <pre><code>crossing_points = gpd.overlay(
+    route, roads, how="intersection", keep_geom_type=False
+)
+# crossing_points.geometry now holds the crossing locations</code></pre>
+
+        <h2>5. Classify and export</h2>
+
+        <p>From here it's ordinary data work: score risk by crossing type (a rail or major-highway crossing matters more than a residential street), sort along the route, and export. Because it's all in a GeoDataFrame, you can write straight back out to whatever the next step needs:</p>
+
+        <pre><code>conflicts.to_file("conflicts.gpkg", driver="GPKG")     # for GIS
+conflicts.drop(columns="geometry").to_excel("conflicts.xlsx")  # for the permit team</code></pre>
+
+        <h2>Why this is worth automating</h2>
+
+        <p>The first time you write this, it takes an afternoon. Every time after that, it turns a multi-day manual review into a script you run in seconds — and it never gets bored, never skips a crossing on page 14, and produces the same answer twice. That repeatability is the whole point: it's the difference between a one-off analysis and a tool a team can trust in production.</p>
+
+        <p>This is the core of my <a href="../index.html#projects">Fiber Route Conflict Analyzer</a> — scaled up with live ArcGIS FeatureServer layers, more crossing types, and operator-ready exports. <a href="https://fiber-route-analyzer.netlify.app/" target="_blank" rel="noopener">Try the live demo →</a></p>
+
+      </div>
+
+      <div class="post-footer">
+        <p>Have a geospatial workflow that's eating your week? <a href="mailto:cwramey@gmail.com">Let's talk →</a></p>
+        <a href="../blog.html" class="post-back">← All posts</a>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
+    <p class="footer-links">
+      <a href="mailto:cwramey@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
+    </p>
+  </footer>
+
+</body>
+</html>
