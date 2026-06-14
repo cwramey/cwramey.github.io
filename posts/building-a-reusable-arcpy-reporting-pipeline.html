@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="How to structure ArcPy scripts so QA checks, reporting, and map exports run from a single config instead of a pile of one-off tools — a maintainable reporting pipeline in ArcGIS Pro.">
+  <meta name="description" content="How to structure ArcPy scripts so QA checks, reporting, and map exports run from a single config instead of a pile of one-off tools: a maintainable reporting pipeline in ArcGIS Pro.">
   <meta name="theme-color" content="#0f172a">
   <title>Building a Reusable ArcPy Reporting Pipeline - Charles Ramey</title>
 
@@ -37,7 +37,7 @@
       <a href="../index.html" class="nav-item">Home</a>
       <a href="../about.html" class="nav-item">About Me</a>
       <a href="../resume.html" class="nav-item">Resume</a>
-      <a href="../index.html#projects" class="nav-item">Portfolio</a>
+      <a href="../portfolio.html" class="nav-item">Portfolio</a>
       <a href="../blog.html" class="nav-item active">Blog</a>
     </div>
   </nav>
@@ -54,11 +54,11 @@
 
         <p>Most GIS automation starts the same way: someone needs a map exported and a summary table by Friday, so you write a script. It works. Next month a different team needs almost the same thing with a different layer and a different title block, so you copy the script and tweak it. Do that for a year and you have <strong>fourteen near-identical scripts</strong>, each with its own hard-coded paths, and a bug fixed in one that still lives in the other thirteen.</p>
 
-        <p>The fix isn't more scripts — it's one pipeline driven by configuration. Here's how I structure ArcPy work so QA, reporting, and map exports all run from a single source of truth.</p>
+        <p>The fix isn't more scripts. It's one pipeline driven by configuration. Here's how I structure ArcPy work so QA, reporting, and map exports all run from a single source of truth.</p>
 
         <h2>1. Put everything that changes in a config</h2>
 
-        <p>The first move is to separate <em>what</em> a run does from <em>how</em> it does it. Every value that differs between jobs — workspace, layers, output folder, the layout to export — goes into a config file, not the code:</p>
+        <p>The first move is to separate <em>what</em> a run does from <em>how</em> it does it. Every value that differs between jobs (workspace, layers, output folder, the layout to export) goes into a config file, not the code:</p>
 
         <pre><code>{
   "workspace": "C:/projects/fiber/data.gdb",
@@ -68,7 +68,7 @@
   "qa_checks": ["null_geometry", "missing_status", "duplicate_ids"]
 }</code></pre>
 
-        <p>Now a new job is a new JSON file — not a new copy of 400 lines of Python.</p>
+        <p>Now a new job is a new JSON file, not a new copy of 400 lines of Python.</p>
 
         <pre><code>import json, arcpy
 
@@ -125,7 +125,7 @@ for layout_name in cfg["layouts"]:
 
 del aprx  # release the project file lock</code></pre>
 
-        <p>That <code>del aprx</code> at the end matters — ArcGIS Pro holds a lock on the project file, and leaving it open will block the next run.</p>
+        <p>That <code>del aprx</code> at the end matters: ArcGIS Pro holds a lock on the project file, and leaving it open will block the next run.</p>
 
         <h2>4. Write one report, every run</h2>
 
@@ -142,9 +142,9 @@ with open(report, "w") as f:
 
         <h2>The payoff</h2>
 
-        <p>Once the pipeline exists, the fourteen scripts collapse into one runner plus a folder of small config files. A bug fixed in a check is fixed everywhere. Onboarding a new report is editing JSON, not reading Python. And every run is reproducible — same config in, same outputs out, with a report to prove it.</p>
+        <p>Once the pipeline exists, the fourteen scripts collapse into one runner plus a folder of small config files. A bug fixed in a check is fixed everywhere. Onboarding a new report is editing JSON, not reading Python. And every run is reproducible: same config in, same outputs out, with a report to prove it.</p>
 
-        <p>This is the backbone of my <a href="../index.html#projects">ArcPy Reporting &amp; QA Suite</a>, which runs reporting, validation, status snapshots, and cleanup from a shared core. <a href="https://gis-automation-tools.netlify.app/" target="_blank" rel="noopener">See the live demo →</a></p>
+        <p>This is the backbone of my <a href="../portfolio.html#arcpy-suite">ArcPy Reporting &amp; QA Suite</a>, which runs reporting, validation, status snapshots, and cleanup from a shared core. <a href="https://gis-automation-tools.netlify.app/" target="_blank" rel="noopener">See the live demo →</a></p>
 
       </div>
 

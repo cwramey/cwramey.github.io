@@ -49,7 +49,7 @@ a {
 .section-wrapper {
   max-width: 900px;
   margin: 0 auto;
-  padding: 64px 32px;
+  padding: 40px 32px;
 }
 
 .section-wrapper--flush-top {
@@ -349,7 +349,7 @@ hr.divider {
   outline-offset: 2px;
 }
 
-/* === ABOUT — centered to match main page === */
+/* === ABOUT - centered to match main page === */
 .about-centered {
   text-align: center;
 }
@@ -379,6 +379,17 @@ hr.divider {
 
 .about-intro strong {
   color: var(--accent);
+}
+
+.about-intro a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.about-intro a:hover {
+  color: var(--accent-soft);
 }
 
 .about-intro:last-of-type {
@@ -459,10 +470,11 @@ hr.divider {
 }
 
 .about-cta {
-  margin-top: 32px;
+  margin-top: 36px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -774,7 +786,7 @@ hr.divider {
   justify-content: center;
 }
 
-/* === NAV — centered, no logo === */
+/* === NAV - centered, no logo === */
 .nav-inner--centered {
   justify-content: center;
   gap: 48px;
@@ -798,7 +810,7 @@ hr.divider {
   outline: none;
 }
 
-/* === CONTACT — centered layout with outline buttons === */
+/* === CONTACT - centered layout with outline buttons === */
 .contact-center {
   text-align: center;
   padding-top: 48px;
@@ -872,7 +884,7 @@ footer {
 
 /* Enlarged eyebrow used as a standalone section heading */
 .section-eyebrow--heading {
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 24px;
 }
 
@@ -1001,8 +1013,15 @@ footer {
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.portfolio-page-cta {
+  text-align: center;
+  margin-top: 32px;
 }
 
 .portfolio-card {
@@ -1103,7 +1122,7 @@ footer {
   flex-wrap: wrap;
 }
 
-/* Solid blue launch button — matches the featured project's button */
+/* Solid blue launch button - matches the featured project's button */
 .portfolio-launch-btn {
   display: inline-block;
   background: var(--accent);
@@ -1128,6 +1147,77 @@ footer {
   .carousel-content { padding: 24px 28px; }
   .portfolio-grid { grid-template-columns: 1fr; }
 }
+
+/* === PORTFOLIO PAGE (detailed sections) ==================================== */
+#portfolio {
+  background: radial-gradient(ellipse 80% 50% at 80% 0%, rgba(56,189,248,0.06) 0%, transparent 70%);
+}
+
+.portfolio-sub--page {
+  margin-top: 0;
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+.pf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.pf-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  transition: border-color 0.15s;
+  scroll-margin-top: 80px;
+}
+
+.pf-item:hover { border-color: var(--accent); }
+
+.pf-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-head);
+  margin: 6px 0 14px;
+  line-height: 1.2;
+}
+
+.pf-lead {
+  font-size: 14.5px;
+  color: var(--text-body);
+  line-height: 1.75;
+  margin-bottom: 22px;
+}
+
+.pf-sub {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.pf-features { margin-bottom: 24px; }
+
+.pf-item .portfolio-tags { margin-bottom: 24px; }
+
+.pf-readmore {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  align-self: center;
+  transition: color 0.15s;
+}
+
+.pf-readmore:hover { color: var(--accent-soft); }
 
 /* === BLOG INDEX ============================================================ */
 #blog {
@@ -1393,7 +1483,7 @@ a.blog-post-card:hover {
   color: var(--bg-dark);
 }
 
-/* Section headings — terminal prompt style */
+/* Section headings - terminal prompt style */
 .resume-section-h {
   font-family: 'Courier New', monospace;
   font-size: 16px;
@@ -1408,6 +1498,19 @@ a.blog-post-card:hover {
 .resume-section-h::before {
   content: '> ';
   color: #4ade80;
+}
+
+/* Areas of expertise - two-column arrow list */
+ul.resume-comp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 28px;
+}
+
+ul.resume-comp li strong { color: var(--text-head); }
+
+@media (max-width: 640px) {
+  ul.resume-comp { grid-template-columns: 1fr; }
 }
 
 /* Timeline */
@@ -1496,7 +1599,7 @@ a.blog-post-card:hover {
   letter-spacing: 0.06em;
 }
 
-/* Placeholder flag — remove once real content is filled in */
+/* Placeholder flag - remove once real content is filled in */
 .resume-todo {
   display: inline-block;
   font-family: 'Courier New', monospace;
@@ -1546,7 +1649,7 @@ a.blog-post-card:hover {
 
 .resume-proj-item a:hover { opacity: 0.7; }
 
-/* Print / Save-as-PDF — hide chrome, flatten to paper */
+/* Print / Save-as-PDF - hide chrome, flatten to paper */
 @media print {
   #nav, footer, .resume-actions { display: none !important; }
   body { background: #fff; color: #111; font-size: 12px; }

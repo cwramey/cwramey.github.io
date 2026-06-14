@@ -6,6 +6,7 @@ const SCREENSHOTS = {
   project1: ['fiber_route1.png', 'fiber_route2.png', 'fiber_route3.png', 'fiber_route4.png', 'fiber_route5.png'],
   project2: ['gis_tool1.png', 'gis_tool2.png', 'gis_tool3.png', 'gis_tool4.png', 'gis_tool5.png'],
   project3: ['pdf_tool1.png', 'pdf_tool2.png', 'pdf_tool3.png'],
+  project4: ['gdb_schema1.png', 'gdb_schema2.png', 'gdb_schema3.png', 'gdb_schema4.png', 'gdb_schema5.png'],
 };
 
 let _lbImages = [];
@@ -77,7 +78,7 @@ sections.forEach(s => navObserver.observe(s));
 // === Pre-warm the demo app ===================================================
 // Streamlit Community Cloud hibernates after inactivity; a best-effort request
 // wakes it so it's live by the time a visitor clicks "Launch Demo".
-// no-cors: the app doesn't send CORS headers (we can't read the response — fine).
+// no-cors: the app doesn't send CORS headers (we can't read the response, which is fine).
 // keepalive: survives navigation. Errors are silently ignored.
 fetch('https://fiber-route-analyzer.netlify.app/', { method: 'GET', mode: 'no-cors', keepalive: true })
   .catch(() => {});
