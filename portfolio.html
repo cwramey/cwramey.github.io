@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Charles Ramey - production GIS and telecom tools: the Fiber Route Conflict Analyzer, ArcPy Reporting & QA Suite, Design PDF Analyzer, and ArcGIS GDB Schema Tool.">
+  <meta name="theme-color" content="#0f172a">
+  <title>Portfolio - Charles Ramey</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portfolio - Charles Ramey">
+  <meta property="og:description" content="Production GIS and telecom tools: fiber route conflict detection, ArcPy automation, telecom PDF parsing, and browser-based geodatabase schema editing.">
+  <meta property="og:url" content="https://cwramey.github.io/portfolio.html">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/project1/fiber_route1.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://cwramey.github.io/portfolio.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-inner nav-inner--centered">
+      <a href="index.html" class="nav-item">Home</a>
+      <a href="about.html" class="nav-item">About Me</a>
+      <a href="resume.html" class="nav-item">Resume</a>
+      <a href="portfolio.html" class="nav-item active">Portfolio</a>
+      <a href="blog.html" class="nav-item">Blog</a>
+    </div>
+  </nav>
+
+  <section id="portfolio">
+    <div class="section-wrapper">
+      <h1 class="section-eyebrow section-eyebrow--heading">// Portfolio</h1>
+      <p class="portfolio-sub portfolio-sub--page">Production GIS and telecom tools built for real-world fielding, permitting, and data-governance workflows. Each one replaces days of manual work with a script or an app a team can trust.</p>
+
+      <div class="pf-list">
+
+        <article class="pf-item" id="fiber-route-analyzer">
+          <p class="portfolio-cat">GIS &nbsp;·&nbsp; Permitting</p>
+          <h2 class="pf-title">Fiber Route Conflict Analyzer</h2>
+          <p class="pf-lead">Ingests KML, KMZ, GeoJSON, and Shapefile routes and detects every crossing conflict against live ArcGIS FeatureServer layers, classifies risk by crossing type, and generates permit corridor polygons tagged with city, county, road name, and a confidence score. Delivers operator-ready exports and cuts permit prep from 2–3 days of manual map review to under an hour.</p>
+
+          <p class="pf-sub">Highlights</p>
+          <ul class="about-list pf-features">
+            <li>Reads KML, KMZ, GeoJSON, and Shapefile route inputs</li>
+            <li>Detects crossings against roads, rail, water, bridges, gas/oil pipelines, and parcels from live ArcGIS FeatureServer layers</li>
+            <li>Classifies each conflict by crossing type and assigns a confidence score</li>
+            <li>Generates permit corridor polygons tagged with city, county, and road name</li>
+            <li>Exports operator-ready KMZ, Shapefiles, a Markdown report, and an Excel workbook</li>
+          </ul>
+
+          <div class="portfolio-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">GeoPandas</span>
+            <span class="tech-tag">Shapely</span>
+            <span class="tech-tag">ArcGIS FeatureServer</span>
+            <span class="tech-tag">KML/KMZ</span>
+          </div>
+
+          <div class="portfolio-actions">
+            <button class="portfolio-shots-btn" onclick="openLightbox('project1')">▦ &nbsp;View 5 Screenshots</button>
+            <a href="https://fiber-route-analyzer.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+            <a href="posts/detecting-fiber-route-conflicts-with-geopandas.html" class="pf-readmore">Read the writeup →</a>
+          </div>
+        </article>
+
+        <article class="pf-item" id="arcpy-suite">
+          <p class="portfolio-cat">GIS &nbsp;·&nbsp; Automation &nbsp;·&nbsp; QA</p>
+          <h2 class="pf-title">ArcPy Reporting &amp; QA Suite</h2>
+          <p class="pf-lead">A suite of 14 production ArcPy scripts covering reporting, QA/QC validation, status snapshots, and data cleanup, all driven from a single configuration so a fix made once applies everywhere. Delivers map exports and reports in under 15 minutes instead of a day of manual work.</p>
+
+          <p class="pf-sub">Highlights</p>
+          <ul class="about-list pf-features">
+            <li>14 ArcPy scripts unified under one config-driven runner</li>
+            <li>Automated QA/QC validation checks across feature classes</li>
+            <li>Status snapshots and recurring operational reports</li>
+            <li>Data cleanup and standardization routines</li>
+            <li>Automated map-layout exports from ArcGIS Pro projects</li>
+          </ul>
+
+          <div class="portfolio-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">ArcPy</span>
+            <span class="tech-tag">ArcGIS Pro</span>
+            <span class="tech-tag">ModelBuilder</span>
+          </div>
+
+          <div class="portfolio-actions">
+            <button class="portfolio-shots-btn" onclick="openLightbox('project2')">▦ &nbsp;View 5 Screenshots</button>
+            <a href="https://gis-automation-tools.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+            <a href="posts/building-a-reusable-arcpy-reporting-pipeline.html" class="pf-readmore">Read the writeup →</a>
+          </div>
+        </article>
+
+        <article class="pf-item" id="design-pdf-analyzer">
+          <p class="portfolio-cat">AI &nbsp;·&nbsp; PDF Parsing &nbsp;·&nbsp; Telecom</p>
+          <h2 class="pf-title">Design PDF Analyzer</h2>
+          <p class="pf-lead">Turns unstructured telecom design PDFs into clean, queryable data, extracting fiber footage, duct measurements, and pole counts with PyMuPDF, text search, and regex. Cuts per-permit review from 20–30 minutes of manual counting to under 30 seconds per sheet.</p>
+
+          <p class="pf-sub">Highlights</p>
+          <ul class="about-list pf-features">
+            <li>Reads the text layer of design PDFs directly with PyMuPDF (no OCR needed for vector exports)</li>
+            <li>Extracts linear fiber footage, duct counts, sizes, and materials, and pole counts</li>
+            <li>Counts unique entities to avoid double-counting poles across overlapping sheets</li>
+            <li>Uses text position to recover values when the PDF's reading order is jumbled</li>
+            <li>Emits structured JSON ready for a downstream API or spreadsheet</li>
+          </ul>
+
+          <div class="portfolio-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">PyMuPDF</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">regex</span>
+          </div>
+
+          <div class="portfolio-actions">
+            <button class="portfolio-shots-btn" onclick="openLightbox('project3')">▦ &nbsp;View 3 Screenshots</button>
+            <a href="https://design-pdf-analyzer.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+            <a href="posts/extracting-footage-and-pole-counts-from-telecom-design-pdfs.html" class="pf-readmore">Read the writeup →</a>
+          </div>
+        </article>
+
+        <article class="pf-item" id="gdb-schema-tool">
+          <p class="portfolio-cat">GIS &nbsp;·&nbsp; Geodatabase &nbsp;·&nbsp; Schema</p>
+          <h2 class="pf-title">ArcGIS GDB Schema Tool</h2>
+          <p class="pf-lead">A browser-based tool to import, edit, and build ArcGIS geodatabase schemas with no ArcGIS Pro required, paired with a matching ArcGIS Pro Python toolbox for the create/export round-trip. Parses JSON, Excel, XML Workspace, GeoPackage, and .gdb.zip files entirely client-side, so schema never leaves your machine.</p>
+
+          <p class="pf-sub">Highlights</p>
+          <ul class="about-list pf-features">
+            <li>Imports schema from JSON, Excel, XML Workspace, GeoPackage, and .gdb.zip, all parsed in the browser</li>
+            <li>Review and edit feature classes, fields, domains, and subtypes with live validation</li>
+            <li>Four built-in infrastructure presets: Fiber, Small Cell, Gas Line, and Field Inspection</li>
+            <li>ArcGIS Pro Python toolbox to create a geodatabase from a preset and export an existing one back to JSON</li>
+            <li>Styled Excel template round-trip for non-technical schema authoring</li>
+          </ul>
+
+          <div class="portfolio-tags">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">ArcPy</span>
+            <span class="tech-tag">ArcGIS Pro</span>
+          </div>
+
+          <div class="portfolio-actions">
+            <button class="portfolio-shots-btn" onclick="openLightbox('project4')">▦ &nbsp;View 5 Screenshots</button>
+            <a href="https://gdb-schema-tool.netlify.app/" class="portfolio-launch-btn" target="_blank" rel="noopener">Launch Demo ↗</a>
+            <a href="posts/editing-arcgis-geodatabase-schemas-in-the-browser.html" class="pf-readmore">Read the writeup →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-wrapper contact-center">
+      <p class="section-eyebrow section-eyebrow--heading">// Get In Touch</p>
+      <p class="hero-desc contact-desc">Open to GIS development, spatial data engineering, and geospatial automation projects. Reach out and let's talk.</p>
+      <div class="contact-outline-btns">
+        <a href="mailto:cwramey@gmail.com" class="contact-outline-btn">✉ Email Me</a>
+        <a href="https://www.linkedin.com/in/chramey/" class="contact-outline-btn contact-outline-btn--dim" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
+    <p class="footer-links">
+      <a href="mailto:cwramey@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
+    </p>
+  </footer>
+
+  <div id="lightbox" class="lightbox" hidden onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" onclick="lightboxNav(-1, event)" aria-label="Previous">&#8592;</button>
+    <button class="lightbox-next" onclick="lightboxNav(1, event)" aria-label="Next">&#8594;</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" src="" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

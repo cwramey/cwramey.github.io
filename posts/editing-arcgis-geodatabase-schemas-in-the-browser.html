@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Building a browser-based tool to import, edit, and generate ArcGIS geodatabase schemas: parsing JSON, Excel, XML Workspace, GeoPackage, and .gdb.zip files entirely client-side, with a matching ArcGIS Pro Python toolbox.">
+  <meta name="theme-color" content="#0f172a">
+  <title>Editing ArcGIS Geodatabase Schemas in the Browser - Charles Ramey</title>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Editing ArcGIS Geodatabase Schemas in the Browser">
+  <meta property="og:description" content="A client-side tool for reading, editing, and generating ArcGIS geodatabase schemas with no ArcGIS Pro required, backed by a Python toolbox for the round-trip.">
+  <meta property="og:url" content="https://cwramey.github.io/posts/editing-arcgis-geodatabase-schemas-in-the-browser.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://cwramey.github.io/posts/editing-arcgis-geodatabase-schemas-in-the-browser.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Editing ArcGIS Geodatabase Schemas in the Browser",
+    "description": "Building a client-side tool to import, edit, and generate ArcGIS geodatabase schemas from JSON, Excel, XML Workspace, GeoPackage, and .gdb.zip files, with a matching ArcGIS Pro Python toolbox.",
+    "author": { "@type": "Person", "name": "Charles Ramey", "url": "https://cwramey.github.io/" },
+    "mainEntityOfPage": "https://cwramey.github.io/posts/editing-arcgis-geodatabase-schemas-in-the-browser.html",
+    "keywords": "ArcGIS, geodatabase, schema, ArcPy, Python toolbox, GeoPackage, XML Workspace, domains, subtypes, feature class",
+    "publisher": { "@type": "Person", "name": "Charles Ramey" }
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-inner nav-inner--centered">
+      <a href="../index.html" class="nav-item">Home</a>
+      <a href="../about.html" class="nav-item">About Me</a>
+      <a href="../resume.html" class="nav-item">Resume</a>
+      <a href="../portfolio.html" class="nav-item">Portfolio</a>
+      <a href="../blog.html" class="nav-item active">Blog</a>
+    </div>
+  </nav>
+
+  <article id="post">
+    <div class="section-wrapper post-wrapper">
+
+      <a href="../blog.html" class="post-back">← All posts</a>
+
+      <p class="post-meta">GIS &nbsp;·&nbsp; Geodatabase &nbsp;·&nbsp; 8 min read</p>
+      <h1 class="post-title">Editing ArcGIS Geodatabase Schemas in the Browser</h1>
+
+      <div class="post-body">
+
+        <p>A file geodatabase is mostly <em>schema</em>: feature classes, the fields on them, the coded-value and range domains that constrain those fields, and the subtypes that vary defaults from one feature kind to the next. Getting that schema right is the difference between data that validates itself and data that quietly fills up with garbage.</p>
+
+        <p>The trouble is that touching schema almost always means opening ArcGIS Pro (a heavyweight, licensed desktop app) just to rename a field, retype a column, or see what domains a database actually uses. So I built a tool that does the common schema work in a browser, with no ArcGIS Pro and no server, plus a Python toolbox for the parts that genuinely need ArcPy.</p>
+
+        <h2>1. The schema is just data, so make it portable</h2>
+
+        <p>The whole design rests on one decision: represent a geodatabase schema as plain JSON. Once schema is data, everything else (reading it, editing it, diffing it, regenerating it) is ordinary data manipulation rather than a desktop GIS operation.</p>
+
+        <pre><code>{
+  "preset_name": "Fiber_Network",
+  "description": "Underground fiber plant",
+  "spatial_reference": { "wkid": 4326, "description": "WGS 1984" },
+  "domains": [
+    {
+      "name": "CableStatus",
+      "type": "CODED",
+      "values": [
+        { "code": "AS", "description": "As-built" },
+        { "code": "PR", "description": "Proposed" }
+      ]
+    }
+  ],
+  "feature_classes": [
+    {
+      "name": "Fiber_Cable",
+      "geometry_type": "POLYLINE",
+      "fields": [
+        { "name": "STATUS", "field_type": "TEXT",
+          "field_length": 2, "alias": "Status", "domain": "CableStatus" }
+      ]
+    }
+  ]
+}</code></pre>
+
+        <p>Every other format the tool understands is normalized <em>into</em> this shape on import, and generated <em>from</em> it on export. The JSON is the lingua franca.</p>
+
+        <h2>2. Parse five input formats, all client-side</h2>
+
+        <p>GIS schema arrives in whatever format the source system happened to emit. Rather than make the user convert first, the browser tool reads five directly: a JSON preset, a filled-in Excel template, an ArcGIS <strong>XML Workspace Document</strong>, a <strong>GeoPackage</strong> (<code>.gpkg</code>), and a zipped file geodatabase (<code>.gdb.zip</code>).</p>
+
+        <p>The key constraint: the file never leaves the browser. A GeoPackage is a SQLite database, so it reads through a WASM build of SQLite and the schema comes straight out of the spec's metadata tables:</p>
+
+        <pre><code>// GeoPackage stores its layers in a standard catalog table
+const rows = db.exec(`
+  SELECT table_name, geometry_type_name, srs_id
+  FROM gpkg_geometry_columns
+`);
+
+// ...and each layer's fields come from SQLite's own introspection
+const fields = db.exec(`PRAGMA table_info('${tableName}')`);</code></pre>
+
+        <p>The XML Workspace path is an <code>DOMParser</code> walk over Esri's <code>esri:DEFeatureClassInfo</code> nodes; the <code>.gdb.zip</code> path unzips in memory and reads the geodatabase system tables. Different sources, one normalizer, one JSON result. No upload, no temp files, nothing to clean up, and nothing sensitive ever crosses the network.</p>
+
+        <p class="post-callout">Parsing in the browser isn't just a convenience. It's a trust feature. "Your schema never leaves your machine" is a sentence a lot of GIS shops need to hear before they'll paste in real data.</p>
+
+        <h2>3. Editing means validating as you go</h2>
+
+        <p>Once a schema is loaded, the review stage lets you retype a field, reassign or clear its domain, toggle nullability, and add or drop fields. The interesting work isn't the form. It's keeping the schema internally consistent while it's edited, because the two most common ways a geodatabase build fails are dangling references:</p>
+
+        <ul>
+          <li>a field points at a <code>domain</code> that isn't in the top-level <code>domains</code> list, or</li>
+          <li>a subtype sets a default for a field the feature class doesn't have.</li>
+        </ul>
+
+        <pre><code>function validate(schema) {
+  const domainNames = new Set(schema.domains.map(d => d.name));
+  const errors = [];
+
+  for (const fc of schema.feature_classes) {
+    const fieldNames = new Set(fc.fields.map(f => f.name));
+
+    for (const f of fc.fields) {
+      if (f.domain && !domainNames.has(f.domain)) {
+        errors.push(`${fc.name}.${f.name} -> missing domain "${f.domain}"`);
+      }
+    }
+    for (const st of fc.subtypes ?? []) {
+      for (const fieldName of Object.keys(st.field_defaults ?? {})) {
+        if (!fieldNames.has(fieldName)) {
+          errors.push(`${fc.name} subtype "${st.name}" -> unknown field "${fieldName}"`);
+        }
+      }
+    }
+  }
+  return errors;
+}</code></pre>
+
+        <p>Catching these in the browser, before anyone runs a build, turns a cryptic ArcPy traceback twenty minutes into a job into a readable message on the screen right now.</p>
+
+        <h2>4. The browser can't write a real .gdb, so hand off to ArcPy</h2>
+
+        <p>There's a hard line a browser can't cross: a true Esri file geodatabase is a proprietary binary format, and only Esri's libraries can write one. So the tool splits the work honestly. Everything up to a validated JSON preset happens in the browser. <em>Materializing</em> that preset into an actual <code>.gdb</code> happens in a matching ArcGIS Pro Python toolbox, where ArcPy is available:</p>
+
+        <pre><code>import arcpy
+
+def build_feature_class(gdb, fc):
+    arcpy.management.CreateFeatureclass(
+        gdb, fc["name"], fc["geometry_type"],
+        spatial_reference=arcpy.SpatialReference(fc["wkid"])
+    )
+    for field in fc["fields"]:
+        arcpy.management.AddField(
+            f"{gdb}/{fc['name']}", field["name"], field["field_type"],
+            field_length=field.get("field_length"),
+            field_alias=field.get("alias"),
+            field_is_nullable="NULLABLE" if field.get("nullable", True) else "NON_NULLABLE",
+        )
+        if field.get("domain"):
+            arcpy.management.AssignDomainToField(
+                f"{gdb}/{fc['name']}", field["name"], field["domain"]
+            )</code></pre>
+
+        <p>The toolbox is symmetric: it can <strong>create</strong> a geodatabase from a preset, and it can <strong>export</strong> the full schema of an existing geodatabase (domains, fields, defaults, subtypes, and all) back out to the same JSON. Export from Pro, edit in the browser, build in Pro: a clean round-trip with the JSON as the contract between the two halves.</p>
+
+        <h2>5. Excel, because that's where the work actually happens</h2>
+
+        <p>The last piece is the least glamorous and the most used: a styled Excel template. Most people designing a schema aren't writing JSON. They're listing feature classes and fields in a spreadsheet, often with a colleague who has never opened a code editor. So the tool converts a filled-in template to a preset and back, with one sheet per concept (Feature Classes, Fields, Domains, Coded Values, Subtypes).</p>
+
+        <p>Meeting people in the tool they already use, rather than forcing them into JSON, is what turns this from a developer toy into something a GIS team will actually adopt.</p>
+
+        <h2>Why split it this way</h2>
+
+        <p>The pattern worth stealing here isn't ArcGIS-specific: <strong>treat the schema as portable data, do everything you can in a zero-install environment, and reserve the heavyweight licensed tool for the one operation that genuinely requires it.</strong> Reading, editing, validating, and reformatting a schema shouldn't cost you a Pro license and a desktop launch. Writing the proprietary binary at the very end is the only part that should.</p>
+
+        <p>That's the <a href="../portfolio.html#gdb-schema-tool">ArcGIS GDB Schema Tool</a>: a browser app for importing, editing, and generating geodatabase schemas, paired with an ArcGIS Pro toolbox for the create/export round-trip. <a href="https://gdb-schema-tool.netlify.app/" target="_blank" rel="noopener">Try the live demo →</a></p>
+
+      </div>
+
+      <div class="post-footer">
+        <p>Wrangling geodatabase schemas by hand? <a href="mailto:cwramey@gmail.com">Let's talk →</a></p>
+        <a href="../blog.html" class="post-back">← All posts</a>
+      </div>
+
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
+    <p class="footer-links">
+      <a href="mailto:cwramey@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
+    </p>
+  </footer>
+
+</body>
+</html>
