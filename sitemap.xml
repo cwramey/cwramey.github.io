@@ -10,11 +10,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+  <!-- <url>
     <loc>https://cwramey.github.io/resume.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
+  </url> -->
   <url>
     <loc>https://cwramey.github.io/portfolio.html</loc>
     <changefreq>monthly</changefreq>
