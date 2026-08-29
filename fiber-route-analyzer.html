@@ -7,6 +7,7 @@
   <meta name="description" content="Fiber Route Analyzer case study by Charles Ramey.">
   <title>Fiber Route Analyzer | Charles Ramey</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="project-screenshots.css">
 </head>
 <body class="stitch-case">
   <nav id="nav">
@@ -32,6 +33,10 @@
         <div class="stitch-tags">
           <span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">ArcGIS API</span><span class="tech-tag">GIS</span>
         </div>
+        <div class="project-hero-actions">
+          <a class="portfolio-launch-btn" href="https://fiber-route-analyzer.netlify.app/" target="_blank" rel="noopener">Live Demo ↗</a>
+          <a class="portfolio-launch-btn" href="posts/detecting-fiber-route-conflicts-with-geopandas.html">Read the Writeup →</a>
+        </div>
       </div>
       <div class="stitch-visual">
         <img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber route analysis map showing route and conflicts">
@@ -51,6 +56,27 @@
         <article class="stitch-stat"><p class="stitch-stat-label">Missed conflicts</p><p class="stitch-stat-value">Zero</p><p class="stitch-stat-desc">Consistent detection across every supported layer.</p></article>
         <article class="stitch-stat"><p class="stitch-stat-label">Processing time</p><p class="stitch-stat-value">&lt;5m</p><p class="stitch-stat-desc">From route upload to export-ready data.</p></article>
       </aside>
+    </section>
+    <section class="project-section">
+      <p class="project-kicker">Capabilities</p>
+      <h2>From route file to permit package</h2>
+      <div class="project-highlights">
+        <article class="project-highlight"><h3>Flexible inputs</h3><p>Reads KML, KMZ, GeoJSON, and Shapefile routes with CRS normalization.</p></article>
+        <article class="project-highlight"><h3>Conflict intelligence</h3><p>Checks live ArcGIS FeatureServer layers and classifies each crossing by risk.</p></article>
+        <article class="project-highlight"><h3>Corridor context</h3><p>Builds permit corridors with city, county, road-name, and confidence metadata.</p></article>
+        <article class="project-highlight"><h3>Usable exports</h3><p>Produces KMZ, Shapefiles, Excel, and a Markdown summary for follow-up work.</p></article>
+      </div>
+    </section>
+    <section class="project-section screenshot-section">
+      <p class="project-kicker">Screenshots</p>
+      <h2>Fiber Route Analyzer in action</h2>
+      <div class="screenshot-grid">
+        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route1.png" target="_blank"><img src="assets/screenshots/project1/fiber_route1.png" alt="Fiber Route Analyzer screenshot 1"><span>Route input</span></a>
+        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route2.png" target="_blank"><img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber Route Analyzer screenshot 2"><span>Conflict map</span></a>
+        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route3.png" target="_blank"><img src="assets/screenshots/project1/fiber_route3.png" alt="Fiber Route Analyzer screenshot 3"><span>Analysis results</span></a>
+        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route4.png" target="_blank"><img src="assets/screenshots/project1/fiber_route4.png" alt="Fiber Route Analyzer screenshot 4"><span>Permit corridor</span></a>
+        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route5.png" target="_blank"><img src="assets/screenshots/project1/fiber_route5.png" alt="Fiber Route Analyzer screenshot 5"><span>Export package</span></a>
+      </div>
     </section>
   </main>
 
