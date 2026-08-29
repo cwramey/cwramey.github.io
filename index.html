@@ -14,6 +14,7 @@
   <link rel="canonical" href="https://cwramey.github.io/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ui-adjustments.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"Charles Ramey","url":"https://cwramey.github.io/","jobTitle":"GIS Developer","sameAs":["https://www.linkedin.com/in/chramey/","https://github.com/cwramey"]}
   </script>
@@ -48,33 +49,25 @@
       <div class="landing-terminal-head"><i></i><i></i><i></i><span>shortest_route.py</span></div>
       <pre><span class="code-keyword">import</span> geopandas <span class="code-keyword">as</span> gpd
 <span class="code-keyword">import</span> networkx <span class="code-keyword">as</span> nx
+<span class="code-keyword">from</span> shapely.geometry <span class="code-keyword">import</span> LineString
 
-<span class="code-comment"># Load road network data</span>
-<span class="code-comment"># Each road segment is stored as a line geometry in GeoJSON</span>
 roads = gpd.read_file(<span class="code-value">&quot;roads.geojson&quot;</span>)
 
-<span class="code-comment"># Build a graph from road geometries</span>
-<span class="code-comment"># Nodes = intersections (segment endpoints)</span>
-<span class="code-comment"># Edges = road segments, weighted by their length</span>
+<span class="code-comment"># Build a weighted road graph</span>
 G = nx.Graph()
 <span class="code-keyword">for</span> _, row <span class="code-keyword">in</span> roads.iterrows():
     start, end = row.geometry.coords[0], row.geometry.coords[-1]
     G.add_edge(start, end, weight=row.geometry.length)
 
-<span class="code-comment"># Compute shortest path between two intersections</span>
+<span class="code-comment"># Find and measure the shortest route</span>
 path = nx.shortest_path(G, source=A, target=B, weight=<span class="code-value">&quot;weight&quot;</span>)
-
-<span class="code-comment"># Calculate total route length</span>
 distance = sum(G[u][v][<span class="code-value">&quot;weight&quot;</span>] <span class="code-keyword">for</span> u, v <span class="code-keyword">in</span> zip(path[:-1], path[1:]))
 
 <span class="code-keyword">print</span>(<span class="code-value">&quot;Shortest route:&quot;</span>, path)
 <span class="code-keyword">print</span>(<span class="code-value">&quot;Total distance:&quot;</span>, round(distance, 2), <span class="code-value">&quot;meters&quot;</span>)
 
-<span class="code-comment"># Export route for visualization</span>
-route_edges = [(u, v) <span class="code-keyword">for</span> u, v <span class="code-keyword">in</span> zip(path[:-1], path[1:])]
-route_geom = [roads.cx[min(u[0], v[0]):max(u[0], v[0]), min(u[1], v[1]):max(u[1], v[1])].unary_union <span class="code-keyword">for</span> u, v <span class="code-keyword">in</span> route_edges]
-route_gdf = gpd.GeoDataFrame(geometry=route_geom, crs=roads.crs)
-route_gdf.to_file(<span class="code-value">&quot;shortest_route.geojson&quot;</span>, driver=<span class="code-value">&quot;GeoJSON&quot;</span>)</pre>
+route = gpd.GeoDataFrame(geometry=[LineString(path)], crs=roads.crs)
+route.to_file(<span class="code-value">&quot;shortest_route.geojson&quot;</span>, driver=<span class="code-value">&quot;GeoJSON&quot;</span>)</pre>
     </aside>
   </main>
 
