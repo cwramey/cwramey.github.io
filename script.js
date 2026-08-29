@@ -74,11 +74,3 @@ const navObserver = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
 sections.forEach(s => navObserver.observe(s));
-
-// === Pre-warm the demo app ===================================================
-// Streamlit Community Cloud hibernates after inactivity; a best-effort request
-// wakes it so it's live by the time a visitor clicks "Launch Demo".
-// no-cors: the app doesn't send CORS headers (we can't read the response, which is fine).
-// keepalive: survives navigation. Errors are silently ignored.
-fetch('https://fiber-route-analyzer.netlify.app/', { method: 'GET', mode: 'no-cors', keepalive: true })
-  .catch(() => {});
