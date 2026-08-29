@@ -1,229 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Charles Ramey - GIS Developer and Spatial Data Engineer specializing in ArcPy automation, PostGIS, fiber route permitting, and geospatial data pipelines for telecom, utilities, and infrastructure.">
+  <meta name="description" content="Charles Ramey is a GIS Developer and Spatial Data Engineer specializing in geospatial automation and AI-assisted workflows.">
   <meta name="theme-color" content="#0b1326">
-  <title>Charles Ramey - GIS Developer</title>
-
-  <!-- Open Graph / social sharing -->
+  <title>Charles Ramey | GIS Developer</title>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Charles Ramey - GIS Developer">
-  <meta property="og:description" content="Spatial data pipelines, GIS automation tools, and AI-assisted workflows that replace days of manual work with a single script.">
+  <meta property="og:title" content="Charles Ramey | GIS Developer">
+  <meta property="og:description" content="GIS development, spatial data engineering, and AI-assisted workflows.">
   <meta property="og:url" content="https://cwramey.github.io/">
-  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/project1/fiber_route1.png">
   <meta name="twitter:card" content="summary_large_image">
-
   <link rel="canonical" href="https://cwramey.github.io/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Structured data: helps search engines build a rich profile / knowledge panel -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Charles Ramey",
-    "url": "https://cwramey.github.io/",
-    "jobTitle": "GIS Developer",
-    "description": "GIS Developer and Spatial Data Engineer specializing in ArcPy automation, spatial data pipelines, and AI-assisted geospatial workflows for telecom, utilities, and infrastructure.",
-    "knowsAbout": ["GIS", "ArcPy", "ArcGIS Pro", "GeoPandas", "Spatial Data Engineering", "Python Automation", "PostGIS", "Fiber Route Permitting", "Geospatial Data Pipelines"],
-    "sameAs": [
-      "https://www.linkedin.com/in/chramey/",
-      "https://github.com/cwramey"
-    ]
-  }
+  {"@context":"https://schema.org","@type":"Person","name":"Charles Ramey","url":"https://cwramey.github.io/","jobTitle":"GIS Developer","sameAs":["https://www.linkedin.com/in/chramey/","https://github.com/cwramey"]}
   </script>
 </head>
-<body>
-
-  <nav id="nav">
-    <div class="nav-inner nav-inner--centered">
-      <a href="#hero" class="nav-item active">Home</a>
-      <a href="about.html" class="nav-item">About Me</a>
-      <!-- <a href="resume.html" class="nav-item">Resume</a> -->
-      <a href="portfolio.html" class="nav-item">Portfolio</a>
-      <a href="blog.html" class="nav-item">Blog</a>
+<body class="landing-page">
+  <nav id="nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="landing-brand" href="index.html">Charles Ramey</a>
+      <div class="landing-nav">
+        <a href="index.html" class="nav-item active" aria-current="page">Home</a>
+        <a href="about.html" class="nav-item">About Me</a>
+        <a href="portfolio.html" class="nav-item">Portfolio</a>
+        <a href="blog.html" class="nav-item">Blog</a>
+      </div>
+      <a class="button-primary landing-contact" href="mailto:cwramey@gmail.com">Contact Me ↗</a>
     </div>
   </nav>
 
-  <section id="hero">
-    <div class="section-wrapper hero-wrapper hero-wrapper--centered">
-      <p class="section-eyebrow section-eyebrow--heading hero-section-eyebrow">// GIS Developer · Spatial Data Engineer</p>
-      <h1 class="hero-h1">
-        <span class="hero-name">Charles Ramey</span>
-        <span class="hero-accent">GIS + Code + AI</span>
-      </h1>
-      <p class="hero-desc">
-        I build spatial data pipelines, GIS automation tools, and AI-assisted workflows that replace days of manual work with a single script. From database architecture to production-ready apps, I handle the full stack of geospatial development.
-      </p>
-      <div class="hero-actions">
-        <a class="button-primary" href="portfolio.html">Explore selected work ↗</a>
-        <a class="button-secondary portfolio-shots-btn" href="about.html">View technical profile →</a>
+  <main class="landing-main">
+    <section aria-labelledby="landing-title">
+      <p class="landing-status"><span class="landing-status-dot" aria-hidden="true"></span>Available for new work</p>
+      <p class="landing-name">Charles Ramey</p>
+      <h1 class="landing-title" id="landing-title">Bridging the gap<br>between <span class="landing-blue">spatial data</span><br>&amp; <span class="landing-green">software engineering.</span></h1>
+      <p class="landing-copy">I build high-performance web applications and data pipelines that transform complex geospatial information into actionable, interactive insights. GIS + Code + AI.</p>
+      <div class="landing-actions">
+        <a class="button-primary" href="portfolio.html">View Projects ↗</a>
+        <a class="button-secondary portfolio-shots-btn" href="https://github.com/cwramey" target="_blank" rel="noopener">&lt;&gt; GitHub</a>
       </div>
-      <div class="system-panel" aria-label="Geospatial systems status">
-        <div class="system-panel__bar"><i></i><i></i><i></i></div>
-        <code><em>system.ready</em> // spatial pipelines · GIS automation · AI workflows<br>operational focus: telecom, utilities &amp; infrastructure</code>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ====================================================================
-       FEATURED PROJECT: hidden for now.
-       To bring it back, delete this opening comment line and the closing
-       comment line ("END FEATURED PROJECT") below.
-  ====================================================================
-  <section id="featured">
-    <div class="section-wrapper section-wrapper--flush-top">
-      <p class="section-eyebrow section-eyebrow--heading">// Featured Work</p>
-      <div class="featured-wrap">
-        <button class="featured-img-pane" onclick="openLightbox('project1')" aria-label="View 5 screenshots of the Fiber Route Conflict Analyzer">
-          <img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber Route Conflict Analyzer screenshot" decoding="async">
-          <div class="featured-img-badge">▦ &nbsp;5 screenshots</div>
-        </button>
-        <div class="featured-content">
-          <p class="featured-meta">GIS Developer &nbsp;·&nbsp; 2025</p>
-          <h3 class="featured-title">Fiber Route Conflict Analyzer</h3>
-          <p class="featured-desc">Ingests KML, KMZ, GeoJSON, and Shapefile routes, detects crossing conflicts against live ArcGIS FeatureServer layers, classifies risk by crossing type, and generates permit corridor polygons with city, county, road name, and confidence scores. Delivers operator-ready exports including KMZ, Shapefiles, Markdown report, and Excel workbook, reducing permit prep from 2–3 days of manual work to under an hour.</p>
-          <div class="featured-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">GeoPandas</span>
-            <span class="tech-tag">ArcGIS FeatureServer</span>
-            <span class="tech-tag">KML/KMZ</span>
-          </div>
-          <div class="featured-actions">
-            <a href="https://fiber-route-analyzer.netlify.app/" class="featured-launch-btn">Launch Demo ↗</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  END FEATURED PROJECT ==================================================== -->
+    <aside class="landing-terminal" aria-label="Example geospatial processing code">
+      <div class="landing-terminal-head"><i></i><i></i><i></i><span>process_geodata.py</span></div>
+      <pre><span class="code-keyword">import</span> geopandas <span class="code-keyword">as</span> gpd
+<span class="code-keyword">import</span> torch
 
-  <!-- PORTFOLIO GRID -->
-  <section id="projects">
-    <div class="section-wrapper section-wrapper--wide">
-      <p class="section-eyebrow section-eyebrow--heading">// Latest Work</p>
-      <p class="portfolio-sub">Production tools built for real GIS and telecom workflows.</p>
-      <div class="portfolio-grid">
+<span class="code-comment"># Load spatial dataset</span>
+gdf = gpd.read_file(<span class="code-value">'urban_fabric.geojson'</span>)
 
-        <div class="portfolio-card">
-          <div class="portfolio-body">
-            <p class="portfolio-cat">GIS &nbsp;·&nbsp; Permitting</p>
-            <h3>Fiber Route Analyzer</h3>
-            <p>Automated crossing conflict detection across roads, rail, water, bridges, gas/oil pipelines, and parcels, with permit corridor exports in one click.</p>
-            <div class="portfolio-footer">
-              <div class="portfolio-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">GeoPandas</span>
-                <span class="tech-tag">ArcGIS FeatureServer</span>
-                <span class="tech-tag">KML/KMZ</span>
-              </div>
-              <div class="portfolio-actions">
-                <button class="portfolio-shots-btn" onclick="openLightbox('project1')">▦ &nbsp;View 5 Screenshots</button>
-                <a href="fiber-route-analyzer.html" class="portfolio-launch-btn">View project →</a>
-              </div>
-            </div>
-          </div>
-        </div>
+<span class="code-comment"># Initialize AI model for feature extraction</span>
+model = SpatialAIModel.load_weights(<span class="code-value">'latest'</span>)
 
-        <div class="portfolio-card">
-          <div class="portfolio-body">
-            <p class="portfolio-cat">GIS &nbsp;·&nbsp; Automation &nbsp;·&nbsp; QA</p>
-            <h3>ArcPy Reporting &amp; QA Suite</h3>
-            <p>14 production ArcPy scripts across reporting, QA/QC validation, status snapshots, and data cleanup, delivering map exports and reports in under 15 minutes.</p>
-            <div class="portfolio-footer">
-              <div class="portfolio-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">ArcPy</span>
-                <span class="tech-tag">ArcGIS Pro</span>
-              </div>
-              <div class="portfolio-actions">
-                <button class="portfolio-shots-btn" onclick="openLightbox('project2')">▦ &nbsp;View 5 Screenshots</button>
-                <a href="arcpy-reporting-qa.html" class="portfolio-launch-btn">View project →</a>
-              </div>
-            </div>
-          </div>
-        </div>
+<span class="code-keyword">def</span> <span class="code-value">analyze_density</span>(geom):
+    tensor = convert_to_tensor(geom)
+    <span class="code-keyword">return</span> model.predict(tensor)
 
-        <div class="portfolio-card">
-          <div class="portfolio-body">
-            <p class="portfolio-cat">AI &nbsp;·&nbsp; PDF Parsing &nbsp;·&nbsp; Telecom</p>
-            <h3>Design PDF Analyzer</h3>
-            <p>Extracts fiber footage, duct measurements, and pole counts from telecom design PDFs, reducing per-permit review from 20–30 min to under 30 seconds.</p>
-            <div class="portfolio-footer">
-              <div class="portfolio-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">PyMuPDF</span>
-                <span class="tech-tag">FastAPI</span>
-              </div>
-              <div class="portfolio-actions">
-                <button class="portfolio-shots-btn" onclick="openLightbox('project3')">▦ &nbsp;View 3 Screenshots</button>
-                <a href="design-pdf-analyzer.html" class="portfolio-launch-btn">View project →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="portfolio-card">
-          <div class="portfolio-body">
-            <p class="portfolio-cat">GIS &nbsp;·&nbsp; Geodatabase &nbsp;·&nbsp; Schema</p>
-            <h3>ArcGIS GDB Schema Tool</h3>
-            <p>Import, edit, and build ArcGIS geodatabase schemas in the browser, with no ArcGIS Pro required. Parses JSON, Excel, XML, GeoPackage, and .gdb.zip files entirely client-side, with a matching ArcGIS Pro Python toolbox for create/export round-trips.</p>
-            <div class="portfolio-footer">
-              <div class="portfolio-tags">
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">ArcPy</span>
-                <span class="tech-tag">ArcGIS Pro</span>
-              </div>
-              <div class="portfolio-actions">
-                <button class="portfolio-shots-btn" onclick="openLightbox('project4')">▦ &nbsp;View 5 Screenshots</button>
-                <a href="arcgis-gdb-schema-tool.html" class="portfolio-launch-btn">View project →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="portfolio-page-cta">
-        <a href="portfolio.html" class="contact-outline-btn">View Full Portfolio →</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="section-wrapper contact-center">
-      <p class="section-eyebrow section-eyebrow--heading">// Get In Touch</p>
-      <p class="hero-desc contact-desc">Open to GIS development, spatial data engineering, and geospatial automation projects. Reach out and let's talk.</p>
-      <div class="contact-outline-btns">
-        <a href="mailto:cwramey@gmail.com" class="contact-outline-btn">✉ Email Me</a>
-        <a href="https://www.linkedin.com/in/chramey/" class="contact-outline-btn contact-outline-btn--dim" target="_blank" rel="noopener">LinkedIn ↗</a>
-      </div>
-    </div>
-  </section>
+gdf[<span class="code-value">'density_score'</span>] = gdf[<span class="code-value">'geometry'</span>].apply(analyze_density)</pre>
+    </aside>
+  </main>
 
   <footer>
-    <p>© 2026 Charles Ramey &nbsp;·&nbsp; GIS Developer</p>
-    <p class="footer-links">
-      <a href="mailto:cwramey@gmail.com">email</a>
-      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
-    </p>
+    <p>© 2026 Charles Ramey. GIS + Code + AI. All rights reserved.</p>
+    <p class="footer-links"><a href="mailto:cwramey@gmail.com">email</a><a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a><a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a></p>
   </footer>
-
-  <div id="lightbox" class="lightbox" hidden onclick="closeLightbox(event)">
-    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
-    <button class="lightbox-prev" onclick="lightboxNav(-1, event)" aria-label="Previous">&#8592;</button>
-    <button class="lightbox-next" onclick="lightboxNav(1, event)" aria-label="Next">&#8594;</button>
-    <figure class="lightbox-figure">
-      <img id="lightbox-img" src="" alt="">
-      <figcaption id="lightbox-caption"></figcaption>
-    </figure>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
