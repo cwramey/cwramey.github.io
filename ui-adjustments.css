@@ -1,0 +1,67 @@
+.landing-main {
+  width: min(1280px, 100%);
+  grid-template-columns: minmax(500px, 0.96fr) minmax(520px, 1.04fr);
+  gap: 54px;
+  padding-top: 100px;
+  padding-bottom: 72px;
+}
+
+.landing-terminal {
+  max-width: 570px;
+  padding: 18px 20px;
+  transform: rotate(0.75deg);
+}
+
+.landing-terminal-head {
+  margin-bottom: 22px;
+}
+
+.landing-terminal pre {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.project-mockup--route .mockup-topbar strong {
+  color: var(--blue);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.project-mockup--route .route-map-image {
+  position: absolute;
+  inset: 40px 0 0;
+  width: 100%;
+  height: calc(100% - 40px);
+  min-height: 0;
+  object-fit: cover;
+  opacity: 0.78;
+  filter: saturate(0.9) contrast(1.08);
+}
+
+@media (max-width: 1080px) {
+  .landing-main {
+    grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr);
+    gap: 36px;
+  }
+
+  .landing-terminal pre {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 760px) {
+  .landing-main {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    padding: 72px 20px 52px;
+  }
+
+  .landing-terminal {
+    max-width: none;
+    transform: none;
+  }
+
+  .project-mockup--route .mockup-topbar strong {
+    font-size: 9px;
+  }
+}
