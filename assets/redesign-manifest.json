@@ -1,0 +1,9 @@
+{
+  "designReferences": [
+    { "file": "redesign-about.png", "source": "about_me_charles_ramey", "purpose": "About Me layout reference" },
+    { "file": "redesign-blog.png", "source": "blog_spatial_insights_dark_theme", "purpose": "Spatial Insights layout reference" },
+    { "file": "redesign-contact.png", "source": "stitch_professional_portfolio_redesign (3)", "purpose": "Contact layout reference" },
+    { "file": "redesign-fiber-route.png", "source": "stitch_professional_portfolio_redesign (4)", "purpose": "Fiber Route Analyzer layout reference" },
+    { "file": "redesign-portfolio.png", "source": "stitch_professional_portfolio_redesign (5)", "purpose": "Portfolio layout reference" }
+  ]
+}
