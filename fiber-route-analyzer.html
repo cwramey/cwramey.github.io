@@ -1,5 +1,59 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1326"><meta name="description" content="Fiber Route Conflict Analyzer case study by Charles Ramey."><title>Fiber Route Analyzer | Charles Ramey</title><link rel="stylesheet" href="styles.css"></head><body>
-<nav id="nav"><div class="nav-inner"><a href="index.html" class="nav-item">Home</a><a href="about.html" class="nav-item">About Me</a><a href="portfolio.html" class="nav-item active">Portfolio</a><a href="blog.html" class="nav-item">Blog</a></div></nav>
-<main class="section-wrapper project-detail"><a class="project-back" href="portfolio.html">← Back to portfolio</a><section class="project-hero"><div><p class="project-kicker">GIS · Permitting · Geospatial automation</p><h1 class="project-title">Fiber Route Analyzer</h1><p class="project-summary">A conflict-detection workflow that turns proposed fiber routes into permit-ready corridor data, complete with risk classifications and operator-ready exports.</p><div class="portfolio-tags"><span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">Shapely</span><span class="tech-tag">ArcGIS FeatureServer</span></div><div class="project-hero-actions"><a class="portfolio-launch-btn" href="https://fiber-route-analyzer.netlify.app/" target="_blank" rel="noopener">Live Demo ↗</a><button class="portfolio-shots-btn" onclick="openLightbox('project1')">View screenshots</button></div></div><div class="project-preview"><img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber Route Analyzer map and conflict results"></div></section>
-<section class="project-overview"><div><h2>Project overview</h2><span class="project-label">The problem</span><p>Permit reviewers spent hours visually checking long fiber corridors against roads, rail, waterways, bridges, pipelines, and parcel data.</p><span class="project-label">The solution</span><p>One analysis run ingests the route, detects and deduplicates crossings, classifies risk, and builds a package the field and permitting teams can use immediately.</p></div><div class="project-metrics"><div class="project-metric"><strong>90%</strong><span>reduction in permit-review time</span></div><div class="project-metric"><strong>15k+</strong><span>miles of utility corridors processed</span></div><div class="project-metric"><strong>1</strong><span>operator-ready export bundle</span></div></div></section>
-<section class="project-section"><p class="project-kicker">Capabilities</p><h2>From route file to permit package</h2><div class="project-highlights"><article class="project-highlight"><h3>Flexible inputs</h3><p>Reads KML, KMZ, GeoJSON, and Shapefile route files with CRS normalization.</p></article><article class="project-highlight"><h3>Conflict intelligence</h3><p>Checks live ArcGIS FeatureServer layers and classifies each crossing by risk.</p></article><article class="project-highlight"><h3>Corridor context</h3><p>Builds permit corridors with city, county, road-name, and confidence metadata.</p></article><article class="project-highlight"><h3>Usable exports</h3><p>Produces KMZ, Shapefiles, Excel, and a Markdown summary for follow-up work.</p></article></div></section></main><footer><p>© 2026 Charles Ramey · GIS Developer</p><p class="footer-links"><a href="mailto:cwramey@gmail.com">email</a><a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a></p></footer><div id="lightbox" class="lightbox" hidden onclick="closeLightbox(event)"><button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button><button class="lightbox-prev" onclick="lightboxNav(-1,event)" aria-label="Previous">←</button><button class="lightbox-next" onclick="lightboxNav(1,event)" aria-label="Next">→</button><figure class="lightbox-figure"><img id="lightbox-img" src="" alt=""><figcaption id="lightbox-caption"></figcaption></figure></div><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1326">
+  <meta name="description" content="Fiber Route Analyzer case study by Charles Ramey.">
+  <title>Fiber Route Analyzer | Charles Ramey</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="stitch-case">
+  <nav id="nav">
+    <div class="nav-inner">
+      <a class="stitch-brand" href="index.html">Charles Ramey</a>
+      <div class="stitch-nav-links">
+        <a href="portfolio.html" class="nav-item active">Projects</a>
+        <a href="about.html#stack" class="nav-item">Stack</a>
+        <a href="about.html" class="nav-item">Experience</a>
+        <a href="portfolio.html#contact" class="nav-item">Contact</a>
+      </div>
+      <a class="portfolio-launch-btn stitch-launch" href="https://fiber-route-analyzer.netlify.app/" target="_blank" rel="noopener">Launch Demo ↗</a>
+    </div>
+  </nav>
+
+  <main class="stitch-main section-wrapper">
+    <a class="stitch-back" href="portfolio.html">← All projects</a>
+    <section class="stitch-hero">
+      <div>
+        <p class="stitch-status"><i></i> Active deployment</p>
+        <h1 class="stitch-title">Fiber Route<br>Analyzer</h1>
+        <p class="stitch-lead">Automated conflict detection for fiber corridors, turning route files into permit-ready intelligence.</p>
+        <div class="stitch-tags">
+          <span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">ArcGIS API</span><span class="tech-tag">GIS</span>
+        </div>
+      </div>
+      <div class="stitch-visual">
+        <img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber route analysis map showing route and conflicts">
+        <div class="stitch-terminal"><div class="terminal-lights"><i></i><i></i><i></i></div><code>&gt; Analyzing proposed_route.kml...<br>&gt; Detected: 42 crossings, 7 high-risk.<br><span>&gt; Export bundle ready in 2.8s.</span></code></div>
+      </div>
+    </section>
+
+    <section class="stitch-overview">
+      <article class="stitch-overview-card">
+        <h2>Project Overview</h2>
+        <p>The Fiber Route Analyzer reduces the time needed to review complex utility corridors. Instead of manually verifying proposed fiber routes against thousands of infrastructure features, engineers upload a route file and receive an organized crossing analysis.</p>
+        <p>The pipeline uses GeoPandas and live ArcGIS FeatureServer data to find roads, rail, water, bridges, pipelines, and parcels. It assigns risk, generates permit corridor geometry, and carries location context into every result.</p>
+        <p>The outcome is a reliable, operator-ready package for fielding and permitting teams—moving route review from days to minutes while preserving the detail needed for engineering decisions.</p>
+      </article>
+      <aside class="stitch-impact">
+        <article class="stitch-stat"><p class="stitch-stat-label">Time reduction</p><p class="stitch-stat-value">90%</p><p class="stitch-stat-desc">Less time spent on manual permit review.</p></article>
+        <article class="stitch-stat"><p class="stitch-stat-label">Missed conflicts</p><p class="stitch-stat-value">Zero</p><p class="stitch-stat-desc">Consistent detection across every supported layer.</p></article>
+        <article class="stitch-stat"><p class="stitch-stat-label">Processing time</p><p class="stitch-stat-value">&lt;5m</p><p class="stitch-stat-desc">From route upload to export-ready data.</p></article>
+      </aside>
+    </section>
+  </main>
+
+  <footer><p>© 2026 Charles Ramey · Built with Geospatial Precision</p><p class="footer-links"><a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a><a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a><a href="mailto:cwramey@gmail.com">email</a></p></footer>
+</body>
+</html>
