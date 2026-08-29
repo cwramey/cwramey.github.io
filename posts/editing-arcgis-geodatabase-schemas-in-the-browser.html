@@ -41,7 +41,7 @@
       <a href="../portfolio.html" class="nav-item">Portfolio</a>
       <a href="../blog.html" class="nav-item active">Blog</a>
       </div>
-      <a class="button-primary site-contact" href="mailto:cwramey@gmail.com">Contact Me ↗</a>
+      <a class="button-primary site-contact" href="../contact.html">Contact Me ↗</a>
     </div>
   </nav>
 
@@ -106,7 +106,7 @@ const rows = db.exec(`
 // ...and each layer's fields come from SQLite's own introspection
 const fields = db.exec(`PRAGMA table_info('${tableName}')`);</code></pre>
 
-        <p>The XML Workspace path is an <code>DOMParser</code> walk over Esri's <code>esri:DEFeatureClassInfo</code> nodes; the <code>.gdb.zip</code> path unzips in memory and reads the geodatabase system tables. Different sources, one normalizer, one JSON result. No upload, no temp files, nothing to clean up, and nothing sensitive ever crosses the network.</p>
+        <p>The XML Workspace path uses <code>DOMParser</code> to walk through Esri's <code>esri:DEFeatureClassInfo</code> nodes. The <code>.gdb.zip</code> path unzips the file in memory and reads the geodatabase system tables. Different sources, one normalizer, one JSON result. No uploads, no temporary files to clean up, and nothing sensitive ever crosses the network.</p>
 
         <p class="post-callout">Parsing in the browser isn't just a convenience. It's a trust feature. "Your schema never leaves your machine" is a sentence a lot of GIS shops need to hear before they'll paste in real data.</p>
 
@@ -142,7 +142,7 @@ const fields = db.exec(`PRAGMA table_info('${tableName}')`);</code></pre>
   return errors;
 }</code></pre>
 
-        <p>Catching these in the browser, before anyone runs a build, turns a cryptic ArcPy traceback twenty minutes into a job into a readable message on the screen right now.</p>
+        <p>Catching these issues in the browser prevents a build from failing twenty minutes into an ArcPy job and replaces a cryptic traceback with a clear message before the build starts.</p>
 
         <h2>4. The browser can't write a real .gdb, so hand off to ArcPy</h2>
 
@@ -167,13 +167,13 @@ def build_feature_class(gdb, fc):
                 f"{gdb}/{fc['name']}", field["name"], field["domain"]
             )</code></pre>
 
-        <p>The toolbox is symmetric: it can <strong>create</strong> a geodatabase from a preset, and it can <strong>export</strong> the full schema of an existing geodatabase (domains, fields, defaults, subtypes, and all) back out to the same JSON. Export from Pro, edit in the browser, build in Pro: a clean round-trip with the JSON as the contract between the two halves.</p>
+        <p>The toolbox works both ways: it can <strong>create</strong> a geodatabase from a preset and <strong>export</strong> the full schema of an existing geodatabase, including domains, fields, defaults, and subtypes, back to the same JSON. Export from Pro, edit in the browser, and build in Pro. The JSON is the contract between the two halves.</p>
 
         <h2>5. Excel, because that's where the work actually happens</h2>
 
         <p>The last piece is the least glamorous and the most used: a styled Excel template. Most people designing a schema aren't writing JSON. They're listing feature classes and fields in a spreadsheet, often with a colleague who has never opened a code editor. So the tool converts a filled-in template to a preset and back, with one sheet per concept (Feature Classes, Fields, Domains, Coded Values, Subtypes).</p>
 
-        <p>Meeting people in the tool they already use, rather than forcing them into JSON, is what turns this from a developer toy into something a GIS team will actually adopt.</p>
+        <p>Letting people work in a tool they already know, rather than forcing them into JSON, is what turns this from a developer tool into something a GIS team will actually adopt.</p>
 
         <h2>Why split it this way</h2>
 
@@ -191,7 +191,7 @@ def build_feature_class(gdb, fc):
     </div>
   </article>
 
-  <footer class="site-footer"><div class="site-footer-inner"><div><p class="site-footer-brand">Charles Ramey</p><p class="site-footer-copy">© 2026 Charles Ramey. Engineered for Geospatial Precision.</p></div><p class="footer-links">
+  <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p><p class="footer-links">
       <a href="mailto:cwramey@gmail.com">email</a>
       <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
       <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>

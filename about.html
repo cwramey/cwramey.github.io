@@ -1,144 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About Charles Ramey - GIS and geospatial automation engineer with 20+ years of experience in spatial data, ArcGIS platforms, Python automation, and infrastructure GIS for telecom and utilities.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About Charles Ramey, a GIS Developer and Spatial Data Engineer with 20+ years of experience building geospatial systems for telecom and infrastructure.">
   <meta name="theme-color" content="#0b1326">
-  <title>About - Charles Ramey</title>
-
+  <title>About Me | Charles Ramey</title>
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="About - Charles Ramey">
-  <meta property="og:description" content="GIS and geospatial automation engineer with 20+ years in spatial data, ArcGIS platforms, and Python automation for telecom, utilities, and infrastructure.">
+  <meta property="og:title" content="About Me | Charles Ramey">
+  <meta property="og:description" content="GIS development, spatial data engineering, and reliable automation for telecom and infrastructure.">
   <meta property="og:url" content="https://cwramey.github.io/about.html">
+  <meta property="og:image" content="https://cwramey.github.io/assets/portfolio-headshot.jpeg">
   <meta name="twitter:card" content="summary_large_image">
-
   <link rel="canonical" href="https://cwramey.github.io/about.html">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="about-stitch.css">
 </head>
-<body>
-
+<body class="about-stitch-page">
   <nav id="nav" class="site-header">
     <div class="nav-inner site-nav-inner">
       <a class="site-brand" href="index.html">Charles Ramey</a>
       <div class="site-nav-links">
-      <a href="index.html" class="nav-item">Home</a>
-      <a href="about.html" class="nav-item active">About Me</a>
-      <a href="portfolio.html" class="nav-item">Portfolio</a>
-      <a href="blog.html" class="nav-item">Blog</a>
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item active" aria-current="page">About Me</a>
+        <a href="portfolio.html" class="nav-item">Portfolio</a>
+        <a href="blog.html" class="nav-item">Blog</a>
       </div>
-      <a class="button-primary site-contact" href="mailto:cwramey@gmail.com">Contact Me ↗</a>
+      <a class="button-primary site-contact" href="contact.html">Contact Me ↗</a>
     </div>
   </nav>
 
-  <section id="about">
-    <div class="section-wrapper about-centered">
-      <h1 class="section-eyebrow section-eyebrow--heading">// About Me</h1>
-      <p class="about-intro">I'm a GIS and geospatial systems leader with <strong>20+ years</strong> in telecom and infrastructure, from drafting OSP fiber routes early in my career to architecting enterprise ArcGIS platforms and managing a 15-person GIS team. Today I lead GIS for FTTH fielding operations while still writing the automation myself.</p>
-      <p class="about-intro">I design systems that connect GIS data to real operational outcomes: standardized enterprise schemas, CAD-to-GIS pipelines, and production tools that have cut multi-day permitting and reporting work down to minutes across thousands of miles of fiber deployment. A few of them are in my <a href="portfolio.html">portfolio</a>.</p>
-      <p class="about-intro">What I care about is the boring-but-critical part: data that validates itself, automation a team can trust in production, and solutions that make sense to both engineers and the business. My best work is where geospatial data directly drives infrastructure in the field.</p>
+  <main>
+    <section class="about-profile" aria-labelledby="about-title">
+      <div class="about-profile-grid">
+        <div class="about-profile-copy">
+          <p class="about-profile-name">Charles Ramey</p>
+          <h1 id="about-title">GIS Developer &amp; Spatial Data Engineer</h1>
+          <p>I specialize in designing and deploying high-performance spatial data pipelines, automating complex GIS workflows, and integrating AI-assisted processes into modern geospatial systems.</p>
+          <p>I have spent more than 20 years working in telecom and infrastructure, from drafting OSP fiber routes to leading GIS teams and building production automation. I care most about creating systems that teams can trust and use every day.</p>
+          <p class="about-location"><span aria-hidden="true"></span>Based in Woodstock, GA</p>
+        </div>
+        <figure class="about-headshot-frame">
+          <img src="assets/portfolio-headshot.jpeg" alt="Charles Ramey">
+        </figure>
+      </div>
+    </section>
 
-      <div class="about-grid">
-        <div class="about-block">
-          <p class="section-eyebrow">What I Build</p>
-          <ul class="about-list">
-            <li>End-to-end GIS workflows for utility and infrastructure programs (power, gas, telecom, EV charging)</li>
-            <li>Automation pipelines for analysis, QA/QC, reporting, and recurring operations</li>
-            <li>Data integration systems bridging GIS, Excel, PDFs, and business reporting layers</li>
-            <li>Production-ready geospatial apps for route analysis, permitting, and decision support</li>
+    <section class="architecture-section" aria-labelledby="architecture-title">
+      <div class="architecture-inner">
+        <header class="architecture-heading">
+          <h2 id="architecture-title">Technical Architecture</h2>
+          <p>I use a practical mix of GIS, programming, and data tools to build reliable systems and high-throughput workflows.</p>
+        </header>
+
+        <div class="architecture-grid">
+          <article class="architecture-card language-card">
+            <p class="architecture-label">&lt;&gt; Core Languages</p>
+            <div class="skill-meter"><div><strong>Python</strong><span>Expert</span></div><i style="--level:96%"></i></div>
+            <div class="skill-meter"><div><strong>JavaScript / TS</strong><span>Advanced</span></div><i style="--level:86%"></i></div>
+            <div class="skill-meter"><div><strong>SQL (PostGIS)</strong><span>Advanced</span></div><i style="--level:91%"></i></div>
+          </article>
+
+          <article class="architecture-card geo-card">
+            <p class="architecture-label">◇ Geospatial Engineering</p>
+            <div class="architecture-tags" aria-label="Geospatial engineering tools">
+              <span>GeoPandas</span><span>ArcGIS Pro SDK</span><span>ArcGIS API for Python</span><span>GDAL/OGR</span><span>Shapely</span><span>Turf.js</span>
+            </div>
+            <div class="architecture-code" aria-label="Spatial pipeline code example">
+              <div class="architecture-code-bar"><i></i><i></i><i></i><span>spatial_pipeline.py</span></div>
+              <pre><b>import</b> geopandas <b>as</b> gpd
+<b>from</b> sqlalchemy <b>import</b> create_engine
+
+<em># Load and optimize spatial data</em>
+gdf = gpd.read_file(<strong>"data/raw_zones.geojson"</strong>)
+gdf.geometry = gdf.geometry.simplify(<strong>0.001</strong>)
+optimized_gdf = gdf.to_crs(epsg=<strong>4326</strong>)</pre>
+            </div>
+          </article>
+
+          <article class="architecture-card ai-card">
+            <div>
+              <p class="architecture-label">◎ AI &amp; Machine Learning</p>
+              <p>I use machine learning tools to extract features from imagery and support predictive spatial analysis.</p>
+              <div class="architecture-tags" aria-label="AI and machine learning tools">
+                <span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span><span>Computer Vision</span>
+              </div>
+            </div>
+            <div class="ml-visual" aria-label="Machine learning pipeline visualization">
+              <div class="ml-node">Spatial data</div><i></i><div class="ml-node ml-node-accent">Feature model</div><i></i><div class="ml-node">GIS output</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy-section" aria-labelledby="philosophy-title">
+      <div class="philosophy-grid">
+        <div class="philosophy-copy">
+          <h2 id="philosophy-title">Operational Philosophy</h2>
+          <p>GIS is most useful when it is part of the broader software architecture, not isolated in a desktop application. I focus on connecting spatial data to the systems and people that use it.</p>
+          <p>I build spatial systems with a software engineer's mindset: version control, automated testing, modular services, and infrastructure that can scale.</p>
+          <ul>
+            <li><strong>Automation First:</strong> If a spatial process needs to run more than twice, it should have a script, a pipeline, and a scheduler.</li>
+            <li><strong>Data Integrity:</strong> Rigorous topology and schema checks happen before data reaches a production map.</li>
           </ul>
         </div>
-        <div class="about-block">
-          <p class="section-eyebrow">How I Work</p>
-          <ul class="about-list">
-            <li>Stable, testable automation over one-off scripts</li>
-            <li>Performance and reliability: retry logic, caching, validation, error handling</li>
-            <li>Solutions understandable by both technical teams and business stakeholders</li>
-            <li>Best work where geospatial data directly supports real-world infrastructure operations</li>
-          </ul>
+        <div class="integration-visual" aria-label="Spatial integration diagram">
+          <div class="integration-orbit orbit-one"></div>
+          <div class="integration-orbit orbit-two"></div>
+          <div class="integration-core"><span aria-hidden="true">⌘</span><strong>Spatial Integration</strong></div>
         </div>
       </div>
+    </section>
+  </main>
 
-      <div class="about-stack">
-        <div class="about-stack-row">
-          <span class="about-stack-label">Languages</span>
-          <div class="about-stack-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">VBA</span>
-            <span class="tech-tag">LISP</span>
-          </div>
-        </div>
-        <div class="about-stack-row">
-          <span class="about-stack-label">GIS Platforms</span>
-          <div class="about-stack-tags">
-            <span class="tech-tag">ArcGIS Pro</span>
-            <span class="tech-tag">ArcGIS Enterprise</span>
-            <span class="tech-tag">ArcGIS Server</span>
-            <span class="tech-tag">ArcGIS Online</span>
-            <span class="tech-tag">ArcPy</span>
-            <span class="tech-tag">QGIS</span>
-            <span class="tech-tag">3-GIS</span>
-          </div>
-        </div>
-        <div class="about-stack-row">
-          <span class="about-stack-label">CAD</span>
-          <div class="about-stack-tags">
-            <span class="tech-tag">AutoCAD</span>
-            <span class="tech-tag">MicroStation</span>
-            <span class="tech-tag">Drafting automation</span>
-          </div>
-        </div>
-        <div class="about-stack-row">
-          <span class="about-stack-label">Telecom / OSP</span>
-          <div class="about-stack-tags">
-            <span class="tech-tag">FTTH</span>
-            <span class="tech-tag">OSP design</span>
-            <span class="tech-tag">As-builts</span>
-            <span class="tech-tag">Splicing docs</span>
-            <span class="tech-tag">Permitting</span>
-          </div>
-        </div>
-        <div class="about-stack-row">
-          <span class="about-stack-label">Data &amp; Automation</span>
-          <div class="about-stack-tags">
-            <span class="tech-tag">GeoPandas</span>
-            <span class="tech-tag">Shapely</span>
-            <span class="tech-tag">PyMuPDF</span>
-            <span class="tech-tag">openpyxl</span>
-            <span class="tech-tag">ModelBuilder</span>
-            <span class="tech-tag">SQL Server</span>
-            <span class="tech-tag">ETL pipelines</span>
-          </div>
-        </div>
-        <div class="about-stack-row">
-          <span class="about-stack-label">Web &amp; Deploy</span>
-          <div class="about-stack-tags">
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Render</span>
-            <span class="tech-tag">Netlify</span>
-            <span class="tech-tag">GitHub</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-cta">
-        <a href="portfolio.html" class="contact-outline-btn">View My Work →</a>
-        <a href="resume.html" class="contact-outline-btn contact-outline-btn--dim">Read My Résumé →</a>
-        <a href="mailto:cwramey@gmail.com" class="contact-outline-btn contact-outline-btn--dim">✉ Get In Touch</a>
-      </div>
-
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p>
+      <p class="footer-links"><a href="mailto:cwramey@gmail.com">email</a><a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a><a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a></p>
     </div>
-  </section>
-
-  <footer class="site-footer"><div class="site-footer-inner"><div><p class="site-footer-brand">Charles Ramey</p><p class="site-footer-copy">© 2026 Charles Ramey. Engineered for Geospatial Precision.</p></div><p class="footer-links">
-      <a href="mailto:cwramey@gmail.com">email</a>
-      <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
-    </p></div></footer>
-
+  </footer>
 </body>
 </html>

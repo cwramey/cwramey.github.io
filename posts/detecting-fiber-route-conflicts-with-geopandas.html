@@ -41,7 +41,7 @@
       <a href="../portfolio.html" class="nav-item">Portfolio</a>
       <a href="../blog.html" class="nav-item active">Blog</a>
       </div>
-      <a class="button-primary site-contact" href="mailto:cwramey@gmail.com">Contact Me ↗</a>
+      <a class="button-primary site-contact" href="../contact.html">Contact Me ↗</a>
     </div>
   </nav>
 
@@ -55,7 +55,7 @@
 
       <div class="post-body">
 
-        <p>When a fiber route is proposed, every place it crosses a road, rail line, waterway, or buried pipeline is a permit, a bore, or a risk. On a large build, finding those crossings by eye in a desktop GIS can eat <strong>days</strong> of an engineer's week, and a missed crossing is an expensive surprise in the field.</p>
+        <p>When a fiber route is proposed, every place it crosses a road, rail line, waterway, or buried pipeline can mean another permit, bore, or construction risk. On a large build, finding those crossings by eye in a desktop GIS can take <strong>days</strong> of an engineer's week, and a missed crossing can become an expensive surprise in the field.</p>
 
         <p>This is a problem spatial libraries solve well. Here's the approach I use to detect crossings programmatically with <a href="https://geopandas.org/" target="_blank" rel="noopener">GeoPandas</a>, reduced to its essentials.</p>
 
@@ -130,7 +130,7 @@ conflicts.drop(columns="geometry").to_excel("conflicts.xlsx")  # for the permit 
 
         <h2>Why this is worth automating</h2>
 
-        <p>The first time you write this, it takes an afternoon. Every time after that, it turns a multi-day manual review into a script you run in seconds, and it never gets bored, never skips a crossing on page 14, and produces the same answer twice. That repeatability is the whole point: it's the difference between a one-off analysis and a tool a team can trust in production.</p>
+        <p>The first version may take an afternoon to write. Every run after that replaces a multi-day manual review with a script that finishes in seconds. It doesn't get bored, skip a crossing on page 14, or produce a different answer the second time. That repeatability is the whole point: it's the difference between a one-off analysis and a tool a team can trust in production.</p>
 
         <p>This is the core of my <a href="../fiber-route-analyzer.html">Fiber Route Conflict Analyzer</a>, scaled up with live ArcGIS FeatureServer layers, more crossing types, and operator-ready exports. <a href="../fiber-route-analyzer.html">Read the case study →</a></p>
 
@@ -144,7 +144,7 @@ conflicts.drop(columns="geometry").to_excel("conflicts.xlsx")  # for the permit 
     </div>
   </article>
 
-  <footer class="site-footer"><div class="site-footer-inner"><div><p class="site-footer-brand">Charles Ramey</p><p class="site-footer-copy">© 2026 Charles Ramey. Engineered for Geospatial Precision.</p></div><p class="footer-links">
+  <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p><p class="footer-links">
       <a href="mailto:cwramey@gmail.com">email</a>
       <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
       <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>

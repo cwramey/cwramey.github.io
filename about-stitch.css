@@ -1,0 +1,454 @@
+.about-stitch-page {
+  background: #0b1326;
+}
+
+.about-stitch-page::before {
+  opacity: 0.48;
+  background-image: radial-gradient(rgba(56, 189, 248, 0.22) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, #000 3%, #000 70%, transparent 100%);
+}
+
+.about-profile,
+.philosophy-section {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.about-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  align-items: center;
+  gap: 76px;
+  min-height: 430px;
+}
+
+.about-profile-name {
+  margin: 0 0 2px;
+  color: var(--blue);
+  font: 800 clamp(1.8rem, 3vw, 2.55rem)/1.1 var(--display);
+  letter-spacing: -0.02em;
+}
+
+.about-profile-copy h1 {
+  max-width: 620px;
+  font-size: clamp(2rem, 3.3vw, 3.15rem);
+  line-height: 1.12;
+}
+
+.about-profile-copy > p:not(.about-profile-name, .about-location) {
+  max-width: 660px;
+  margin: 24px 0 0;
+  color: #bdc9dc;
+  font-size: 1.04rem;
+  line-height: 1.72;
+}
+
+.about-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 34px 0 0;
+  color: #b8c6dc;
+  font: 600 11px/1 var(--mono);
+  letter-spacing: 0.09em;
+}
+
+.about-location span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.about-headshot-frame {
+  position: relative;
+  overflow: hidden;
+  height: 310px;
+  margin: 0;
+  border: 1px solid rgba(100, 116, 139, 0.55);
+  border-radius: 7px;
+  background: var(--surface);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.28);
+}
+
+.about-headshot-frame::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: inherit;
+  box-shadow: inset 0 -70px 80px rgba(6, 14, 32, 0.18);
+  pointer-events: none;
+}
+
+.about-headshot-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 29%;
+}
+
+.architecture-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 24px 96px;
+}
+
+.architecture-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 58px;
+  border: 1px solid rgba(100, 116, 139, 0.24);
+  background: rgba(19, 29, 49, 0.96);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+}
+
+.architecture-heading h2,
+.philosophy-copy h2 {
+  font-size: 1.55rem;
+}
+
+.architecture-heading p {
+  max-width: 680px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.architecture-grid {
+  display: grid;
+  grid-template-columns: 0.72fr 1.48fr;
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.architecture-card {
+  min-width: 0;
+  padding: 25px;
+  border: 1px solid rgba(100, 116, 139, 0.42);
+  border-radius: 4px;
+  background: rgba(31, 43, 65, 0.92);
+}
+
+.architecture-label {
+  margin: 0 0 22px;
+  color: var(--blue);
+  font: 600 11px/1.4 var(--mono);
+  letter-spacing: 0.1em;
+}
+
+.skill-meter + .skill-meter {
+  margin-top: 21px;
+}
+
+.skill-meter div {
+  display: flex;
+  justify-content: space-between;
+  color: #cfdaec;
+  font: 600 12px var(--mono);
+}
+
+.skill-meter div span {
+  color: #b4c2d7;
+  font-weight: 400;
+}
+
+.skill-meter i {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--blue) var(--level), #152036 var(--level));
+}
+
+.architecture-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.architecture-tags span {
+  padding: 7px 10px;
+  border: 1px solid rgba(100, 116, 139, 0.42);
+  background: #131e33;
+  color: #d5dff0;
+  font: 500 10px/1 var(--mono);
+}
+
+.architecture-code {
+  overflow: hidden;
+  margin-top: 24px;
+  border: 1px solid rgba(100, 116, 139, 0.38);
+  background: #0d172b;
+}
+
+.architecture-code-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 37px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.28);
+  background: #142039;
+}
+
+.architecture-code-bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff7b72;
+}
+
+.architecture-code-bar i:nth-child(2) { background: var(--orange); }
+.architecture-code-bar i:nth-child(3) { background: var(--green); }
+
+.architecture-code-bar span {
+  margin-left: 3px;
+  color: #bcc9dc;
+  font: 10px var(--mono);
+}
+
+.architecture-code pre {
+  margin: 0;
+  padding: 17px;
+  overflow: auto;
+  color: #c5dcf2;
+  font: 10px/1.75 var(--mono);
+}
+
+.architecture-code pre b { color: var(--blue); }
+.architecture-code pre em { color: var(--green); font-style: normal; }
+.architecture-code pre strong { color: #f6c453; font-weight: 500; }
+
+.ai-card {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 34px;
+}
+
+.ai-card > div > p:not(.architecture-label) {
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.ml-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 115px;
+  padding: 18px;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  background-image: radial-gradient(rgba(56, 189, 248, 0.16) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.ml-node {
+  padding: 9px 10px;
+  border: 1px solid rgba(100, 116, 139, 0.5);
+  background: #101a2d;
+  color: #b9c9df;
+  font: 9px var(--mono);
+  white-space: nowrap;
+}
+
+.ml-node-accent {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.ml-visual > i {
+  width: 30px;
+  height: 1px;
+  background: var(--blue);
+}
+
+.philosophy-section {
+  padding-top: 78px;
+  padding-bottom: 110px;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(350px, 0.92fr);
+  align-items: center;
+  gap: 90px;
+}
+
+.philosophy-copy > p {
+  margin: 22px 0 0;
+  color: #bac7da;
+  line-height: 1.7;
+}
+
+.philosophy-copy ul {
+  display: grid;
+  gap: 18px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.philosophy-copy li {
+  position: relative;
+  padding-left: 28px;
+  color: #bac7da;
+  line-height: 1.65;
+}
+
+.philosophy-copy li::before {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  color: var(--blue);
+  font: 9px var(--mono);
+}
+
+.integration-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 390px;
+  border: 1px solid rgba(100, 116, 139, 0.38);
+  border-radius: 9px;
+  background: rgba(11, 19, 38, 0.64);
+}
+
+.integration-orbit {
+  position: absolute;
+  width: 84%;
+  height: 84%;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  transform: rotate(-17deg);
+  transform-origin: center;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orbit-one {
+  animation: orbit-clockwise 18s linear infinite;
+}
+
+.orbit-two {
+  border-color: rgba(148, 163, 184, 0.34);
+  transform: rotate(28deg);
+  animation: orbit-counterclockwise 24s linear infinite;
+}
+
+@keyframes orbit-clockwise {
+  from { transform: rotate(-17deg); }
+  to { transform: rotate(343deg); }
+}
+
+@keyframes orbit-counterclockwise {
+  from { transform: rotate(28deg); }
+  to { transform: rotate(-332deg); }
+}
+
+.integration-core {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: var(--blue);
+}
+
+.integration-core span {
+  font: 2rem/1 var(--display);
+}
+
+.integration-core strong {
+  color: #d7e1f1;
+  font: 600 10px var(--mono);
+  letter-spacing: 0.11em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-one,
+  .orbit-two {
+    animation: none;
+  }
+}
+
+@media (max-width: 850px) {
+  .about-profile-grid,
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .about-headshot-frame {
+    max-width: 560px;
+  }
+
+  .architecture-inner {
+    padding: 34px;
+  }
+
+  .architecture-grid,
+  .ai-card {
+    grid-template-columns: 1fr;
+  }
+
+  .language-card,
+  .geo-card,
+  .ai-card {
+    grid-column: auto;
+  }
+
+  .integration-visual {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-profile,
+  .philosophy-section {
+    padding: 68px 16px;
+  }
+
+  .about-profile-grid {
+    min-height: 0;
+  }
+
+  .about-headshot-frame {
+    height: 300px;
+  }
+
+  .architecture-section {
+    padding: 0 0 68px;
+  }
+
+  .architecture-inner {
+    padding: 32px 16px;
+  }
+
+  .architecture-card {
+    padding: 18px;
+  }
+
+  .ml-visual {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .integration-visual {
+    min-height: 270px;
+  }
+}

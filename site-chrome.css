@@ -1,2 +1,177 @@
-.site-header{position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(62,72,79,.72);background:rgba(6,14,32,.88);backdrop-filter:blur(14px)}.site-nav-inner{max-width:1200px!important;min-height:64px!important;padding:0 24px!important;display:flex;align-items:center}.site-nav-inner:before{display:none!important}.site-brand{margin-right:auto;color:var(--text);font:700 1.25rem/1.4 var(--display)}.site-nav-links{display:flex;align-items:stretch;gap:30px}.site-nav-links .nav-item{padding:24px 0 20px;font:600 13px/1 var(--mono);letter-spacing:.04em}.site-contact{margin-left:30px;min-height:0;padding:10px 17px}.site-footer{max-width:none;margin:0;padding:0;border-top:1px solid rgba(62,72,79,.45);background:var(--lowest)}.site-footer-inner{max-width:1200px;margin:auto;padding:56px 24px;display:flex;align-items:center;justify-content:space-between;gap:32px}.site-footer-brand{margin:0 0 14px;color:var(--text);font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}.site-footer-copy{margin:0;color:var(--muted);font:16px/1.5 var(--body)}.site-footer .footer-links{display:flex;gap:24px;margin:0}.site-footer .footer-links a{color:var(--muted);font:12px var(--mono)}.site-footer .footer-links a:hover{color:var(--text)}@media(max-width:760px){.site-nav-inner{overflow:visible!important;padding:0 16px!important}.site-brand{font-size:1rem}.site-nav-links{display:none}.site-contact{margin-left:0;padding:9px 11px;font-size:10px}.site-footer-inner{padding:38px 16px;align-items:flex-start;flex-direction:column}.site-footer-copy{font-size:14px}.site-footer .footer-links{gap:16px}}
-.project-detail+footer:not(.site-footer){max-width:none;margin:0;padding:0;border-top:1px solid rgba(62,72,79,.45);background:var(--lowest);display:flex;justify-content:space-between;align-items:center;gap:32px}.project-detail+footer:not(.site-footer):before{content:'CHARLES RAMEY\A © 2026 Charles Ramey. Engineered for Geospatial Precision.';white-space:pre-line;max-width:1200px;margin-left:max(24px,calc((100% - 1200px)/2));padding:56px 0;color:var(--muted);font:16px/1.8 var(--body)}.project-detail+footer:not(.site-footer)>p:first-child{display:none}.project-detail+footer:not(.site-footer) .footer-links{margin-right:max(24px,calc((100% - 1200px)/2));gap:24px}.project-detail+footer:not(.site-footer) .footer-links a{font:12px var(--mono)}@media(max-width:760px){.project-detail+footer:not(.site-footer){display:block}.project-detail+footer:not(.site-footer):before{display:block;margin:0;padding:38px 16px 16px;font-size:14px}.project-detail+footer:not(.site-footer) .footer-links{margin:0;padding:0 16px 38px}}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(62, 72, 79, 0.72);
+  background: rgba(6, 14, 32, 0.88);
+  backdrop-filter: blur(14px);
+}
+
+.site-nav-inner {
+  width: 100%;
+  max-width: 1200px !important;
+  min-height: 64px !important;
+  padding: 0 24px !important;
+  display: flex;
+  align-items: center;
+}
+
+.site-nav-inner::before {
+  display: none !important;
+}
+
+.site-brand {
+  margin-right: auto;
+  color: var(--text);
+  font: 700 1.25rem/1.4 var(--display);
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: stretch;
+  gap: 30px;
+}
+
+.site-nav-links .nav-item {
+  padding: 24px 0 20px;
+  font: 600 13px/1 var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.site-contact {
+  margin-left: 30px;
+  min-height: 0;
+  padding: 10px 17px;
+}
+
+.site-footer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(62, 72, 79, 0.45);
+  background: var(--lowest);
+}
+
+.landing-page .site-footer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.site-footer-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 56px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.site-footer-copy {
+  margin: 0;
+  color: var(--muted);
+  font: 16px/1.5 var(--body);
+}
+
+.site-footer .footer-links {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+}
+
+.site-footer .footer-links a {
+  color: var(--muted);
+  font: 12px var(--mono);
+}
+
+.site-footer .footer-links a:hover {
+  color: var(--text);
+}
+
+.project-detail + footer:not(.site-footer) {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(62, 72, 79, 0.45);
+  background: var(--lowest);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.project-detail + footer:not(.site-footer)::before {
+  content: '© 2026 Charles Ramey. Engineering for Geospatial Precision.';
+  max-width: 1200px;
+  margin-left: max(24px, calc((100% - 1200px) / 2));
+  padding: 56px 0;
+  color: var(--muted);
+  font: 16px/1.8 var(--body);
+}
+
+.project-detail + footer:not(.site-footer) > p:first-child {
+  display: none;
+}
+
+.project-detail + footer:not(.site-footer) .footer-links {
+  margin-right: max(24px, calc((100% - 1200px) / 2));
+  gap: 24px;
+}
+
+.project-detail + footer:not(.site-footer) .footer-links a {
+  font: 12px var(--mono);
+}
+
+@media (max-width: 760px) {
+  .site-nav-inner {
+    overflow: visible !important;
+    padding: 0 16px !important;
+  }
+
+  .site-brand {
+    font-size: 1rem;
+  }
+
+  .site-nav-links {
+    display: none;
+  }
+
+  .site-contact {
+    margin-left: 0;
+    padding: 9px 11px;
+    font-size: 10px;
+  }
+
+  .site-footer-inner {
+    padding: 38px 16px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-footer-copy {
+    font-size: 14px;
+  }
+
+  .site-footer .footer-links {
+    gap: 16px;
+  }
+
+  .project-detail + footer:not(.site-footer) {
+    display: block;
+  }
+
+  .project-detail + footer:not(.site-footer)::before {
+    display: block;
+    margin: 0;
+    padding: 38px 16px 16px;
+    font-size: 14px;
+  }
+
+  .project-detail + footer:not(.site-footer) .footer-links {
+    margin: 0;
+    padding: 0 16px 38px;
+  }
+}

@@ -41,7 +41,7 @@
       <a href="../portfolio.html" class="nav-item">Portfolio</a>
       <a href="../blog.html" class="nav-item active">Blog</a>
       </div>
-      <a class="button-primary site-contact" href="mailto:cwramey@gmail.com">Contact Me ↗</a>
+      <a class="button-primary site-contact" href="../contact.html">Contact Me ↗</a>
     </div>
   </nav>
 
@@ -55,9 +55,9 @@
 
       <div class="post-body">
 
-        <p>Telecom design sheets are full of numbers a permit team needs: fiber footage, duct sizes and lengths, pole counts, handhole tallies. The problem is <em>where</em> those numbers live: scattered across a multi-page PDF in callouts, legends, and summary tables, in a layout designed for a human with a highlighter, not a database.</p>
+        <p>Telecom design sheets are full of numbers a permit team needs: fiber footage, duct sizes and lengths, pole counts, and handhole tallies. The problem is <em>where</em> those numbers live. They are scattered across a multi-page PDF in callouts, legends, and summary tables, in a layout designed for a human with a highlighter rather than a database.</p>
 
-        <p>Reviewing one by hand is 20–30 minutes of careful counting. <a href="https://pymupdf.readthedocs.io/" target="_blank" rel="noopener">PyMuPDF</a> (imported as <code>fitz</code>) turns that into seconds. Here's the approach.</p>
+        <p>Reviewing one by hand takes 20–30 minutes of careful counting. <a href="https://pymupdf.readthedocs.io/" target="_blank" rel="noopener">PyMuPDF</a> (imported as <code>fitz</code>) cuts that work to seconds. Here's the approach.</p>
 
         <h2>1. Open the PDF and pull its text</h2>
 
@@ -117,7 +117,7 @@ print(f"Unique poles: {len(pole_ids)}")</code></pre>
                          if abs(t[1] - y0) < 2 and t[0] > x1]
             print("TOTAL ->", [t[4] for t in same_line])</code></pre>
 
-        <p>This is the difference between a parser that breaks on the first oddly-formatted sheet and one that holds up across a whole project's worth of them.</p>
+        <p>This is the difference between a parser that breaks on the first oddly formatted sheet and one that holds up across an entire project.</p>
 
         <h2>5. Emit structured output</h2>
 
@@ -134,7 +134,7 @@ print(json.dumps(summary, indent=2))</code></pre>
 
         <h2>Why it's worth it</h2>
 
-        <p>A person reviewing a design sheet is slow not because the work is hard, but because it's tedious and unforgiving: one miscounted pole or transposed digit and the permit is wrong. A parser does the boring part identically every time, leaving the reviewer to do what they're actually good at: catching the cases that don't fit the pattern.</p>
+        <p>Manual review takes time not because the work is difficult, but because it's tedious and unforgiving. One miscounted pole or transposed digit can make a permit wrong. A parser handles the repetitive work the same way every time, leaving the reviewer to focus on cases that don't fit the pattern.</p>
 
         <p>That's the core of my <a href="../design-pdf-analyzer.html">Design PDF Analyzer</a>, which pulls footage, duct, and pole data from telecom design PDFs in under 30 seconds per sheet. <a href="../design-pdf-analyzer.html">Read the case study →</a></p>
 
@@ -148,7 +148,7 @@ print(json.dumps(summary, indent=2))</code></pre>
     </div>
   </article>
 
-  <footer class="site-footer"><div class="site-footer-inner"><div><p class="site-footer-brand">Charles Ramey</p><p class="site-footer-copy">© 2026 Charles Ramey. Engineered for Geospatial Precision.</p></div><p class="footer-links">
+  <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p><p class="footer-links">
       <a href="mailto:cwramey@gmail.com">email</a>
       <a href="https://www.linkedin.com/in/chramey/" target="_blank" rel="noopener">linkedin</a>
       <a href="https://github.com/cwramey" target="_blank" rel="noopener">github</a>
