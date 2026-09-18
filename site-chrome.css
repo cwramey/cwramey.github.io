@@ -1,5 +1,5 @@
 .site-header {
-  position: sticky;
+  position: sticky !important;
   top: 0;
   z-index: 20;
   border-bottom: 1px solid rgba(62, 72, 79, 0.72);
@@ -33,9 +33,9 @@
 }
 
 .site-nav-links .nav-item {
-  padding: 24px 0 20px;
-  font: 600 13px/1 var(--mono);
-  letter-spacing: 0.04em;
+  padding: 24px 0 20px !important;
+  font: 600 13px/1 var(--mono) !important;
+  letter-spacing: 0.04em !important;
 }
 
 .site-contact {
@@ -66,7 +66,8 @@
   padding: 56px 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   gap: 32px;
 }
 
@@ -74,6 +75,7 @@
   margin: 0;
   color: var(--muted);
   font: 16px/1.5 var(--body);
+  text-align: center;
 }
 
 .site-footer .footer-links {
@@ -147,7 +149,7 @@
 
   .site-footer-inner {
     padding: 38px 16px;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
 
