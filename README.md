@@ -19,8 +19,10 @@ Dark terminal / "hacker" aesthetic driven by CSS custom properties defined in `:
 ## Pages
 
 ```text
-index.html        — single-page home: hero, featured project, 3-card portfolio grid, contact
-about.html        — background, what I build / how I work, technical skill stack
+index.html        — home: hero, results strip, 3 flagship cards, shortest_route.py widget, contact
+about.html        — background, how I work, technical stack
+portfolio.html    — 3 flagship systems + "Also built"
+fiber-route-analyzer.html, canvas-network-design.html, node-crew-tracking.html — flagship case studies
 resume.html       — terminal-styled timeline résumé + Print/Save-as-PDF (print stylesheet)
 blog.html         — blog index (post cards)
 posts/
@@ -31,13 +33,17 @@ mockup.html       — dev artifact / layout reference (not linked; safe to delet
 ## Shared files
 
 ```text
-styles.css        — all styles (single stylesheet, used by every page)
+styles.css        — base styles and tokens (used by every page)
+redesign.css      — home, portfolio, about and case-study layouts, plus the route widget
 script.js         — screenshot lightbox, smooth scroll, active-nav highlighting, demo pre-warm
+route-widget.js   — interactive shortest_route.py demo on the home page
 robots.txt        — allows all crawlers; points to the sitemap
 sitemap.xml       — lists all public URLs for search engines
 assets/
   screenshots/
-    project1/     — Fiber Route Analyzer (fiber_route1–5.png)
+    fiber_route/  — Fiber Route Analyzer (fiber_route1–5.png)
+    canvas/       — Canvas (canvas-qc-review.png is the cropped QC shot; QC.png and main.png are gitignored)
+    node/         — Node (demo-data captures)
     project2/     — ArcPy Reporting & QA Suite (gis_tool1–5.png)
     project3/     — Design PDF Analyzer (pdf_tool1–3.png)
 ```
@@ -61,7 +67,7 @@ Each project's screenshots are declared in the `SCREENSHOTS` map at the top of `
 
 ```js
 const SCREENSHOTS = {
-  project1: ['fiber_route1.png', ... ],
+  fiber_route: ['fiber_route1.png', ... ],
   project2: ['gis_tool1.png', ... ],
   project3: ['pdf_tool1.png', ... ],
 };

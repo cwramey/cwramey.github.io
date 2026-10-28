@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Charles Ramey is a GIS Developer and Spatial Data Engineer specializing in geospatial automation and AI-assisted workflows.">
+  <meta name="description" content="Charles Ramey builds enterprise spatial systems and OSP automation for telecom and utility teams: route conflict analysis, network design tools and field crew tracking on ArcGIS Enterprise and PostGIS.">
   <meta name="theme-color" content="#0b1326">
-  <title>Charles Ramey | GIS Developer</title>
+  <title>Charles Ramey | GIS Developer &amp; Spatial Systems Engineer</title>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Charles Ramey | GIS Developer">
-  <meta property="og:description" content="GIS development, spatial data engineering, and AI-assisted workflows.">
+  <meta property="og:title" content="Charles Ramey | GIS Developer &amp; Spatial Systems Engineer">
+  <meta property="og:description" content="Enterprise spatial systems and OSP automation: route conflict analysis, network design and field crew tracking.">
   <meta property="og:url" content="https://cwramey.github.io/">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/fiber_route/fiber_route2.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://cwramey.github.io/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="ui-adjustments.css">
+  <link rel="stylesheet" href="redesign.css">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Charles Ramey","url":"https://cwramey.github.io/","jobTitle":"GIS Developer"}
+  {"@context":"https://schema.org","@type":"Person","name":"Charles Ramey","url":"https://cwramey.github.io/","jobTitle":"GIS Developer & Spatial Systems Engineer","address":{"@type":"PostalAddress","addressLocality":"Woodstock","addressRegion":"GA","addressCountry":"US"},"knowsAbout":["GIS","ArcGIS Enterprise","PostGIS","OSP automation","Spatial ETL","Python"]}
   </script>
 </head>
-<body class="landing-page">
+<body>
   <nav id="nav" class="site-header" aria-label="Primary navigation">
     <div class="nav-inner site-nav-inner">
       <a class="site-brand" href="index.html">Charles Ramey</a>
@@ -33,43 +34,128 @@
     </div>
   </nav>
 
-  <main class="landing-main">
-    <section aria-labelledby="landing-title">
-      <p class="landing-status"><span class="landing-status-dot" aria-hidden="true"></span>Available for new work</p>
-      <p class="landing-name">Charles Ramey</p>
-      <h1 class="landing-title" id="landing-title">Bridging the gap<br>between <span class="landing-blue">spatial data</span><br>&amp; <span class="landing-green">software engineering.</span></h1>
-      <p class="landing-copy">I build high-performance web applications and data pipelines that turn complex geospatial data into clear, interactive tools. GIS + Code + AI.</p>
-      <div class="landing-actions">
-        <a class="button-primary" href="portfolio.html">View Projects ↗</a>
+  <main>
+    <section class="wrap home-hero" aria-labelledby="home-title">
+      <p class="status-pill"><i aria-hidden="true"></i>Open to contract work · OSP automation, spatial ETL, ArcGIS Enterprise</p>
+      <p class="home-eyebrow">GIS Developer · Spatial Systems Engineer · Woodstock, GA</p>
+      <h1 class="home-title" id="home-title">Engineering <span class="accent-blue">enterprise spatial systems</span> &amp; <span class="accent-green">OSP automation.</span></h1>
+      <p class="home-lead">I build the software that telecom and utility teams run their networks on: route conflict analysis, network design tools, and field crew tracking, connected to ArcGIS Enterprise and PostGIS. The work draws on 20+ years in outside plant, from drafting fiber routes to leading GIS teams.</p>
+      <div class="btn-row">
+        <a class="button-primary" href="portfolio.html">View case studies ↗</a>
+        <a class="button-secondary" href="blog.html">Read the writeups</a>
       </div>
     </section>
 
-    <aside class="landing-terminal" aria-label="Example geospatial processing code">
-      <div class="landing-terminal-head"><i></i><i></i><i></i><span>shortest_route.py</span></div>
-      <pre><span class="code-keyword">import</span> geopandas <span class="code-keyword">as</span> gpd
-<span class="code-keyword">import</span> networkx <span class="code-keyword">as</span> nx
-<span class="code-keyword">from</span> shapely.geometry <span class="code-keyword">import</span> LineString
+    <section class="wrap" style="padding-bottom:88px" aria-label="Results">
+      <div class="proof-strip">
+        <div class="proof-item"><strong>1,000+</strong><span>routes analyzed; permit prep cut from 2–3 days to under 1 hour</span><small>Fiber Route Conflict Analyzer</small></div>
+        <div class="proof-item"><strong>−25%</strong><span>design time; BOM, splice diagrams and traces generated automatically</span><small>Canvas</small></div>
+        <div class="proof-item"><strong>40</strong><span>designers working across 100+ work orders</span><small>Canvas</small></div>
+        <div class="proof-item"><strong>5–20 s</strong><span>from a field edit to the dispatch map</span><small>Node</small></div>
+      </div>
+    </section>
 
-roads = gpd.read_file(<span class="code-value">&quot;roads.geojson&quot;</span>)
+    <section class="band" aria-labelledby="flagship-title">
+      <div class="wrap pad stack stack--lg">
+        <div class="stack" style="gap:12px">
+          <p class="eyebrow">// Flagship systems</p>
+          <h2 class="section-title" id="flagship-title">Three production systems, built solo</h2>
+        </div>
+        <div class="flagship-grid">
+          <article class="flagship-card">
+            <img src="assets/screenshots/fiber_route/fiber_route2.png" alt="Fiber Route Conflict Analyzer map with a permit corridor and its risk details" loading="lazy">
+            <div class="flagship-body">
+              <p class="kicker">GIS · Permitting</p>
+              <h3>Fiber Route Conflict Analyzer</h3>
+              <p>Checks a fiber route against roads, rail, water, bridges, pipelines and parcels from live FeatureServer layers, classifies every crossing by permit risk, and writes permit corridors and exports.</p>
+              <div class="tag-row"><span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">Shapely</span><span class="tech-tag">FeatureServer</span></div>
+              <a class="button-secondary" href="fiber-route-analyzer.html">Read the case study →</a>
+            </div>
+          </article>
+          <article class="flagship-card">
+            <img src="assets/screenshots/canvas/canvas-qc-review.png" alt="Canvas review view: a fiber layout being edited beside its QC findings" loading="lazy">
+            <div class="flagship-body">
+              <p class="kicker">Design · In production</p>
+              <h3>Canvas: Network Design Surface</h3>
+              <p>One browser-based CAD/GIS tool in place of several. It generates the bill of materials, splice diagrams and traces, and runs QC before review. Up to 40 designers, 100+ work orders.</p>
+              <div class="tag-row"><span class="tech-tag">React</span><span class="tech-tag">ArcGIS Maps SDK</span><span class="tech-tag">Express</span><span class="tech-tag">PostGIS</span></div>
+              <a class="button-secondary" href="canvas-network-design.html">Read the case study →</a>
+            </div>
+          </article>
+          <article class="flagship-card">
+            <img src="assets/screenshots/node/node-01-dashboard-overview.png" alt="Node dispatch view: crew status cards beside the live crew map" loading="lazy">
+            <div class="flagship-body">
+              <p class="kicker">Field ops · In production</p>
+              <h3>Node: Field Crew Tracking</h3>
+              <p>A live view of every contractor and crew, built from the Field Maps data they already submit. Status, output, routes and jobs on one map, with in-app messages to crews.</p>
+              <div class="tag-row"><span class="tech-tag">TypeScript</span><span class="tech-tag">ArcGIS Enterprise</span><span class="tech-tag">Field Maps</span><span class="tech-tag">PostgreSQL</span></div>
+              <a class="button-secondary" href="node-crew-tracking.html">Read the case study →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<span class="code-comment"># Build a weighted road graph</span>
-G = nx.Graph()
-<span class="code-keyword">for</span> _, row <span class="code-keyword">in</span> roads.iterrows():
-    start, end = row.geometry.coords[0], row.geometry.coords[-1]
-    G.add_edge(start, end, weight=row.geometry.length)
+    <section class="wrap pad stack stack--lg" aria-labelledby="route-title">
+      <div class="stack" style="gap:12px">
+        <p class="eyebrow">// See it run</p>
+        <h2 class="section-title" id="route-title">shortest_route.py on a sample network</h2>
+        <p class="lead">Pick two intersections and watch the search spread. Switch the weighting to add a cost for every rail or water crossing, and the cheapest route to permit pulls away from the shortest one.</p>
+      </div>
 
-<span class="code-comment"># Find and measure the shortest route</span>
-path = nx.shortest_path(G, source=A, target=B, weight=<span class="code-value">&quot;weight&quot;</span>)
-distance = sum(G[u][v][<span class="code-value">&quot;weight&quot;</span>] <span class="code-keyword">for</span> u, v <span class="code-keyword">in</span> zip(path[:-1], path[1:]))
+      <div class="rw" id="route-widget">
+        <div class="rw-head">
+          <span><b>shortest_route.py</b> · sample data</span>
+          <span class="rw-legend">
+            <span><i style="background:var(--blue)"></i>route</span>
+            <span><i style="background:#1f6f97"></i>explored</span>
+            <span><i style="background:#3b82c4;opacity:.6"></i>river</span>
+            <span><i style="background:var(--muted)"></i>rail</span>
+            <span><i style="background:#f27a6b;opacity:.7"></i>crosses river or rail</span>
+          </span>
+        </div>
+        <div class="rw-body">
+          <div class="rw-code" id="rw-code" aria-label="Python source"></div>
+          <div class="rw-map"><svg id="rw-svg" viewBox="0 0 740 520" role="img" aria-label="Sample road network with the computed route"></svg></div>
+        </div>
+        <div class="rw-ctl">
+          <button class="button-primary" id="rw-run" type="button">Run</button>
+          <button class="button-secondary" id="rw-step" type="button">Step</button>
+          <button class="button-secondary" id="rw-reset" type="button">Reset</button>
+          <label for="rw-mode">Weight
+            <select id="rw-mode">
+              <option value="len">distance</option>
+              <option value="pen">distance + crossing penalty</option>
+            </select>
+          </label>
+          <span class="rw-hint" id="rw-hint" aria-live="polite">Pick an intersection to set A, then another for B.</span>
+        </div>
+        <div class="rw-stats">
+          <div><span>Nodes</span><b id="rw-nodes">0</b></div>
+          <div><span>Edges</span><b id="rw-edges">0</b></div>
+          <div><span>Explored</span><b id="rw-explored">0</b></div>
+          <div><span>Distance</span><b id="rw-distance">–</b></div>
+          <div><span>Crossings</span><b id="rw-crossings">–</b></div>
+        </div>
+        <div class="rw-cmp" id="rw-cmp"></div>
+        <div class="rw-out">
+          <div><h3>stdout</h3><pre id="rw-stdout"></pre></div>
+          <div><h3>shortest_route.geojson</h3><pre id="rw-geo"></pre></div>
+        </div>
+      </div>
+    </section>
 
-<span class="code-keyword">print</span>(<span class="code-value">&quot;Shortest route:&quot;</span>, path)
-<span class="code-keyword">print</span>(<span class="code-value">&quot;Total distance:&quot;</span>, round(distance, 2), <span class="code-value">&quot;meters&quot;</span>)
-
-route = gpd.GeoDataFrame(geometry=[LineString(path)], crs=roads.crs)
-route.to_file(<span class="code-value">&quot;shortest_route.geojson&quot;</span>, driver=<span class="code-value">&quot;GeoJSON&quot;</span>)</pre>
-    </aside>
+    <section class="band--plain" aria-labelledby="contact-title">
+      <div class="wrap pad contact-band">
+        <p class="eyebrow">// Get in touch</p>
+        <h2 class="section-title" id="contact-title">Have a manual spatial workflow that costs your team days?</h2>
+        <p class="lead">I take on contract work in OSP automation, spatial ETL and ArcGIS Enterprise development.</p>
+        <a class="button-primary" href="contact.html">Contact Me ↗</a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
+  <script src="route-widget.js"></script>
 </body>
 </html>

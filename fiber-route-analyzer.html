@@ -4,13 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0b1326">
-  <meta name="description" content="Fiber Route Analyzer case study by Charles Ramey.">
-  <title>Fiber Route Analyzer | Charles Ramey</title>
+  <meta name="description" content="Case study: the Fiber Route Conflict Analyzer checks fiber routes against live FeatureServer layers and cut permit prep from 2–3 days to under an hour across 1,000+ routes.">
+  <title>Fiber Route Conflict Analyzer | Charles Ramey</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fiber Route Conflict Analyzer | Charles Ramey">
+  <meta property="og:description" content="Automated crossing detection that turns a proposed fiber route into a permit-ready package in under an hour.">
+  <meta property="og:url" content="https://cwramey.github.io/fiber-route-analyzer.html">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/fiber_route/fiber_route2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://cwramey.github.io/fiber-route-analyzer.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="project-screenshots.css">
-  <link rel="stylesheet" href="ui-adjustments.css">
+  <link rel="stylesheet" href="redesign.css">
 </head>
-<body class="stitch-case">
+<body>
   <nav id="nav" class="site-header">
     <div class="nav-inner site-nav-inner">
       <a class="site-brand" href="index.html">Charles Ramey</a>
@@ -24,59 +31,116 @@
     </div>
   </nav>
 
-  <main class="stitch-main section-wrapper">
-    <a class="stitch-back" href="portfolio.html">← All projects</a>
-    <section class="stitch-hero">
-      <div>
-        <p class="stitch-status"><i></i> Active deployment</p>
-        <h1 class="stitch-title">Fiber Route<br>Analyzer</h1>
-        <p class="stitch-lead">Automated conflict detection for fiber corridors, turning route files into permit-ready intelligence.</p>
-        <div class="stitch-tags">
-          <span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">ArcGIS API</span><span class="tech-tag">GIS</span>
-        </div>
-        <div class="project-hero-actions">
-          <a class="portfolio-launch-btn" href="posts/detecting-fiber-route-conflicts-with-geopandas.html">Read the Writeup →</a>
-        </div>
+  <main>
+    <section class="wrap case-hero" aria-labelledby="case-title">
+      <a class="case-back" href="portfolio.html">← All projects</a>
+      <p class="kicker">Case study · GIS · Permitting</p>
+      <h1 class="case-title" id="case-title">Fiber Route Conflict Analyzer</h1>
+      <p class="case-lead">Automated crossing detection that turns a proposed fiber route into a permit-ready package in under an hour.</p>
+      <div class="case-meta">
+        <span><span>Role </span>Sole developer</span>
+        <span><span>Status </span>In use on permitting work</span>
       </div>
-      <div class="stitch-visual project-hero-image">
-        <img src="projectimages/modify_this_fiber_route_conflict_analyzer_interface_data_image_image_2_to/screen.png" alt="Fiber Route Analyzer interface visualization">
+      <div class="tag-row"><span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">Shapely</span><span class="tech-tag">pyproj</span><span class="tech-tag">OSMnx</span><span class="tech-tag">Streamlit</span><span class="tech-tag">Folium</span><span class="tech-tag">Typer</span><span class="tech-tag">FeatureServer REST</span><span class="tech-tag">pytest</span></div>
+      <div class="btn-row"><a class="portfolio-launch-btn" href="posts/detecting-fiber-route-conflicts-with-geopandas.html">Read the writeup →</a></div>
+    </section>
+
+    <section class="wrap" style="padding-bottom:56px" aria-label="Results">
+      <div class="proof-strip">
+        <div class="proof-item proof-item--compact"><strong>1,000+</strong><span>routes analyzed</span></div>
+        <div class="proof-item proof-item--compact"><strong>~10,000</strong><span>route-miles (estimate)</span></div>
+        <div class="proof-item proof-item--compact"><strong>&lt;1 hr</strong><span>permit prep, down from 2–3 days</span></div>
+        <div class="proof-item proof-item--compact"><strong>&lt;1%</strong><span>missed conflicts across 40+ submitted permits</span></div>
       </div>
     </section>
 
-    <section class="stitch-overview">
-      <article class="stitch-overview-card">
-        <h2>Project Overview</h2>
-        <p>The Fiber Route Analyzer reduces the time needed to review complex utility corridors. Instead of manually verifying proposed fiber routes against thousands of infrastructure features, engineers upload a route file and receive an organized crossing analysis.</p>
-        <p>The pipeline uses GeoPandas and live ArcGIS FeatureServer data to find roads, rail, water, bridges, pipelines, and parcels. It assigns risk, generates permit corridor geometry, and carries location context into every result.</p>
-        <p>The result is a reliable, operator-ready package for fielding and permitting teams. It moves route review from days to minutes without sacrificing the detail needed for engineering decisions.</p>
-      </article>
-      <aside class="stitch-impact">
-        <article class="stitch-stat"><p class="stitch-stat-label">Time reduction</p><p class="stitch-stat-value">90%</p><p class="stitch-stat-desc">Less time spent on manual permit review.</p></article>
-        <article class="stitch-stat"><p class="stitch-stat-label">Missed conflicts</p><p class="stitch-stat-value">&lt;1%</p><p class="stitch-stat-desc">Consistent detection across every supported layer.</p></article>
-        <article class="stitch-stat"><p class="stitch-stat-label">Processing time</p><p class="stitch-stat-value">&lt;5m</p><p class="stitch-stat-desc">From route upload to export-ready data.</p></article>
-      </aside>
+    <section class="wrap" style="padding-bottom:72px">
+      <figure class="case-shot">
+        <img src="assets/screenshots/fiber_route/fiber_route2.png" alt="Analyzer map of a sample route in Atlanta with a DOT permit corridor selected, showing its risk, jurisdiction and confidence">
+        <figcaption>Map tab: a permit corridor's risk, owner, jurisdiction and confidence, on a sample route.</figcaption>
+      </figure>
     </section>
-    <section class="project-section">
-      <p class="project-kicker">Capabilities</p>
-      <h2>From route file to permit package</h2>
-      <div class="project-highlights">
-        <article class="project-highlight"><h3>Flexible inputs</h3><p>Reads KML, KMZ, GeoJSON, and Shapefile routes with CRS normalization.</p></article>
-        <article class="project-highlight"><h3>Conflict intelligence</h3><p>Checks live ArcGIS FeatureServer layers and classifies each crossing by risk.</p></article>
-        <article class="project-highlight"><h3>Corridor context</h3><p>Builds permit corridors with city, county, road-name, and confidence metadata.</p></article>
-        <article class="project-highlight"><h3>Usable exports</h3><p>Produces KMZ, Shapefiles, Excel, and a Markdown summary for follow-up work.</p></article>
+
+    <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
+      <p class="eyebrow">// The problem</p>
+      <h2 class="section-title">Days of map review per route</h2>
+      <p class="lead">A proposed fiber route can cross dozens of jurisdictions and hundreds of features, and every crossing type sets which permit applies and who issues it. Reviewers worked through each route by hand on a map, layer by layer, and one route took 2–3 days. Missed crossings surfaced late, when they were most expensive.</p>
+    </section>
+
+    <section class="band band--bottom">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow">// Engineering challenges</p>
+        <div class="challenge-grid">
+          <div class="challenge"><h3>Unreliable sources</h3><p>FeatureServers rate-limit, page results, time out, and change schemas without notice.</p></div>
+          <div class="challenge"><h3>Mixed inputs</h3><p>KML, KMZ, GeoJSON or zipped Shapefiles, in whatever CRS the designer used. Archives need guarding against unsafe paths.</p></div>
+          <div class="challenge"><h3>Accurate geometry</h3><p>Intersections and corridor buffers are measured in a projected CRS. Degrees give wrong lengths and missed crossings.</p></div>
+          <div class="challenge"><h3>Trustworthy output</h3><p>Reviewers need a confidence score per result and a view of where source data is weak.</p></div>
+        </div>
       </div>
     </section>
-    <section class="project-section screenshot-section">
-      <p class="project-kicker">Screenshots</p>
-      <h2>Fiber Route Analyzer in action</h2>
-      <div class="screenshot-grid">
-        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route1.png" target="_blank"><img src="assets/screenshots/project1/fiber_route1.png" alt="Fiber Route Analyzer screenshot 1"><span>Route input</span></a>
-        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route2.png" target="_blank"><img src="assets/screenshots/project1/fiber_route2.png" alt="Fiber Route Analyzer screenshot 2"><span>Conflict map</span></a>
-        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route3.png" target="_blank"><img src="assets/screenshots/project1/fiber_route3.png" alt="Fiber Route Analyzer screenshot 3"><span>Analysis results</span></a>
-        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route4.png" target="_blank"><img src="assets/screenshots/project1/fiber_route4.png" alt="Fiber Route Analyzer screenshot 4"><span>Permit corridor</span></a>
-        <a class="screenshot-card" href="assets/screenshots/project1/fiber_route5.png" target="_blank"><img src="assets/screenshots/project1/fiber_route5.png" alt="Fiber Route Analyzer screenshot 5"><span>Export package</span></a>
+
+    <section class="wrap pad-sm stack">
+      <p class="eyebrow">// Architecture</p>
+<pre class="arch-block">Route file (KML/KMZ/GeoJSON/SHP)
+        │  loaders: format detection, archive safety, CRS normalization
+        ▼
+   Route geometry (projected CRS)
+        │                         ArcGIS FeatureServer(s)
+        │                           │ child-layer discovery, pagination,
+        │                           │ retry/backoff (429/5xx), TTL disk cache,
+        │                           │ stale-data + schema-drift checks
+        ▼                           ▼
+   conflict_detector  ◄──── reference layers (roads, rail, water,
+        │                     bridges, pipelines, parcels, custom)
+        │  crossing type → risk class → confidence score
+        ▼
+   permit corridors (city, county, road name, risk, confidence)
+        │
+        ▼
+   exporters: KMZ · Shapefiles · Markdown report · Excel (summary + data-quality sheets)
+        │
+   Streamlit UI · Typer CLI · run replay snapshots</pre>
+    </section>
+
+    <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
+      <p class="eyebrow">// Technical implementation</p>
+      <ul class="result-list result-list--roomy">
+        <li><b>Ingestion.</b> One loader per format behind a shared base class. Archive handling rejects unsafe paths, and every route is normalized to one projected CRS before any measurement.</li>
+        <li><b>FeatureServer client.</b> Discovers child layers and queries them in parallel, pages with resultOffset and an objectIds fallback, retries transient failures with backoff, and caches responses on disk with a TTL.</li>
+        <li><b>Source health.</b> Checks each layer's last-edit age and schema, then warns before relying on stale or drifted data.</li>
+        <li><b>Risk model.</b> Crossings are classed Low (city/county), Medium (DOT) or High (water, bridges, pipelines, rail), each with a confidence score. Weak segments are flagged.</li>
+        <li><b>Outputs.</b> KMZ for Google Earth, zipped Shapefiles, a Markdown summary, and an Excel workbook with data-quality sheets.</li>
+        <li><b>Delivery.</b> A Streamlit app for reviewers, a CLI for batch runs, shareable run snapshots, and a pytest suite that runs in CI.</li>
+      </ul>
+    </section>
+
+    <section class="band">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow">// Screenshots</p>
+        <div class="shot-grid">
+          <figure class="shot"><a href="assets/screenshots/fiber_route/fiber_route3.png" target="_blank" rel="noopener"><img src="assets/screenshots/fiber_route/fiber_route3.png" alt="Summary tab with total length, permit counts and the permit segment table" loading="lazy"></a><figcaption>Summary: permit counts and every segment's permit type, owner, jurisdiction and confidence.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/fiber_route/fiber_route4.png" target="_blank" rel="noopener"><img src="assets/screenshots/fiber_route/fiber_route4.png" alt="Data Quality tab with per-layer contribution, confidence distribution and weak segments" loading="lazy"></a><figcaption>Data Quality: what each layer contributed, confidence by segment, and weak coverage.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/fiber_route/fiber_route5.png" target="_blank" rel="noopener"><img src="assets/screenshots/fiber_route/fiber_route5.png" alt="Downloads tab with a replay link, KMZ, Shapefiles, Markdown and Excel exports" loading="lazy"></a><figcaption>Downloads: a replay link plus KMZ, Shapefiles, Markdown and Excel exports.</figcaption></figure>
+        </div>
       </div>
     </section>
+
+    <section class="wrap wrap--narrow pad-sm stack" style="gap:12px">
+      <p class="eyebrow">// Measured impact</p>
+      <div class="impact-rows">
+        <div class="impact-row"><span>Routes analyzed</span><span>1,000+</span></div>
+        <div class="impact-row"><span>Route-miles analyzed (estimate)</span><span>~10,000</span></div>
+        <div class="impact-row"><span>Permit preparation time per route</span><span>2–3 days → &lt;1 hour</span></div>
+        <div class="impact-row"><span>Reduction in manual review time</span><span>90%</span></div>
+        <div class="impact-row"><span>Upload to export-ready package</span><span>&lt;5 minutes</span></div>
+        <div class="impact-row"><span>Permits submitted with a missed conflict (40+ submitted)</span><span>&lt;1%</span></div>
+      </div>
+    </section>
+
+    <nav class="wrap case-pager" aria-label="Case studies">
+      <a class="button-secondary" href="portfolio.html">← All projects</a>
+      <a class="button-primary" href="canvas-network-design.html">Next: Canvas →</a>
+    </nav>
   </main>
 
   <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>

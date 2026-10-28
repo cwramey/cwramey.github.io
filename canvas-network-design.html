@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1326">
+  <meta name="description" content="Case study: Canvas, a browser-based CAD/GIS network design tool that cut design time 25% and generates the bill of materials, splice diagrams and traces for up to 40 designers.">
+  <title>Canvas: Network Design Surface | Charles Ramey</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Canvas: Network Design Surface | Charles Ramey">
+  <meta property="og:description" content="One browser-based design tool in place of several, generating the bill of materials, splice diagrams and traces from the drawn network.">
+  <meta property="og:url" content="https://cwramey.github.io/canvas-network-design.html">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/canvas/canvas-qc-review.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://cwramey.github.io/canvas-network-design.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="redesign.css">
+</head>
+<body>
+  <nav id="nav" class="site-header">
+    <div class="nav-inner site-nav-inner">
+      <a class="site-brand" href="index.html">Charles Ramey</a>
+      <div class="site-nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Me</a>
+        <a href="portfolio.html" class="nav-item active">Portfolio</a>
+        <a href="blog.html" class="nav-item">Blog</a>
+      </div>
+      <a class="button-primary site-contact" href="contact.html">Contact Me ↗</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="wrap case-hero" aria-labelledby="case-title">
+      <a class="case-back" href="portfolio.html">← All projects</a>
+      <div class="feature-head"><p class="kicker">Case study · Design · CAD/GIS</p><span class="badge-live">In production</span></div>
+      <h1 class="case-title" id="case-title">Canvas: Network Design Surface</h1>
+      <p class="case-lead">One browser-based design tool in place of several, generating the bill of materials, splice diagrams and traces from the drawn network.</p>
+      <div class="case-meta">
+        <span><span>Role </span>Sole developer, design through deployment</span>
+        <span><span>Status </span>In production, under active development</span>
+      </div>
+      <div class="tag-row"><span class="tech-tag">React 19</span><span class="tech-tag">ArcGIS Maps SDK for JS</span><span class="tech-tag">Express</span><span class="tech-tag">PostgreSQL + PostGIS</span><span class="tech-tag">GDAL</span><span class="tech-tag">LibreDWG</span><span class="tech-tag">Entra ID SSO</span><span class="tech-tag">Docker</span></div>
+      <p class="case-note">Internal application · shown through screenshots, capabilities and metrics only</p>
+    </section>
+
+    <section class="wrap" style="padding-bottom:56px" aria-label="Results">
+      <div class="proof-strip">
+        <div class="proof-item proof-item--compact"><strong>−25%</strong><span>overall design time</span></div>
+        <div class="proof-item proof-item--compact"><strong>−90%</strong><span>BOM, splice diagram and trace prep</span></div>
+        <div class="proof-item proof-item--compact"><strong>40</strong><span>designers at peak</span></div>
+        <div class="proof-item proof-item--compact"><strong>100+</strong><span>work orders designed</span></div>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-bottom:72px">
+      <figure class="case-shot">
+        <img src="assets/screenshots/canvas/canvas-qc-review.png" alt="Canvas review view: a fiber layout being edited, the layer list on the left and QC findings on the right">
+        <figcaption>Review tab: editing a drop on the map while QC findings list what to fix, each with a suggested fix and status.</figcaption>
+      </figure>
+    </section>
+
+    <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
+      <p class="eyebrow">// The problem</p>
+      <h2 class="section-title">Every hand-off was a chance to drift</h2>
+      <p class="lead">Fiber design work moved between AutoCAD, ArcGIS Pro, Katapult, spreadsheets and separate QC checklists. A designer re-drew reference geometry from CAD, a reviewer marked up a PDF, and someone built the bill of materials, splice diagrams and fiber traces by hand. Every hand-off was a chance for the design and the GIS record to drift apart.</p>
+    </section>
+
+    <section class="band band--bottom">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow">// Engineering challenges</p>
+        <div class="challenge-grid">
+          <div class="challenge"><h3>CAD and GIS in one place</h3><p>DWG, DXF, GeoPackage, File Geodatabase, DBF, KML and Katapult jobs on one map, in the right CRS.</p></div>
+          <div class="challenge"><h3>Desktop-grade editing</h3><p>Snapping, vertex editing, transforms, copy-parallel and dimensioning behind an undo stack.</p></div>
+          <div class="challenge"><h3>Outputs from geometry</h3><p>BOM, splice diagrams and traces come straight from the drawn design, so they always match it.</p></div>
+          <div class="challenge"><h3>Credentials stay server-side</h3><p>Browsers never see portal credentials, yet layers, BOM and offline replicas all need tokens.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap pad-sm stack">
+      <p class="eyebrow">// Architecture</p>
+<pre class="arch-block">Browser (React + ArcGIS Maps SDK for JS)
+   design canvas · editing engine (command stack) · QC tools · labels · print · redlines
+        │  /api (same origin)
+        ▼
+API service (single container)
+   design      sessions, imports, BOM, splice diagrams, traces, QC, redlines
+   fiber       design layers, web map catalog
+   core        SSO, role-based access, logging, rate limits
+   adapters    ArcGIS token broker · Katapult · project-management system · offline replica
+        │                         │
+        ▼                         ▼
+PostgreSQL 16 + PostGIS      ArcGIS Enterprise
+(migrations at boot)         web maps · design feature service · redline service
+        ▲
+GDAL + LibreDWG (file ingest, CRS detection and reprojection)</pre>
+    </section>
+
+    <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
+      <p class="eyebrow">// Capabilities</p>
+      <ul class="result-list result-list--roomy">
+        <li><b>One design surface.</b> Import, draw, check, label, print and submit without leaving the app.</li>
+        <li><b>Automated network outputs.</b> Bill of materials with configurable cost rates, splice diagrams and fiber traces, generated from the design. Review is the only manual step.</li>
+        <li><b>QC suite.</b> Automated checks run before review and catch issues a manual QC pass missed.</li>
+        <li><b>Review redlines.</b> Points, lines and areas with severity and a comment thread. An open Blocker disables Submit and Approve.</li>
+        <li><b>Import pipeline.</b> CAD and GIS files converted with GDAL and LibreDWG, CRS detected and reprojected, stored in PostGIS.</li>
+        <li><b>Token broker.</b> The server holds portal credentials and hands out scoped tokens.</li>
+        <li><b>Operations.</b> One Docker image serves the app and API; migrations run on startup; CI on every push.</li>
+      </ul>
+    </section>
+
+    <section class="band">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow">// Screenshots</p>
+        <div class="shot-grid">
+          <figure class="shot"><a href="assets/screenshots/canvas/splicing.png" target="_blank" rel="noopener"><img src="assets/screenshots/canvas/splicing.png" alt="Splice Case Designer linking source fibers to output fibers tube by tube" loading="lazy"></a><figcaption>Splice Case Designer: fiber-by-fiber splicing between source and output cables.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/canvas/splicing2.png" target="_blank" rel="noopener"><img class="shot--contain" src="assets/screenshots/canvas/splicing2.png" alt="Job splice schematic generated from every splice case on the job" loading="lazy"></a><figcaption>Job splice schematic, generated from every splice case on the job.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/canvas/QC2.png" target="_blank" rel="noopener"><img src="assets/screenshots/canvas/QC2.png" alt="QC rule editor with versioned attribute, geometry, topology and engineering checks" loading="lazy"></a><figcaption>QC rules: versioned checks across attributes, geometry, topology and engineering.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap wrap--narrow pad-sm stack" style="gap:12px">
+      <p class="eyebrow">// Measured impact</p>
+      <div class="impact-rows">
+        <div class="impact-row"><span>Overall design time</span><span>−25%</span></div>
+        <div class="impact-row"><span>BOM, splice diagram and trace preparation</span><span>−90%</span></div>
+        <div class="impact-row"><span>QC</span><span>automated; faster, catches more</span></div>
+        <div class="impact-row"><span>Users</span><span>up to 40 designers · 100+ work orders</span></div>
+        <div class="impact-row"><span>Import formats</span><span>DWG · DXF · GPKG · FGDB · DBF · KML · Katapult</span></div>
+      </div>
+    </section>
+
+    <nav class="wrap case-pager" aria-label="Case studies">
+      <a class="button-secondary" href="fiber-route-analyzer.html">← Fiber Route Conflict Analyzer</a>
+      <a class="button-primary" href="node-crew-tracking.html">Next: Node →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
+</body>
+</html>
