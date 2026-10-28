@@ -21,6 +21,21 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://cwramey.github.io/fiber-route-analyzer.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cwramey.github.io/canvas-network-design.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cwramey.github.io/node-crew-tracking.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://cwramey.github.io/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

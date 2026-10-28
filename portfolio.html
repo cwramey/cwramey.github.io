@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Charles Ramey - production GIS and telecom tools: the Fiber Route Conflict Analyzer, ArcPy Reporting & QA Suite, Design PDF Analyzer, and ArcGIS GDB Schema Tool.">
+  <meta name="description" content="Portfolio of Charles Ramey: the Fiber Route Conflict Analyzer, the Canvas network design surface and Node field crew tracking, plus ArcPy, PDF and geodatabase tools for telecom and utility teams.">
   <meta name="theme-color" content="#0b1326">
   <title>Portfolio - Charles Ramey</title>
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Portfolio - Charles Ramey">
-  <meta property="og:description" content="Production GIS and telecom tools: fiber route conflict detection, ArcPy automation, telecom PDF parsing, and browser-based geodatabase schema editing.">
+  <meta property="og:description" content="Production spatial systems for telecom and utility teams: fiber route conflict analysis, network design and field crew tracking.">
   <meta property="og:url" content="https://cwramey.github.io/portfolio.html">
-  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/project1/fiber_route1.png">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/fiber_route/fiber_route2.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="canonical" href="https://cwramey.github.io/portfolio.html">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
 
@@ -24,157 +25,118 @@
     <div class="nav-inner site-nav-inner">
       <a class="site-brand" href="index.html">Charles Ramey</a>
       <div class="site-nav-links">
-      <a href="index.html" class="nav-item">Home</a>
-      <a href="about.html" class="nav-item">About Me</a>
-      <a href="portfolio.html" class="nav-item active">Portfolio</a>
-      <a href="blog.html" class="nav-item">Blog</a>
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Me</a>
+        <a href="portfolio.html" class="nav-item active" aria-current="page">Portfolio</a>
+        <a href="blog.html" class="nav-item">Blog</a>
       </div>
       <a class="button-primary site-contact" href="contact.html">Contact Me ↗</a>
     </div>
   </nav>
 
-  <section id="portfolio">
-    <div class="section-wrapper">
-      <h1 class="section-eyebrow section-eyebrow--heading">// Portfolio</h1>
-      <p class="portfolio-sub portfolio-sub--page">Production GIS and telecom tools built for real-world fielding, permitting, and data-governance workflows. Each one replaces days of manual work with a script or an app a team can trust.</p>
+  <main>
+    <section class="wrap stack" style="padding-top:88px;padding-bottom:48px">
+      <p class="eyebrow">// Portfolio</p>
+      <h1 class="section-title" style="font-size:clamp(2.4rem,5vw,3.5rem);font-weight:800">Systems that telecom and utility teams run on</h1>
+      <p class="lead">Each one removes a manual step from fielding, design, permitting or dispatch. The three flagship systems are designed, built and maintained by me alone.</p>
+    </section>
 
-      <div class="pf-list">
-
-        <article class="pf-item" id="fiber-route-analyzer">
-          <p class="portfolio-cat">GIS &nbsp;·&nbsp; Permitting</p>
-          <h2 class="pf-title">Fiber Route Conflict Analyzer</h2>
-          <p class="pf-lead">The analyzer ingests KML, KMZ, GeoJSON, and Shapefile routes, detects crossing conflicts against live ArcGIS FeatureServer layers, classifies risk by crossing type, and generates permit corridor polygons tagged with city, county, road name, and a confidence score. It delivers operator-ready exports and cuts permit preparation from 2–3 days of manual map review to under an hour.</p>
-
-          <p class="pf-sub">Highlights</p>
-          <ul class="about-list pf-features">
-            <li>Reads KML, KMZ, GeoJSON, and Shapefile route inputs</li>
-            <li>Detects crossings against roads, rail, water, bridges, gas/oil pipelines, and parcels from live ArcGIS FeatureServer layers</li>
-            <li>Classifies each conflict by crossing type and assigns a confidence score</li>
-            <li>Generates permit corridor polygons tagged with city, county, and road name</li>
-            <li>Exports operator-ready KMZ, Shapefiles, a Markdown report, and an Excel workbook</li>
+    <section class="wrap feature-list" style="padding-bottom:72px" aria-label="Flagship systems">
+      <article class="feature-card" id="fiber-route-analyzer">
+        <img src="assets/screenshots/fiber_route/fiber_route2.png" alt="Fiber Route Conflict Analyzer map with a permit corridor and its risk details" loading="lazy">
+        <div class="feature-body">
+          <p class="kicker">GIS · Permitting</p>
+          <h2>Fiber Route Conflict Analyzer</h2>
+          <p>Checks a proposed fiber route against roads, rail, water, bridges, pipelines and parcels pulled from live FeatureServer layers, classifies each crossing by permitting risk, and writes permit corridors and operator-ready exports.</p>
+          <ul class="result-list">
+            <li>1,000+ routes analyzed, about 10,000 route-miles</li>
+            <li>Permit prep cut from 2–3 days to under 1 hour</li>
+            <li>40+ permits through submission, fewer than 1% with a missed conflict</li>
           </ul>
-
-          <div class="portfolio-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">GeoPandas</span>
-            <span class="tech-tag">Shapely</span>
-            <span class="tech-tag">ArcGIS FeatureServer</span>
-            <span class="tech-tag">KML/KMZ</span>
+          <div class="tag-row"><span class="tech-tag">Python</span><span class="tech-tag">GeoPandas</span><span class="tech-tag">Shapely</span><span class="tech-tag">OSMnx</span><span class="tech-tag">Streamlit</span><span class="tech-tag">FeatureServer REST</span></div>
+          <div class="btn-row" style="margin-top:6px">
+            <a class="portfolio-launch-btn" href="fiber-route-analyzer.html">Read the case study →</a>
+            <a class="pf-readmore" href="posts/detecting-fiber-route-conflicts-with-geopandas.html">Read the writeup</a>
           </div>
+        </div>
+      </article>
 
-          <div class="portfolio-actions">
-            <a href="fiber-route-analyzer.html" class="portfolio-launch-btn">View Details →</a>
-            <a href="posts/detecting-fiber-route-conflicts-with-geopandas.html" class="portfolio-launch-btn">Read the Writeup →</a>
-          </div>
-        </article>
-
-        <article class="pf-item" id="arcpy-suite">
-          <p class="portfolio-cat">GIS &nbsp;·&nbsp; Automation &nbsp;·&nbsp; QA</p>
-          <h2 class="pf-title">ArcPy Reporting &amp; QA Suite</h2>
-          <p class="pf-lead">A suite of 14 production ArcPy scripts covering reporting, QA/QC validation, status snapshots, and data cleanup, all driven from a single configuration so a fix made once applies everywhere. Delivers map exports and reports in under 15 minutes instead of a day of manual work.</p>
-
-          <p class="pf-sub">Highlights</p>
-          <ul class="about-list pf-features">
-            <li>14 ArcPy scripts unified under one config-driven runner</li>
-            <li>Automated QA/QC validation checks across feature classes</li>
-            <li>Status snapshots and recurring operational reports</li>
-            <li>Data cleanup and standardization routines</li>
-            <li>Automated map-layout exports from ArcGIS Pro projects</li>
+      <article class="feature-card" id="canvas">
+        <img src="assets/screenshots/canvas/canvas-qc-review.png" alt="Canvas review view: a fiber layout being edited beside its QC findings" loading="lazy">
+        <div class="feature-body">
+          <div class="feature-head"><p class="kicker">Design · CAD/GIS</p><span class="badge-live">In production</span></div>
+          <h2>Canvas: Network Design Surface</h2>
+          <p>A browser-based CAD/GIS design tool that replaced a stack of separate tools. Designers import CAD, GIS and Katapult data, draw fiber networks on ArcGIS basemaps, and get the bill of materials, splice diagrams and traces generated for them.</p>
+          <ul class="result-list">
+            <li>Design time down 25%</li>
+            <li>BOM, splice diagram and trace prep down 90%; review is the only manual step</li>
+            <li>Up to 40 designers across 100+ work orders</li>
           </ul>
-
-          <div class="portfolio-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">ArcPy</span>
-            <span class="tech-tag">ArcGIS Pro</span>
-            <span class="tech-tag">ModelBuilder</span>
+          <div class="tag-row"><span class="tech-tag">React</span><span class="tech-tag">ArcGIS Maps SDK</span><span class="tech-tag">Express</span><span class="tech-tag">PostGIS</span><span class="tech-tag">GDAL</span><span class="tech-tag">Docker</span></div>
+          <div class="btn-row" style="margin-top:6px">
+            <a class="portfolio-launch-btn" href="canvas-network-design.html">Read the case study →</a>
+            <span class="muted-note">Internal application · screenshots only</span>
           </div>
+        </div>
+      </article>
 
-          <div class="portfolio-actions">
-            <a href="arcpy-reporting-qa.html" class="portfolio-launch-btn">View Details →</a>
-            <a href="posts/building-a-reusable-arcpy-reporting-pipeline.html" class="portfolio-launch-btn">Read the Writeup →</a>
-          </div>
-        </article>
-
-        <article class="pf-item" id="design-pdf-analyzer">
-          <p class="portfolio-cat">AI &nbsp;·&nbsp; PDF Parsing &nbsp;·&nbsp; Telecom</p>
-          <h2 class="pf-title">Design PDF Analyzer</h2>
-          <p class="pf-lead">The analyzer turns unstructured telecom design PDFs into clean, queryable data by extracting fiber footage, duct measurements, and pole counts with PyMuPDF, text search, and regex. It cuts review time from 20–30 minutes of manual counting to under 30 seconds per sheet.</p>
-
-          <p class="pf-sub">Highlights</p>
-          <ul class="about-list pf-features">
-            <li>Reads the text layer of design PDFs directly with PyMuPDF (no OCR needed for vector exports)</li>
-            <li>Extracts linear fiber footage, duct counts, sizes, and materials, and pole counts</li>
-            <li>Counts unique entities to avoid double-counting poles across overlapping sheets</li>
-            <li>Uses text position to recover values when the PDF's reading order is jumbled</li>
-            <li>Emits structured JSON ready for a downstream API or spreadsheet</li>
+      <article class="feature-card" id="node">
+        <img src="assets/screenshots/node/node-01-dashboard-overview.png" alt="Node dispatch view: crew status cards, regions and the live crew map" loading="lazy">
+        <div class="feature-body">
+          <div class="feature-head"><p class="kicker">Field ops · Dispatch</p><span class="badge-live">In production</span></div>
+          <h2>Node: Field Crew Tracking</h2>
+          <p>A live dispatch view of every contractor and crew, built from the Field Maps data crews already submit. Status, today's output, routes and jobs on one map, with in-app messages to crews in the field.</p>
+          <ul class="result-list">
+            <li>Field edits reach the map in 5–20 seconds</li>
+            <li>Live statistics per contractor and crew</li>
+            <li>Excel and PDF reports on demand</li>
           </ul>
-
-          <div class="portfolio-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">PyMuPDF</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">regex</span>
+          <div class="tag-row"><span class="tech-tag">TypeScript</span><span class="tech-tag">React</span><span class="tech-tag">ArcGIS Enterprise</span><span class="tech-tag">Field Maps</span><span class="tech-tag">Fastify</span><span class="tech-tag">PostgreSQL</span></div>
+          <div class="btn-row" style="margin-top:6px">
+            <a class="portfolio-launch-btn" href="node-crew-tracking.html">Read the case study →</a>
+            <span class="muted-note">Internal application · screenshots only</span>
           </div>
+        </div>
+      </article>
+    </section>
 
-          <div class="portfolio-actions">
-            <a href="design-pdf-analyzer.html" class="portfolio-launch-btn">View Details →</a>
-            <a href="posts/extracting-footage-and-pole-counts-from-telecom-design-pdfs.html" class="portfolio-launch-btn">Read the Writeup →</a>
-          </div>
-        </article>
-
-        <article class="pf-item" id="gdb-schema-tool">
-          <p class="portfolio-cat">GIS &nbsp;·&nbsp; Geodatabase &nbsp;·&nbsp; Schema</p>
-          <h2 class="pf-title">ArcGIS GDB Schema Tool</h2>
-          <p class="pf-lead">This browser-based tool imports, edits, and builds ArcGIS geodatabase schemas without requiring ArcGIS Pro. A matching ArcGIS Pro Python toolbox handles the create-and-export round trip. The browser parses JSON, Excel, XML Workspace, GeoPackage, and .gdb.zip files entirely on the client, so the schema never leaves your machine.</p>
-
-          <p class="pf-sub">Highlights</p>
-          <ul class="about-list pf-features">
-            <li>Imports schema from JSON, Excel, XML Workspace, GeoPackage, and .gdb.zip, all parsed in the browser</li>
-            <li>Reviews and edits feature classes, fields, domains, and subtypes with live validation</li>
-            <li>Includes four built-in infrastructure presets: Fiber, Small Cell, Gas Line, and Field Inspection</li>
-            <li>Provides an ArcGIS Pro Python toolbox to create a geodatabase from a preset and export an existing one back to JSON</li>
-            <li>Supports a styled Excel template round trip for nontechnical schema authoring</li>
-          </ul>
-
-          <div class="portfolio-tags">
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">ArcPy</span>
-            <span class="tech-tag">ArcGIS Pro</span>
-          </div>
-
-          <div class="portfolio-actions">
-            <a href="arcgis-gdb-schema-tool.html" class="portfolio-launch-btn">View Details →</a>
-            <a href="posts/editing-arcgis-geodatabase-schemas-in-the-browser.html" class="portfolio-launch-btn">Read the Writeup →</a>
-          </div>
-        </article>
-
+    <section class="band" aria-labelledby="also-title">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow" id="also-title">// Also built</p>
+        <div class="also-grid">
+          <article class="also-card" id="arcpy-suite">
+            <h3>ArcPy Reporting &amp; QA Suite</h3>
+            <p>14 ArcPy scripts under one config. Map exports and reports in under 15 minutes instead of a day.</p>
+            <div class="tag-row"><span class="tech-tag">ArcPy</span><span class="tech-tag">ArcGIS Pro</span></div>
+            <div class="btn-row"><a class="pf-readmore" href="arcpy-reporting-qa.html">View details →</a><a class="pf-readmore" href="posts/building-a-reusable-arcpy-reporting-pipeline.html">Writeup</a></div>
+          </article>
+          <article class="also-card" id="design-pdf-analyzer">
+            <h3>Design PDF Analyzer</h3>
+            <p>Extracts fiber footage, duct and pole counts from telecom design PDFs in under 30 seconds per sheet.</p>
+            <div class="tag-row"><span class="tech-tag">PyMuPDF</span><span class="tech-tag">FastAPI</span></div>
+            <div class="btn-row"><a class="pf-readmore" href="design-pdf-analyzer.html">View details →</a><a class="pf-readmore" href="posts/extracting-footage-and-pole-counts-from-telecom-design-pdfs.html">Writeup</a></div>
+          </article>
+          <article class="also-card" id="gdb-schema-tool">
+            <h3>ArcGIS GDB Schema Tool</h3>
+            <p>Builds and edits geodatabase schemas in the browser, with an ArcGIS Pro toolbox for the round trip.</p>
+            <div class="tag-row"><span class="tech-tag">JavaScript</span><span class="tech-tag">ArcPy</span></div>
+            <div class="btn-row"><a class="pf-readmore" href="arcgis-gdb-schema-tool.html">View details →</a><a class="pf-readmore" href="posts/editing-arcgis-geodatabase-schemas-in-the-browser.html">Writeup</a></div>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact">
-    <div class="section-wrapper contact-center">
-      <p class="section-eyebrow section-eyebrow--heading">// Get In Touch</p>
-      <p class="hero-desc contact-desc">Open to GIS development, spatial data engineering, and geospatial automation projects. Reach out and let's talk.</p>
-      <div class="contact-outline-btns">
-        <a href="mailto:cwramey@gmail.com" class="contact-outline-btn">✉ Email Me</a>
+    <section id="contact">
+      <div class="section-wrapper contact-center">
+        <p class="section-eyebrow section-eyebrow--heading">// Get In Touch</p>
+        <p class="hero-desc contact-desc">Open to contract work in OSP automation, spatial ETL and ArcGIS Enterprise development. Reach out and let's talk.</p>
+        <div class="contact-outline-btns">
+          <a href="mailto:cwramey@gmail.com" class="contact-outline-btn">✉ Email Me</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
-
-  <div id="lightbox" class="lightbox" hidden onclick="closeLightbox(event)">
-    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
-    <button class="lightbox-prev" onclick="lightboxNav(-1, event)" aria-label="Previous">&#8592;</button>
-    <button class="lightbox-next" onclick="lightboxNav(1, event)" aria-label="Next">&#8594;</button>
-    <figure class="lightbox-figure">
-      <img id="lightbox-img" src="" alt="">
-      <figcaption id="lightbox-caption"></figcaption>
-    </figure>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>

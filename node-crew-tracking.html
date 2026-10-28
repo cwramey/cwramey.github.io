@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1326">
+  <meta name="description" content="Case study: Node, a live dispatch view of every contractor and field crew built from Esri Field Maps data, with field edits on the map in 5–20 seconds.">
+  <title>Node: Field Crew Tracking | Charles Ramey</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Node: Field Crew Tracking | Charles Ramey">
+  <meta property="og:description" content="A live view of every contractor and crew, built from the Field Maps data they already submit.">
+  <meta property="og:url" content="https://cwramey.github.io/node-crew-tracking.html">
+  <meta property="og:image" content="https://cwramey.github.io/assets/screenshots/node/node-01-dashboard-overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://cwramey.github.io/node-crew-tracking.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="redesign.css">
+</head>
+<body>
+  <nav id="nav" class="site-header">
+    <div class="nav-inner site-nav-inner">
+      <a class="site-brand" href="index.html">Charles Ramey</a>
+      <div class="site-nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About Me</a>
+        <a href="portfolio.html" class="nav-item active">Portfolio</a>
+        <a href="blog.html" class="nav-item">Blog</a>
+      </div>
+      <a class="button-primary site-contact" href="contact.html">Contact Me ↗</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="wrap case-hero" aria-labelledby="case-title">
+      <a class="case-back" href="portfolio.html">← All projects</a>
+      <div class="feature-head"><p class="kicker">Case study · Field ops · Dispatch</p><span class="badge-live">In production</span></div>
+      <h1 class="case-title" id="case-title">Node: Field Crew Tracking</h1>
+      <p class="case-lead">A live view of every contractor and crew, built from the Field Maps data they already submit, with no new app for the field.</p>
+      <div class="case-meta">
+        <span><span>Role </span>Sole developer, design through deployment</span>
+        <span><span>Status </span>In production, under active development</span>
+      </div>
+      <div class="tag-row"><span class="tech-tag">TypeScript</span><span class="tech-tag">React 19</span><span class="tech-tag">ArcGIS Maps SDK for JS</span><span class="tech-tag">Calcite</span><span class="tech-tag">Fastify</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Field Maps</span><span class="tech-tag">ArcGIS Enterprise</span><span class="tech-tag">Katapult Pro</span></div>
+      <p class="case-note">Internal application · shown through screenshots, capabilities and metrics only</p>
+    </section>
+
+    <section class="wrap" style="padding-bottom:56px" aria-label="Results">
+      <div class="proof-strip">
+        <div class="proof-item proof-item--compact"><strong>5–20 s</strong><span>field edit to dispatch map</span></div>
+        <div class="proof-item proof-item--compact"><strong>15 s</strong><span>source polling interval</span></div>
+        <div class="proof-item proof-item--compact"><strong>30 s</strong><span>crew status refresh</span></div>
+        <div class="proof-item proof-item--compact"><strong>Live</strong><span>statistics per contractor and crew</span></div>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-bottom:72px">
+      <figure class="case-shot">
+        <img src="assets/screenshots/node/node-01-dashboard-overview.png" alt="Node dispatch view: status cards, progress and regions beside the live crew map">
+        <figcaption>Today's summary beside the live map. Demo data: fictional contractors and crews.</figcaption>
+      </figure>
+    </section>
+
+    <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
+      <p class="eyebrow">// The problem</p>
+      <h2 class="section-title">The data existed. The view did not.</h2>
+      <p class="lead">Multi-state utility and telecom programs hire several contractors, each running dozens of crews. Crews already record installs, repairs, inspections and surveys in Esri Field Maps, so the data sits in ArcGIS Enterprise. Even so, a dispatcher who wants to know who is working, who has gone quiet, or how much a contractor finished in one state this week still has to phone around and merge spreadsheets.</p>
+    </section>
+
+    <section class="band band--bottom">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow">// Engineering challenges</p>
+        <div class="challenge-grid">
+          <div class="challenge"><h3>No shared schema</h3><p>Each contractor's layer names its crew, project, activity and time fields differently.</p></div>
+          <div class="challenge"><h3>Read-only access</h3><p>Node never writes to the layers crews edit. It can only poll them for changes.</p></div>
+          <div class="challenge"><h3>What counts as today</h3><p>Time zones, shift hours and late offline syncs decide each crew's working day and status.</p></div>
+          <div class="challenge"><h3>Group permissions</h3><p>Crews see only maps shared with their ArcGIS groups, checked when a job is planned and again when it's created.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap pad-sm stack">
+      <p class="eyebrow">// Architecture</p>
+<pre class="arch-block">Field Maps (tablets) ──► ArcGIS Enterprise hosted feature layers
+                                    │  read-only, polled every 15 s (changed records only)
+                                    ▼
+                 Node service (Fastify, TypeScript)
+                   field mapping per layer · crew attribution by username
+                   working-day + time-zone resolution · status engine (30 s)
+                   data-quality flags · job planner (group-sharing checks)
+                   crew notifications · Katapult Pro adapter
+                                    │
+                                    ▼
+                 PostgreSQL: activity (partitioned) · crew-day metrics
+                   · jobs · retention policies
+                                    │  REST API
+                                    ▼
+                 React + ArcGIS Maps SDK: summary · live map · crews · trends · jobs
+                   Excel / PDF export · shareable view links · responsive layout</pre>
+    </section>
+
+    <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
+      <p class="eyebrow">// Capabilities</p>
+      <ul class="result-list result-list--roomy">
+        <li><b>Contractor and crew tracking.</b> Compare contractors, then drill into one crew's day: timeline, route and output.</li>
+        <li><b>Layer onboarding.</b> Node suggests which fields hold crew, contractor, project, activity and time, and asks only about matches it is unsure of.</li>
+        <li><b>Live status.</b> Working, Quiet, Not heard from, Done for the day, or Not started, from each crew's last report and shift hours.</li>
+        <li><b>Crew notifications.</b> Dispatchers message crews in the field to catch issues early or coordinate changes.</li>
+        <li><b>Job planning.</b> Bind a project to a web map and design layer, pick design features by attribute, and re-validate before the job is created.</li>
+        <li><b>Reports.</b> Statistics update live on screen; Excel and PDF exports on demand for management.</li>
+        <li><b>Storage and data quality.</b> Partitioned activity, precomputed daily metrics, tiered retention, and suspect records flagged without being blocked.</li>
+      </ul>
+    </section>
+
+    <section class="band">
+      <div class="wrap pad-sm stack stack--lg">
+        <p class="eyebrow">// Screenshots</p>
+        <div class="shot-grid">
+          <figure class="shot"><a href="assets/screenshots/node/node-03-job-detail.png" target="_blank" rel="noopener"><img src="assets/screenshots/node/node-03-job-detail.png" alt="Job detail with the job's design-feature area outlined on the map" loading="lazy"></a><figcaption>Job detail: status, due date and the job's design-feature area outlined on the map.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/node/node-02-trends-7-days.png" target="_blank" rel="noopener"><img src="assets/screenshots/node/node-02-trends-7-days.png" alt="Trends tab showing work by hour of day over seven days" loading="lazy"></a><figcaption>Trends: work by hour of day across a 7-day window.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/node/Regional.png" target="_blank" rel="noopener"><img src="assets/screenshots/node/Regional.png" alt="Open jobs filtered to the South region, with crews on the regional map" loading="lazy"></a><figcaption>Region filter: open jobs and working crews in the South.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap wrap--narrow pad-sm stack" style="gap:12px">
+      <p class="eyebrow">// Measured impact</p>
+      <div class="impact-rows">
+        <div class="impact-row"><span>Field edit to dispatch map</span><span>5–20 s typical</span></div>
+        <div class="impact-row"><span>Source polling / status refresh</span><span>15 s / 30 s</span></div>
+        <div class="impact-row"><span>Crew and contractor statistics</span><span>live on screen</span></div>
+        <div class="impact-row"><span>Management reporting</span><span>Excel and PDF on demand</span></div>
+        <div class="impact-row"><span>Field coordination</span><span>in-app crew notifications</span></div>
+      </div>
+    </section>
+
+    <nav class="wrap case-pager" aria-label="Case studies">
+      <a class="button-secondary" href="canvas-network-design.html">← Canvas</a>
+      <a class="button-primary" href="portfolio.html">All projects →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
+</body>
+</html>
