@@ -1,0 +1,67 @@
+/* ArcPy Reporting & QA Suite demo. Scoped to this demo only. */
+.demo[data-demo="arcpy-qa"] .qa-pick{display:inline-flex;align-items:center;gap:8px;font:12px var(--mono);color:var(--muted)}
+.demo[data-demo="arcpy-qa"] .qa-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-bottom:1px solid var(--line)}
+.demo[data-demo="arcpy-qa"] .qa-top>section{display:flex;flex-direction:column;gap:10px;min-width:0;padding:14px}
+.demo[data-demo="arcpy-qa"] .qa-term{border-left:1px solid var(--line)}
+.demo[data-demo="arcpy-qa"] .qa-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font:12px var(--mono);color:var(--muted)}
+.demo[data-demo="arcpy-qa"] .qa-head b{color:var(--text);font-weight:600}
+.demo[data-demo="arcpy-qa"] .qa-head i{display:inline-block;width:8px;height:8px;margin-right:4px;border-radius:50%;background:#ff7b72}
+.demo[data-demo="arcpy-qa"] .qa-head i:nth-child(2){background:var(--orange)}
+.demo[data-demo="arcpy-qa"] .qa-head i:nth-child(3){background:var(--green);margin-right:8px}
+.demo[data-demo="arcpy-qa"] .qa-link{min-height:32px;padding:4px 8px;border:0;background:none;color:var(--blue);font:12px var(--mono);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.demo[data-demo="arcpy-qa"] .qa-link:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* Editable highlighted YAML: transparent textarea over a highlighted <pre> */
+.demo[data-demo="arcpy-qa"] .qa-ed{position:relative;height:330px;border:1px solid var(--line);border-radius:6px;background:var(--lowest);overflow:hidden}
+.demo[data-demo="arcpy-qa"] .qa-ed:focus-within{border-color:var(--blue)}
+.demo[data-demo="arcpy-qa"] .qa-ed pre,.demo[data-demo="arcpy-qa"] .qa-ed textarea{position:absolute;inset:0;margin:0;padding:12px;border:0;border-radius:0;font:12px/1.6 var(--mono);letter-spacing:0;tab-size:2;white-space:pre;overflow-wrap:normal;box-sizing:border-box}
+.demo[data-demo="arcpy-qa"] .qa-ed pre{overflow:hidden;color:var(--text);pointer-events:none}
+.demo[data-demo="arcpy-qa"] .qa-ed textarea{width:100%;height:100%;min-height:0;resize:none;overflow:auto;background:transparent;color:transparent;caret-color:var(--text);outline:none;color-scheme:dark}
+.demo[data-demo="arcpy-qa"] .qa-ed textarea::selection{background:rgba(56,189,248,.3);color:transparent}
+.demo[data-demo="arcpy-qa"] .qa-parse{margin:0;font:12px/1.45 var(--mono);color:var(--muted)}
+.demo[data-demo="arcpy-qa"] .qa-parse.ok{color:var(--green)}
+.demo[data-demo="arcpy-qa"] .qa-parse.err{color:#f87171}
+.demo[data-demo="arcpy-qa"] .qa-checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:4px 12px;margin:0;padding:8px 10px 10px;border:1px solid var(--line);border-radius:6px}
+.demo[data-demo="arcpy-qa"] .qa-checks legend{padding:0 6px;font:11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.demo[data-demo="arcpy-qa"] .qa-checks .demo-chk{min-height:32px;color:var(--text)}
+
+/* Terminal */
+.demo[data-demo="arcpy-qa"] .qa-log{flex:1;min-height:330px;max-height:440px;margin:0;padding:12px;overflow:auto;border:1px solid var(--line);border-radius:6px;background:#020617;font:12px/1.65 var(--mono);color:#cbd5e1;white-space:pre-wrap;overflow-wrap:anywhere;color-scheme:dark}
+.demo[data-demo="arcpy-qa"] .qa-log:empty::before{content:'$ python run_suite.py --profile …\A  waiting for Run suite';color:#64748b;white-space:pre}
+.demo[data-demo="arcpy-qa"] .qa-log:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.demo[data-demo="arcpy-qa"] .ln{padding-left:4ch;text-indent:-4ch}
+.demo[data-demo="arcpy-qa"] .ln .ts{color:#64748b}
+.demo[data-demo="arcpy-qa"] .ln .tg{color:#7dd3fc}
+.demo[data-demo="arcpy-qa"] .ln-cmd{color:var(--text)}
+.demo[data-demo="arcpy-qa"] .ln-ok{color:var(--green)}
+.demo[data-demo="arcpy-qa"] .ln-warn{color:var(--orange)}
+.demo[data-demo="arcpy-qa"] .ln-err{color:#f87171}
+.demo[data-demo="arcpy-qa"] .ln-dim{color:#64748b}
+.demo[data-demo="arcpy-qa"] .ln-dim .tg{color:#64748b}
+
+/* Results */
+.demo[data-demo="arcpy-qa"] .qa-res{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.demo[data-demo="arcpy-qa"] .qa-map{display:flex;align-items:center;justify-content:center;padding:16px}
+.demo[data-demo="arcpy-qa"] .qa-empty{margin:0;padding:24px;color:var(--muted);font:13px var(--mono);text-align:center}
+.demo[data-demo="arcpy-qa"] .qa-page{width:100%;margin:0}
+.demo[data-demo="arcpy-qa"] .qa-page svg{border-radius:3px;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.demo[data-demo="arcpy-qa"] .qa-page figcaption{margin-top:8px;font:11.5px var(--mono);color:var(--muted);text-align:center}
+.demo[data-demo="arcpy-qa"] .qa-page path.f{cursor:pointer;transition:opacity .2s}
+.demo[data-demo="arcpy-qa"] .qa-page svg.has-sel path.f:not(.sel){opacity:.35}
+.demo[data-demo="arcpy-qa"] .qa-page path.f.sel{stroke:#0284c7;stroke-width:10}
+.demo[data-demo="arcpy-qa"] .qa-tbl{max-height:330px;overflow:auto;color-scheme:dark;border:1px solid var(--line);border-radius:6px}
+.demo[data-demo="arcpy-qa"] .qa-tbl th{position:sticky;top:0;background:var(--surface)}
+.demo[data-demo="arcpy-qa"] .qa-tbl td:nth-child(2){white-space:nowrap}
+.demo[data-demo="arcpy-qa"] .qa-tbl tr:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.demo[data-demo="arcpy-qa"] .demo-stats{grid-template-columns:repeat(auto-fit,minmax(78px,1fr))}
+
+@media (max-width:760px){
+  .demo[data-demo="arcpy-qa"] .qa-top,.demo[data-demo="arcpy-qa"] .qa-res{grid-template-columns:1fr}
+  .demo[data-demo="arcpy-qa"] .qa-term{border-left:0;border-top:1px solid var(--line)}
+  .demo[data-demo="arcpy-qa"] .qa-ed{height:300px}
+  .demo[data-demo="arcpy-qa"] .qa-log{min-height:220px;font-size:11px}
+  .demo[data-demo="arcpy-qa"] .qa-map{padding:10px}
+  .demo[data-demo="arcpy-qa"] .qa-pick{flex:1}
+  .demo[data-demo="arcpy-qa"] .qa-pick select{flex:1;min-width:0}
+}
+@media (prefers-reduced-motion:reduce){.demo[data-demo="arcpy-qa"] .qa-page path.f{transition:none}}

@@ -1,0 +1,30 @@
+# County right-of-way permits: nightly QA before the status report
+profile: county_permits
+layer: permit_segments
+id_field: PERMIT_ID
+report:
+  title: "County Permit QA"
+  map_scale: 6000   # 1 in = 500 ft; try 4800
+checks:
+  null_fields:
+    enabled: true
+    severity: high
+    fields: [PERMIT_ID, JOB_ID, STATUS, ISSUED_BY]
+  duplicate_ids:
+    enabled: true
+    severity: high
+  length_mismatch:
+    enabled: true
+    severity: med
+    field: PERMIT_LEN_FT
+    tolerance_pct: 10   # try 5
+  orphans:
+    enabled: true
+    severity: med
+    parent_field: JOB_ID
+    parent_table: jobs
+  domain:
+    enabled: true
+    severity: low
+    field: STATUS
+    allowed: [Submitted, Approved, Issued, Closed]

@@ -1,0 +1,30 @@
+# OSP fiber cable: monthly as-built audit
+profile: osp_monthly
+layer: fiber_cable
+id_field: CABLE_ID
+report:
+  title: "OSP Monthly Audit"
+  map_scale: 6000   # 1 in = 500 ft; try 4800
+checks:
+  null_fields:
+    enabled: true
+    severity: high
+    fields: [CABLE_ID, ROUTE_ID, FIBER_COUNT, OWNER]
+  duplicate_ids:
+    enabled: true
+    severity: high
+  length_mismatch:
+    enabled: true
+    severity: med
+    field: CALC_LEN_FT
+    tolerance_pct: 8    # try 5 or 15
+  orphans:
+    enabled: true
+    severity: high
+    parent_field: ROUTE_ID
+    parent_table: routes
+  domain:
+    enabled: false
+    severity: low
+    field: PLACEMENT
+    allowed: [Aerial, Underground, Buried]

@@ -1,0 +1,117 @@
+{
+  "fiber_osp": {
+    "label": "Fiber OSP",
+    "gdb": "Fiber_OSP.gdb",
+    "wkid": 26917,
+    "srName": "NAD 1983 UTM Zone 17N",
+    "domains": [
+      { "name": "CableType", "type": "TEXT", "kind": "coded", "desc": "Fiber cable construction",
+        "codes": [["LT", "Loose tube"], ["RB", "Ribbon"], ["MD", "Microduct blown"], ["DR", "Drop"]] },
+      { "name": "InstallMethod", "type": "TEXT", "kind": "coded", "desc": "Placement method",
+        "codes": [["AER", "Aerial"], ["UG", "Underground"], ["BOR", "Directional bore"]] },
+      { "name": "StructureType", "type": "TEXT", "kind": "coded", "desc": "Access structure type",
+        "codes": [["HH", "Handhole"], ["MH", "Manhole"], ["PED", "Pedestal"], ["POLE", "Pole"]] },
+      { "name": "LifecycleStatus", "type": "SHORT", "kind": "coded", "desc": "Design lifecycle",
+        "codes": [[0, "Proposed"], [1, "In design"], [2, "As-built"], [3, "Abandoned"]] },
+      { "name": "FiberCountRange", "type": "SHORT", "kind": "range", "desc": "Strands per cable", "min": 1, "max": 864 }
+    ],
+    "classes": [
+      { "name": "Structure", "geometry": "POINT", "fields": [
+        { "name": "StructureID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "StructureType", "type": "TEXT", "length": 4, "nullable": true, "domain": "StructureType" },
+        { "name": "Owner", "type": "TEXT", "length": 50, "nullable": true },
+        { "name": "Status", "type": "SHORT", "nullable": true, "domain": "LifecycleStatus" },
+        { "name": "InstallDate", "type": "DATE", "nullable": true }
+      ] },
+      { "name": "SpliceClosure", "geometry": "POINT", "fields": [
+        { "name": "ClosureID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "StructureID", "type": "TEXT", "length": 20, "nullable": true },
+        { "name": "Manufacturer", "type": "TEXT", "length": 40, "nullable": true },
+        { "name": "SpliceCount", "type": "SHORT", "nullable": true },
+        { "name": "Status", "type": "SHORT", "nullable": true, "domain": "LifecycleStatus" }
+      ] },
+      { "name": "ServiceArea", "geometry": "POLYGON", "fields": [
+        { "name": "AreaName", "type": "TEXT", "length": 60, "nullable": false },
+        { "name": "HomesPassed", "type": "LONG", "nullable": true },
+        { "name": "Status", "type": "SHORT", "nullable": true, "domain": "LifecycleStatus" }
+      ] },
+      { "name": "Conduit", "geometry": "POLYLINE", "fields": [
+        { "name": "ConduitID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "Diameter_in", "type": "DOUBLE", "nullable": true },
+        { "name": "InnerductCount", "type": "SHORT", "nullable": true },
+        { "name": "InstallMethod", "type": "TEXT", "length": 4, "nullable": true, "domain": "InstallMethod" },
+        { "name": "Status", "type": "SHORT", "nullable": true, "domain": "LifecycleStatus" }
+      ] },
+      { "name": "FiberCable", "geometry": "POLYLINE", "fields": [
+        { "name": "CableID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "ConduitID", "type": "TEXT", "length": 20, "nullable": true },
+        { "name": "CableType", "type": "TEXT", "length": 4, "nullable": true, "domain": "CableType" },
+        { "name": "FiberCount", "type": "SHORT", "nullable": true, "domain": "FiberCountRange" },
+        { "name": "MeasuredLength_ft", "type": "DOUBLE", "nullable": true },
+        { "name": "Status", "type": "SHORT", "nullable": true, "domain": "LifecycleStatus" }
+      ] }
+    ],
+    "relationships": [
+      { "name": "Structure_SpliceClosure", "origin": "Structure", "destination": "SpliceClosure",
+        "originKey": "StructureID", "foreignKey": "StructureID", "cardinality": "ONE_TO_MANY" },
+      { "name": "Conduit_FiberCable", "origin": "Conduit", "destination": "FiberCable",
+        "originKey": "ConduitID", "foreignKey": "ConduitID", "cardinality": "ONE_TO_MANY" }
+    ]
+  },
+  "small_cell": {
+    "label": "Small Cell",
+    "gdb": "Small_Cell.gdb",
+    "wkid": 26918,
+    "srName": "NAD 1983 UTM Zone 18N",
+    "domains": [
+      { "name": "PoleMaterial", "type": "TEXT", "kind": "coded", "desc": "Pole material",
+        "codes": [["WD", "Wood"], ["ST", "Steel"], ["CN", "Concrete"], ["CMP", "Composite"]] },
+      { "name": "NodeStatus", "type": "TEXT", "kind": "coded", "desc": "Node deployment status",
+        "codes": [["PLN", "Planned"], ["PRM", "Permitting"], ["ACT", "Active"], ["DCM", "Decommissioned"]] },
+      { "name": "PowerSource", "type": "TEXT", "kind": "coded", "desc": "Utility power feed",
+        "codes": [["MTR", "Metered"], ["UNM", "Unmetered flat rate"]] },
+      { "name": "RadioBand", "type": "SHORT", "kind": "coded", "desc": "Carrier band (MHz)",
+        "codes": [[600, "n71 600 MHz"], [700, "B12 700 MHz"], [2500, "n41 2.5 GHz"], [3500, "n77 3.5 GHz"]] },
+      { "name": "MountHeightRange", "type": "DOUBLE", "kind": "range", "desc": "Antenna centerline, ft", "min": 10, "max": 60 }
+    ],
+    "classes": [
+      { "name": "Pole", "geometry": "POINT", "fields": [
+        { "name": "PoleID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "Material", "type": "TEXT", "length": 4, "nullable": true, "domain": "PoleMaterial" },
+        { "name": "Height_ft", "type": "DOUBLE", "nullable": true },
+        { "name": "Owner", "type": "TEXT", "length": 50, "nullable": true }
+      ] },
+      { "name": "SmallCellNode", "geometry": "POINT", "fields": [
+        { "name": "NodeID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "PoleID", "type": "TEXT", "length": 20, "nullable": true },
+        { "name": "NodeStatus", "type": "TEXT", "length": 4, "nullable": true, "domain": "NodeStatus" },
+        { "name": "PowerSource", "type": "TEXT", "length": 4, "nullable": true, "domain": "PowerSource" },
+        { "name": "PermitNumber", "type": "TEXT", "length": 30, "nullable": true },
+        { "name": "ActivationDate", "type": "DATE", "nullable": true }
+      ] },
+      { "name": "Antenna", "geometry": "POINT", "fields": [
+        { "name": "AntennaID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "NodeID", "type": "TEXT", "length": 20, "nullable": true },
+        { "name": "Band", "type": "SHORT", "nullable": true, "domain": "RadioBand" },
+        { "name": "Azimuth", "type": "SHORT", "nullable": true },
+        { "name": "MountHeight_ft", "type": "DOUBLE", "nullable": true, "domain": "MountHeightRange" }
+      ] },
+      { "name": "FiberLateral", "geometry": "POLYLINE", "fields": [
+        { "name": "LateralID", "type": "TEXT", "length": 20, "nullable": false },
+        { "name": "FiberCount", "type": "SHORT", "nullable": true },
+        { "name": "Length_ft", "type": "DOUBLE", "nullable": true }
+      ] },
+      { "name": "PermitArea", "geometry": "POLYGON", "fields": [
+        { "name": "Jurisdiction", "type": "TEXT", "length": 60, "nullable": false },
+        { "name": "PermitType", "type": "TEXT", "length": 30, "nullable": true },
+        { "name": "ExpiresOn", "type": "DATE", "nullable": true }
+      ] }
+    ],
+    "relationships": [
+      { "name": "Pole_SmallCellNode", "origin": "Pole", "destination": "SmallCellNode",
+        "originKey": "PoleID", "foreignKey": "PoleID", "cardinality": "ONE_TO_MANY" },
+      { "name": "SmallCellNode_Antenna", "origin": "SmallCellNode", "destination": "Antenna",
+        "originKey": "NodeID", "foreignKey": "NodeID", "cardinality": "ONE_TO_MANY" }
+    ]
+  }
+}

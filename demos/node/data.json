@@ -1,0 +1,37 @@
+{
+  "date": "2026-05-14",
+  "seed": 42,
+  "day": [360, 1140],
+  "map": { "w": 6000, "h": 3000, "grid": 250 },
+  "regions": [
+    { "id": "west", "name": "West", "x": 0, "w": 2000 },
+    { "id": "central", "name": "Central", "x": 2000, "w": 2000 },
+    { "id": "east", "name": "East", "x": 4000, "w": 2000 }
+  ],
+  "contractors": [
+    { "id": "RUS", "name": "Ridgeline Utility Services", "mix": [0.55, 0.2, 0.25] },
+    { "id": "BWC", "name": "Bluewater Connect", "mix": [0.4, 0.35, 0.25] },
+    { "id": "SLC", "name": "Summit Line Crews", "mix": [0.3, 0.2, 0.5] }
+  ],
+  "crews": [
+    { "id": "RUS-1", "c": "RUS", "region": "west", "shift": [420, 1020], "at": [500, 750], "lunch": [720, 40] },
+    { "id": "RUS-2", "c": "RUS", "region": "west", "shift": [420, 1020], "at": [1500, 2250], "gap": [810, 125] },
+    { "id": "RUS-3", "c": "RUS", "region": "central", "shift": [390, 930], "at": [2500, 750], "lunch": [690, 35] },
+    { "id": "RUS-4", "c": "RUS", "region": "central", "shift": [480, 1080], "at": [3500, 2500], "first": 580 },
+    { "id": "BWC-1", "c": "BWC", "region": "central", "shift": [420, 1050], "at": [2750, 1750], "offline": [640, 812, 815] },
+    { "id": "BWC-2", "c": "BWC", "region": "east", "shift": [420, 1020], "at": [4500, 500], "lunch": [735, 45] },
+    { "id": "BWC-3", "c": "BWC", "region": "east", "shift": [540, 1140], "at": [5500, 1500] },
+    { "id": "BWC-4", "c": "BWC", "region": "west", "shift": [360, 870], "at": [750, 1500], "lunch": [660, 30] },
+    { "id": "SLC-1", "c": "SLC", "region": "east", "shift": [450, 1050], "at": [4750, 2500], "lunch": [750, 40] },
+    { "id": "SLC-2", "c": "SLC", "region": "east", "shift": [420, 960], "at": [5250, 750] },
+    { "id": "SLC-3", "c": "SLC", "region": "west", "shift": [420, 1020], "at": [250, 2500], "lunch": [705, 35] },
+    { "id": "SLC-4", "c": "SLC", "region": "central", "shift": [420, 1020], "at": [3750, 500], "gap": [840, 65] }
+  ],
+  "messages": [
+    "Call dispatch when you get a minute.",
+    "Confirm your location for the next job.",
+    "Hold on pole 14: access issue reported.",
+    "Upload today's photos before you sync."
+  ],
+  "acks": ["Copy, on it.", "Will call in 10.", "Holding. Thanks.", "Done, syncing now."]
+}

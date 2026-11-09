@@ -1,0 +1,78 @@
+.demo[data-demo="fiber-route"]{--fr-high:#f87171;--fr-med:var(--orange);--fr-low:var(--green);--fr-water:#3b82c4;--fr-pipe:#c084fc;--fr-road:#5b6f86}
+/* sandbox.css only forces [hidden] on .demo-pane; .case-shot{display:flex} would keep the screenshot visible. */
+.demo[data-demo="fiber-route"] [data-pane][hidden]{display:none!important}
+.demo[data-demo="fiber-route"] .fr-routes .demo-btn{min-height:40px}
+.demo[data-demo="fiber-route"] .fr-drawctl{display:inline-flex;flex-wrap:wrap;gap:8px}
+.demo[data-demo="fiber-route"] .fr-drawctl[hidden]{display:none}
+.demo[data-demo="fiber-route"] .fr-layers{margin:0;border:0;border-bottom:1px solid var(--line);gap:6px 16px}
+.demo[data-demo="fiber-route"] .fr-layers legend{float:left;margin-right:4px;padding:0;font:600 11px/40px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.demo[data-demo="fiber-route"] .fr-layers .demo-chk{min-height:32px}
+.demo[data-demo="fiber-route"] .fr-sw{display:inline-block;width:16px;height:4px;border-radius:2px;background:var(--fr-road)}
+.demo[data-demo="fiber-route"] .fr-sw--dot{background:#c98a2b;height:6px}
+.demo[data-demo="fiber-route"] .fr-sw--rail{background:repeating-linear-gradient(90deg,var(--muted) 0 2px,transparent 2px 5px);height:7px}
+.demo[data-demo="fiber-route"] .fr-sw--water{background:var(--fr-water);height:7px}
+.demo[data-demo="fiber-route"] .fr-sw--bridge{background:#94a3b8;height:9px;width:12px}
+.demo[data-demo="fiber-route"] .fr-sw--pipeline{background:repeating-linear-gradient(90deg,var(--fr-pipe) 0 5px,transparent 5px 8px)}
+.demo[data-demo="fiber-route"] .fr-sw--parcels{background:none;border:1px dashed var(--muted);height:10px;width:12px}
+
+/* Map */
+.demo[data-demo="fiber-route"] .demo-view{display:flex;flex-direction:column;align-self:start;min-height:0}
+.demo[data-demo="fiber-route"] svg.fr-drawing{cursor:crosshair}
+.demo[data-demo="fiber-route"] .fr-hint{margin:0;padding:8px 12px;font:12px var(--mono);color:var(--blue);border-top:1px solid var(--line)}
+.demo[data-demo="fiber-route"] .fr-gridline{fill:none;stroke:rgba(125,208,255,.06);stroke-width:6}
+.demo[data-demo="fiber-route"] .fr-f{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.demo[data-demo="fiber-route"] .fr-f--city{stroke:var(--fr-road);stroke-width:26}
+.demo[data-demo="fiber-route"] .fr-f--county{stroke:var(--fr-road);stroke-width:22;stroke-dasharray:80 40}
+.demo[data-demo="fiber-route"] .fr-f--dot{stroke:#c98a2b;stroke-width:46;stroke-opacity:.7}
+.demo[data-demo="fiber-route"] .fr-f--rail{stroke:var(--muted);stroke-width:10}
+.demo[data-demo="fiber-route"] .fr-f--noowner{stroke-dasharray:30 24}
+.demo[data-demo="fiber-route"] .fr-ties{fill:none;stroke:var(--muted);stroke-width:44;stroke-dasharray:8 50;stroke-opacity:.8}
+.demo[data-demo="fiber-route"] .fr-f--water{stroke:var(--fr-water);stroke-width:90;stroke-opacity:.45}
+.demo[data-demo="fiber-route"] .fr-f--pipeline{stroke:var(--fr-pipe);stroke-width:18;stroke-dasharray:70 40;stroke-opacity:.85}
+.demo[data-demo="fiber-route"] .fr-l--bridge .fr-poly{fill:#94a3b8;fill-opacity:.45;stroke:#cbd5e1;stroke-width:8}
+.demo[data-demo="fiber-route"] .fr-l--parcels .fr-poly{fill:rgba(56,189,248,.015);stroke:rgba(167,182,204,.22);stroke-width:8;stroke-dasharray:24 18}
+.demo[data-demo="fiber-route"] .fr-limit{fill:none;stroke:rgba(245,158,11,.55);stroke-width:12;stroke-dasharray:60 30 10 30}
+.demo[data-demo="fiber-route"] .fr-lbl,.demo[data-demo="fiber-route"] .fr-zlbl{font:600 78px var(--mono);fill:var(--muted);pointer-events:none;paint-order:stroke;stroke:var(--lowest);stroke-width:14}
+.demo[data-demo="fiber-route"] .fr-zlbl{font-size:62px;font-weight:400;fill:rgba(167,182,204,.55)}
+.demo[data-demo="fiber-route"] .fr-route{fill:none;stroke:var(--blue);stroke-width:30;stroke-linecap:round;stroke-linejoin:round}
+.demo[data-demo="fiber-route"] .fr-route--draft{stroke-dasharray:60 40}
+.demo[data-demo="fiber-route"] .fr-vtx{fill:var(--lowest);stroke:var(--blue);stroke-width:14}
+.demo[data-demo="fiber-route"] .fr-buf{fill:none;stroke-width:230;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.22;cursor:pointer;transition:stroke-opacity .2s}
+.demo[data-demo="fiber-route"] .fr-buf--high{stroke:var(--fr-high)}
+.demo[data-demo="fiber-route"] .fr-buf--med{stroke:var(--fr-med)}
+.demo[data-demo="fiber-route"] .fr-buf--low{stroke:var(--fr-low)}
+.demo[data-demo="fiber-route"] .fr-corr.has-sel .fr-buf{stroke-opacity:.08}
+.demo[data-demo="fiber-route"] .fr-corr.has-sel .fr-buf.on{stroke-opacity:.5}
+.demo[data-demo="fiber-route"] .fr-mk circle{stroke:var(--lowest);stroke-width:16}
+.demo[data-demo="fiber-route"] .fr-mk--high circle{fill:var(--fr-high)}
+.demo[data-demo="fiber-route"] .fr-mk--med circle{fill:var(--fr-med)}
+.demo[data-demo="fiber-route"] .fr-mk--low circle{fill:var(--fr-low)}
+.demo[data-demo="fiber-route"] .has-sel .fr-mk{opacity:.35}
+.demo[data-demo="fiber-route"] .has-sel .fr-mk.on{opacity:1}
+.demo[data-demo="fiber-route"] .has-sel .fr-mk.on circle{stroke:var(--text)}
+.demo[data-demo="fiber-route"] .fr-pop{transform-box:fill-box;transform-origin:center;animation:fr-pop .35s ease-out both}
+@keyframes fr-pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+
+/* Output */
+.demo[data-demo="fiber-route"] .demo-table th,.demo[data-demo="fiber-route"] .demo-table td{padding:5px 4px;font-size:11.5px;overflow-wrap:anywhere}
+.demo[data-demo="fiber-route"] .demo-table .demo-badge{padding:1px 5px;font-size:10px}
+.demo[data-demo="fiber-route"] .demo-stats{grid-template-columns:repeat(auto-fit,minmax(118px,1fr))}
+.demo[data-demo="fiber-route"] .demo-stats small{display:block;font:11px var(--mono);color:var(--muted)}
+.demo[data-demo="fiber-route"] .demo-stats em{font-style:normal}
+.demo[data-demo="fiber-route"] .r-high{color:var(--fr-high)}.demo[data-demo="fiber-route"] .r-med{color:var(--fr-med)}.demo[data-demo="fiber-route"] .r-low{color:var(--fr-low)}
+.demo[data-demo="fiber-route"] .demo-callout ul{margin:4px 0 0;padding-left:18px}
+.demo[data-demo="fiber-route"] .fr-scroll{overflow-x:auto}
+.demo[data-demo="fiber-route"] .demo-table td:first-child{white-space:nowrap}
+.demo[data-demo="fiber-route"] .fr-table[hidden]{display:none}
+.demo[data-demo="fiber-route"] .fr-cap{margin:0 0 6px;font:11px var(--mono);color:var(--muted)}
+.demo[data-demo="fiber-route"] .demo-table small{color:var(--muted)}
+.demo[data-demo="fiber-route"] .demo-table tr:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.demo[data-demo="fiber-route"] .fr-miss{color:var(--fr-high);font-weight:600}
+.demo[data-demo="fiber-route"] .fr-low{color:var(--orange)}
+@media (max-width:760px){
+  .demo[data-demo="fiber-route"] .fr-routes .demo-btn{flex:1 1 calc(50% - 4px);padding:9px 8px;font-size:11px}
+  .demo[data-demo="fiber-route"] .fr-routes .demo-spacer{display:none}
+  .demo[data-demo="fiber-route"] .fr-drawctl{flex:1 1 100%}
+  .demo[data-demo="fiber-route"] .fr-layers legend{float:none;width:100%;line-height:1.4}
+}
+@media (prefers-reduced-motion:reduce){.demo[data-demo="fiber-route"] .fr-pop{animation:none}}

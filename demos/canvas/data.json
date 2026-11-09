@@ -1,0 +1,59 @@
+{
+  "job": { "id": "WO-2417", "name": "Hollis Ridge FTTH extension", "designer": "Sample designer", "ftPerUnit": 5 },
+  "co": { "id": "CO-01", "name": "Hollis Ridge CO cabinet", "panel": "P1", "xy": [40, 180] },
+  "cables": [
+    { "id": "FDR-01", "kind": "feeder", "type": "24-ct ADSS feeder", "fiberCount": 24, "tubes": 2, "placement": "Aerial", "from": "CO-01", "to": "SC-01",
+      "coords": [[40, 180], [160, 180], [280, 180]] },
+    { "id": "DIST-A", "kind": "distribution", "type": "12-ct ADSS distribution", "fiberCount": 12, "tubes": 1, "placement": "Aerial", "from": "SC-01", "to": "P-A2",
+      "coords": [[280, 180], [360, 110], [470, 90], [580, 80]] },
+    { "id": "DIST-B", "kind": "distribution", "type": "12-ct ADSS distribution", "fiberCount": 12, "tubes": 1, "placement": "Aerial", "from": "SC-01", "to": "P-B2",
+      "coords": [[280, 180], [360, 250], [470, 270], [580, 280]] }
+  ],
+  "closure": {
+    "id": "SC-01", "type": "48-fiber dome splice closure", "pole": "P-00", "xy": [280, 180],
+    "trays": [
+      { "n": 1, "in": "FDR-01", "inFrom": 1, "out": "DIST-A" },
+      { "n": 2, "in": "FDR-01", "inFrom": 13, "out": "DIST-B" }
+    ]
+  },
+  "poles": [
+    { "id": "P-00", "xy": [280, 180], "owner": "Lakeview Electric Co-op", "heightFt": 40 },
+    { "id": "P-01", "xy": [160, 180], "owner": "Lakeview Electric Co-op", "heightFt": 35 },
+    { "id": "P-02", "xy": [360, 110], "owner": "Lakeview Electric Co-op", "heightFt": 35 },
+    { "id": "P-03", "xy": [360, 250], "owner": "Lakeview Electric Co-op", "heightFt": 35 },
+    { "id": "P-A1", "xy": [470, 90], "owner": "Lakeview Electric Co-op", "heightFt": 40 },
+    { "id": "P-A2", "xy": [580, 80], "owner": "Lakeview Electric Co-op", "heightFt": 35 },
+    { "id": "P-B1", "xy": [470, 270], "owner": "Lakeview Electric Co-op", "heightFt": 40 },
+    { "id": "P-B2", "xy": [580, 280], "heightFt": 35 }
+  ],
+  "drops": [
+    { "id": "D-01", "label": "Drop 1", "address": "14 Alder Ln", "cable": "DIST-A", "fiber": 1, "pole": "P-A1", "coords": [[470, 90], [480, 50]] },
+    { "id": "D-02", "label": "Drop 2", "address": "31 Alder Ln", "cable": "DIST-A", "fiber": 3, "pole": "P-A2", "coords": [[580, 80], [600, 48]] },
+    { "id": "D-03", "label": "Drop 3", "address": "208 Birch Ct", "cable": "DIST-B", "fiber": 2, "pole": "P-B1", "coords": [[470, 270], [450, 320]] },
+    { "id": "D-04", "label": "Drop 4", "address": "76 Birch Ct", "cable": "DIST-B", "fiber": 5, "pole": "P-B2", "coords": [[580, 280], [610, 318]] }
+  ],
+  "splices": [
+    { "tray": 1, "a": ["FDR-01", 1], "b": ["DIST-A", 1] },
+    { "tray": 1, "a": ["FDR-01", 2], "b": ["DIST-A", 2] },
+    { "tray": 1, "a": ["FDR-01", 3], "b": ["DIST-A", 3] },
+    { "tray": 1, "a": ["FDR-01", 4], "b": ["DIST-A", 4] },
+    { "tray": 2, "a": ["FDR-01", 13], "b": ["DIST-B", 1] },
+    { "tray": 2, "a": ["FDR-01", 14], "b": ["DIST-B", 2] },
+    { "tray": 2, "a": ["FDR-01", 15], "b": ["DIST-B", 3] }
+  ],
+  "required": {
+    "pole": ["owner", "heightFt"],
+    "drop": ["address", "cable", "fiber"],
+    "cable": ["type", "fiberCount", "placement"]
+  },
+  "maxDropFt": 250,
+  "costRates": {
+    "24-ct ADSS feeder": { "unit": "ft", "rate": 1.18 },
+    "12-ct ADSS distribution": { "unit": "ft", "rate": 0.82 },
+    "Flat drop, 1-ct": { "unit": "ft", "rate": 0.34 },
+    "Aerial strand + lash labour": { "unit": "ft", "rate": 1.45 },
+    "48-fiber dome splice closure": { "unit": "ea", "rate": 412 },
+    "Fusion splice": { "unit": "ea", "rate": 28 },
+    "Drop install + ONT terminal": { "unit": "ea", "rate": 165 }
+  }
+}

@@ -1,0 +1,83 @@
+/* ArcGIS GDB Schema Tool demo. Scoped to this demo only. */
+.demo[data-demo="gdb-schema"] .gdb-lbl{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono);color:var(--muted)}
+.demo[data-demo="gdb-schema"] .gdb-status{padding:8px 12px 0}
+.demo[data-demo="gdb-schema"] .demo-btn.gdb-blocked{opacity:.55}
+.demo[data-demo="gdb-schema"] .demo-split{flex:none}
+
+/* Graph */
+.demo[data-demo="gdb-schema"] .gdb-view{padding:8px;max-height:640px}
+.demo[data-demo="gdb-schema"] .gdb-view svg{margin:0 auto;font-family:var(--mono)}
+.demo[data-demo="gdb-schema"] .gdb-card{cursor:pointer;outline:none}
+.demo[data-demo="gdb-schema"] .gdb-box{fill:var(--surface);stroke:var(--line);stroke-width:1}
+.demo[data-demo="gdb-schema"] .gdb-head{fill:var(--surface-hi)}
+.demo[data-demo="gdb-schema"] .gdb-card:hover .gdb-box{stroke:var(--muted)}
+.demo[data-demo="gdb-schema"] .gdb-card.sel .gdb-box{stroke:var(--blue);stroke-width:2}
+.demo[data-demo="gdb-schema"] .gdb-card.sel .gdb-head{fill:rgba(56,189,248,.16)}
+.demo[data-demo="gdb-schema"] .gdb-card.bad .gdb-box{stroke:#f87171}
+.demo[data-demo="gdb-schema"] .gdb-card:focus-visible .gdb-box{stroke:var(--blue);stroke-width:3;stroke-dasharray:5 3}
+.demo[data-demo="gdb-schema"] .gdb-n{fill:var(--text);font-size:12.5px;font-weight:700}
+.demo[data-demo="gdb-schema"] .gdb-g{fill:var(--blue);font-size:9px;letter-spacing:.08em}
+.demo[data-demo="gdb-schema"] .gdb-f{fill:var(--text);font-size:11px}
+.demo[data-demo="gdb-schema"] .gdb-f.key{fill:var(--blue)}
+.demo[data-demo="gdb-schema"] .gdb-f.bad{fill:#f87171;font-weight:700}
+.demo[data-demo="gdb-schema"] .gdb-t{fill:var(--muted);font-size:10px;text-anchor:end}
+.demo[data-demo="gdb-schema"] .gdb-d{fill:var(--green)}
+.demo[data-demo="gdb-schema"] .gdb-badge{fill:#f87171}
+.demo[data-demo="gdb-schema"] .gdb-badge-t{fill:#1b0606;font-size:11px;font-weight:700;text-anchor:middle}
+.demo[data-demo="gdb-schema"] .gdb-rel path{fill:none;stroke:var(--green);stroke-width:1.6;opacity:.85}
+.demo[data-demo="gdb-schema"] .gdb-rel rect{fill:var(--lowest);stroke:var(--green)}
+.demo[data-demo="gdb-schema"] .gdb-rel text{fill:var(--green);font-size:10px;text-anchor:middle}
+.demo[data-demo="gdb-schema"] .gdb-rel.bad path{stroke:#f87171;stroke-dasharray:5 4}
+.demo[data-demo="gdb-schema"] .gdb-rel.bad rect{stroke:#f87171}
+.demo[data-demo="gdb-schema"] .gdb-rel.bad text{fill:#f87171}
+
+/* Editor */
+.demo[data-demo="gdb-schema"] .gdb-ed-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.demo[data-demo="gdb-schema"] .gdb-ed-head h4,.demo[data-demo="gdb-schema"] .gdb-bottom h4{margin:0;font:700 15px/1.3 var(--display);color:var(--text)}
+.demo[data-demo="gdb-schema"] .gdb-count{font:12px var(--mono);color:var(--muted)}
+.demo[data-demo="gdb-schema"] .gdb-hint{margin:0;font:12px/1.5 var(--mono);color:var(--muted)}
+.demo[data-demo="gdb-schema"] .gdb-hint code{color:var(--orange)}
+.demo[data-demo="gdb-schema"] .gdb-cls-errs:empty{display:none}
+.demo[data-demo="gdb-schema"] .gdb-cls-errs .demo-callout{margin:0 0 6px;border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.06)}
+.demo[data-demo="gdb-schema"] .gdb-fields{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.demo[data-demo="gdb-schema"] .gdb-field{display:grid;grid-template-columns:minmax(0,1fr) 92px 66px;gap:6px;padding:8px;border:1px solid var(--line);border-radius:6px;background:rgba(6,14,32,.35)}
+.demo[data-demo="gdb-schema"] .gdb-field.bad{border-color:#f87171;background:rgba(248,113,113,.05)}
+.demo[data-demo="gdb-schema"] .gdb-field input,.demo[data-demo="gdb-schema"] .gdb-field select{width:100%;min-width:0;min-height:36px;padding:6px 8px;font-size:12.5px}
+.demo[data-demo="gdb-schema"] .gdb-field.bad .gdb-name{border-color:#f87171}
+.demo[data-demo="gdb-schema"] .gdb-field input:disabled{opacity:.45}
+.demo[data-demo="gdb-schema"] .gdb-null{white-space:nowrap}
+.demo[data-demo="gdb-schema"] .gdb-null input{width:16px;min-height:0}
+.demo[data-demo="gdb-schema"] .gdb-del{min-height:36px;border:1px solid var(--line);border-radius:4px;background:transparent;color:var(--muted);font:13px var(--mono);cursor:pointer}
+.demo[data-demo="gdb-schema"] .gdb-del:hover{border-color:#f87171;color:#f87171}
+.demo[data-demo="gdb-schema"] .gdb-del:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.demo[data-demo="gdb-schema"] .gdb-err{grid-column:1/-1;margin:0;font:12px/1.4 var(--mono);color:#f87171}
+.demo[data-demo="gdb-schema"] .gdb-err:empty{display:none}
+.demo[data-demo="gdb-schema"] [data-act="add"]{align-self:flex-start}
+
+/* Validation + code */
+.demo[data-demo="gdb-schema"] .gdb-bottom{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border-top:1px solid var(--line);scroll-margin-top:90px}
+.demo[data-demo="gdb-schema"] .gdb-val,.demo[data-demo="gdb-schema"] .gdb-codebox{display:flex;flex-direction:column;gap:10px;min-width:0;padding:14px}
+.demo[data-demo="gdb-schema"] .gdb-codebox{border-left:1px solid var(--line);scroll-margin-top:90px}
+.demo[data-demo="gdb-schema"] .gdb-issues{display:flex;flex-direction:column;gap:6px;max-height:380px;overflow:auto;margin:0;padding:0;list-style:none}
+.demo[data-demo="gdb-schema"] .gdb-ok{font:12.5px var(--mono);color:var(--green)}
+.demo[data-demo="gdb-schema"] .gdb-issue{display:flex;gap:8px;align-items:flex-start;width:100%;padding:8px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--text);font:12px/1.45 var(--mono);text-align:left}
+.demo[data-demo="gdb-schema"] button.gdb-issue{cursor:pointer}
+.demo[data-demo="gdb-schema"] button.gdb-issue:hover{border-color:var(--blue)}
+.demo[data-demo="gdb-schema"] button.gdb-issue:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.demo[data-demo="gdb-schema"] .gdb-msg small{display:block;color:var(--muted);font-size:11px}
+.demo[data-demo="gdb-schema"] .gdb-codehead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.demo[data-demo="gdb-schema"] .gdb-codehead h4{font-family:var(--mono);font-size:13px}
+.demo[data-demo="gdb-schema"] .gdb-gate:empty{display:none}
+.demo[data-demo="gdb-schema"] .gdb-gate .demo-callout{margin:0}
+.demo[data-demo="gdb-schema"] .gdb-code{max-height:420px}
+.demo[data-demo="gdb-schema"] .gdb-code.stale{opacity:.45}
+
+@media (max-width:760px){
+  .demo[data-demo="gdb-schema"] .gdb-view{max-height:460px}
+  .demo[data-demo="gdb-schema"] .gdb-bottom{grid-template-columns:1fr}
+  .demo[data-demo="gdb-schema"] .gdb-codebox{border-left:0;border-top:1px solid var(--line)}
+  .demo[data-demo="gdb-schema"] .gdb-field{grid-template-columns:minmax(0,1fr) 84px 60px}
+  .demo[data-demo="gdb-schema"] .gdb-field input,.demo[data-demo="gdb-schema"] .gdb-field select,.demo[data-demo="gdb-schema"] .gdb-del{min-height:44px}
+  .demo[data-demo="gdb-schema"] .gdb-lbl{flex:1}
+  .demo[data-demo="gdb-schema"] .gdb-lbl select{flex:1}
+}

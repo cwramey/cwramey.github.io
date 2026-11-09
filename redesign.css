@@ -192,3 +192,5 @@
   .about-hero{gap:32px;padding-top:56px}
 }
 @media(prefers-reduced-motion:reduce){.status-pill i{animation:none}.flagship-card,.rw-code .ln{transition:none}}
+/* Five-up screenshot grid: two wide shots, then three */
+@media (min-width:761px){.shot-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.shot-grid>:nth-child(-n+2){grid-column:span 3}.shot-grid>:nth-child(n+3){grid-column:span 2}}

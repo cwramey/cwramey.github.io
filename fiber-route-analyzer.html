@@ -16,6 +16,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="redesign.css">
+  <link rel="stylesheet" href="demos/sandbox.css">
 </head>
 <body>
   <nav id="nav" class="site-header">
@@ -55,10 +56,11 @@
     </section>
 
     <section class="wrap" style="padding-bottom:72px">
-      <figure class="case-shot">
-        <img src="assets/screenshots/fiber_route/fiber_route2.png" alt="Analyzer map of a sample route in Atlanta with a DOT permit corridor selected, showing its risk, jurisdiction and confidence">
-        <figcaption>Map tab: a permit corridor's risk, owner, jurisdiction and confidence, on a sample route.</figcaption>
-      </figure>
+      <div class="demo" data-demo="fiber-route" id="demo">
+        <div class="demo-frame">
+          <div class="demo-pane" data-pane="live"></div>
+        </div>
+      </div>
     </section>
 
     <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
@@ -118,9 +120,11 @@
       <div class="wrap pad-sm stack stack--lg">
         <p class="eyebrow">// Screenshots</p>
         <div class="shot-grid">
-          <figure class="shot"><a href="assets/screenshots/fiber_route/fiber_route3.png" target="_blank" rel="noopener"><img src="assets/screenshots/fiber_route/fiber_route3.png" alt="Summary tab with total length, permit counts and the permit segment table" loading="lazy"></a><figcaption>Summary: permit counts and every segment's permit type, owner, jurisdiction and confidence.</figcaption></figure>
-          <figure class="shot"><a href="assets/screenshots/fiber_route/fiber_route4.png" target="_blank" rel="noopener"><img src="assets/screenshots/fiber_route/fiber_route4.png" alt="Data Quality tab with per-layer contribution, confidence distribution and weak segments" loading="lazy"></a><figcaption>Data Quality: what each layer contributed, confidence by segment, and weak coverage.</figcaption></figure>
-          <figure class="shot"><a href="assets/screenshots/fiber_route/fiber_route5.png" target="_blank" rel="noopener"><img src="assets/screenshots/fiber_route/fiber_route5.png" alt="Downloads tab with a replay link, KMZ, Shapefiles, Markdown and Excel exports" loading="lazy"></a><figcaption>Downloads: a replay link plus KMZ, Shapefiles, Markdown and Excel exports.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/fiber-route/01-overview.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/fiber-route/01-overview.webp" alt="Overview: Route B analyzed, with risk-coloured crossings, permit corridors, stats and data-quality notes." loading="lazy" width="1152"></a><figcaption>Overview: Route B analyzed, with risk-coloured crossings, permit corridors, stats and data-quality notes.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/fiber-route/02-pick-route.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/fiber-route/02-pick-route.webp" alt="Pick a route: preset routes over roads, DOT highway, rail, river, pipeline and parcel layers." loading="lazy" width="1152"></a><figcaption>Pick a route: preset routes over roads, DOT highway, rail, river, pipeline and parcel layers.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/fiber-route/03-corridor-detail.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/fiber-route/03-corridor-detail.webp" alt="Corridor detail: selecting a permit corridor highlights it on the map." loading="lazy" width="1152"></a><figcaption>Corridor detail: selecting a permit corridor highlights it on the map.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/fiber-route/04-rail-yard.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/fiber-route/04-rail-yard.webp" alt="Route C through the rail yard: rail crossings classed High, each with owner and confidence." loading="lazy" width="1152"></a><figcaption>Route C through the rail yard: rail crossings classed High, each with owner and confidence.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/fiber-route/05-layer-toggles.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/fiber-route/05-layer-toggles.webp" alt="Layer toggles: with pipelines and parcels off, the analysis reruns and confidence drops." loading="lazy" width="1152"></a><figcaption>Layer toggles: with pipelines and parcels off, the analysis reruns and confidence drops.</figcaption></figure>
         </div>
       </div>
     </section>
@@ -144,5 +148,6 @@
   </main>
 
   <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
+  <script type="module" src="demos/sandbox.js"></script>
 </body>
 </html>

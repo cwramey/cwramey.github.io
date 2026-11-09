@@ -1,0 +1,71 @@
+/* Design PDF Analyzer demo. Shared chrome lives in demos/sandbox.css. */
+.demo[data-demo="pdf-analyzer"]{
+  --pa-station:#8b5cf6;--pa-span:#0ea5e9;--pa-structure:#f59e0b;--pa-duct:#10b981;--pa-footer:#ec4899;
+}
+.demo[data-demo="pdf-analyzer"] .pa-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.demo[data-demo="pdf-analyzer"] .pa-view{display:flex;flex-direction:column;min-width:0}
+.demo[data-demo="pdf-analyzer"] .pa-legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;padding:10px 12px;list-style:none;border-bottom:1px solid var(--line);font:11px/1.4 var(--mono);color:var(--muted)}
+.demo[data-demo="pdf-analyzer"] .pa-legend li{display:inline-flex;align-items:center;gap:6px}
+.demo[data-demo="pdf-analyzer"] .pa-sw{display:inline-block;width:12px;height:10px;border:1.5px solid;border-radius:2px}
+.demo[data-demo="pdf-analyzer"] .pa-sw.pa-station{border-color:var(--pa-station);background:rgba(139,92,246,.25)}
+.demo[data-demo="pdf-analyzer"] .pa-sw.pa-span{border-color:var(--pa-span);background:rgba(14,165,233,.25)}
+.demo[data-demo="pdf-analyzer"] .pa-sw.pa-structure{border-color:var(--pa-structure);background:rgba(245,158,11,.25)}
+.demo[data-demo="pdf-analyzer"] .pa-sw.pa-duct{border-color:var(--pa-duct);background:rgba(16,185,129,.25)}
+.demo[data-demo="pdf-analyzer"] .pa-sw.pa-footer{border-color:var(--pa-footer);background:rgba(236,72,153,.25)}
+.demo[data-demo="pdf-analyzer"] .pa-sheet{flex:1;padding:12px;overflow:auto;outline-offset:-2px}
+.demo[data-demo="pdf-analyzer"] .pa-sheet svg{border-radius:3px;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.demo[data-demo="pdf-analyzer"] .pa-sheet:focus-visible{outline:2px solid var(--blue)}
+
+/* Highlight boxes drawn into the sheet SVG */
+.demo[data-demo="pdf-analyzer"] .pa-box{stroke-width:1.6;fill-opacity:.16;transition:opacity .15s,stroke-width .15s,fill-opacity .15s}
+.demo[data-demo="pdf-analyzer"] .pa-box.pa-station{stroke:var(--pa-station);fill:var(--pa-station)}
+.demo[data-demo="pdf-analyzer"] .pa-box.pa-span{stroke:var(--pa-span);fill:var(--pa-span)}
+.demo[data-demo="pdf-analyzer"] .pa-box.pa-structure{stroke:var(--pa-structure);fill:var(--pa-structure)}
+.demo[data-demo="pdf-analyzer"] .pa-box.pa-duct{stroke:var(--pa-duct);fill:var(--pa-duct)}
+.demo[data-demo="pdf-analyzer"] .pa-box.pa-footer{stroke:var(--pa-footer);fill:var(--pa-footer)}
+.demo[data-demo="pdf-analyzer"] .pa-overlay.spot .pa-box{opacity:.18}
+.demo[data-demo="pdf-analyzer"] .pa-overlay.spot .pa-box.on{opacity:1;stroke-width:3;fill-opacity:.32}
+.demo[data-demo="pdf-analyzer"] .pa-anim{animation:pa-in .35s ease-out both}
+@keyframes pa-in{from{opacity:0;transform:scale(1.25)}to{opacity:1;transform:none}}
+.demo[data-demo="pdf-analyzer"] .pa-box.pa-anim{transform-box:fill-box;transform-origin:center}
+
+/* Output column */
+.demo[data-demo="pdf-analyzer"] .pa-res{display:flex;flex-direction:column;gap:14px}
+.demo[data-demo="pdf-analyzer"] .pa-res[hidden],.demo[data-demo="pdf-analyzer"] .pa-rx[hidden]{display:none}
+.demo[data-demo="pdf-analyzer"] .pa-h{margin:0 0 6px;font:600 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.demo[data-demo="pdf-analyzer"] .pa-rx .demo-code{max-height:260px;font-size:11px}
+.demo[data-demo="pdf-analyzer"] .pa-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.demo[data-demo="pdf-analyzer"] .pa-method{padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(6,14,32,.4);font:12px/1.45 var(--mono)}
+.demo[data-demo="pdf-analyzer"] .pa-method.sel{border-color:var(--green);box-shadow:inset 3px 0 0 var(--green)}
+.demo[data-demo="pdf-analyzer"] .pa-mhead{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.demo[data-demo="pdf-analyzer"] .pa-mhead b{font-weight:600;color:var(--text)}
+.demo[data-demo="pdf-analyzer"] .pa-pick-tag{color:var(--green);font-size:11px;white-space:nowrap}
+.demo[data-demo="pdf-analyzer"] .pa-mval{font:700 17px/1.3 var(--display);color:var(--text)}
+.demo[data-demo="pdf-analyzer"] .pa-mmeta{color:var(--muted);font-size:11px}
+.demo[data-demo="pdf-analyzer"] .pa-mmeta .demo-badge{margin:3px 4px 0 0}
+.demo[data-demo="pdf-analyzer"] .pa-warn{display:flex;flex-direction:column;gap:8px}
+.demo[data-demo="pdf-analyzer"] .pa-tablewrap{overflow-x:auto}
+.demo[data-demo="pdf-analyzer"] .pa-segs{font-size:11.5px}
+.demo[data-demo="pdf-analyzer"] .pa-segs td{white-space:nowrap}
+.demo[data-demo="pdf-analyzer"] .pa-segs em{color:#f87171;font-style:normal}
+.demo[data-demo="pdf-analyzer"] .pa-segs tr.pa-bad td:first-child{box-shadow:inset 3px 0 0 #f87171}
+.demo[data-demo="pdf-analyzer"] .pa-segs tbody tr:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.demo[data-demo="pdf-analyzer"] .pa-det summary{cursor:pointer;font:600 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:4px 0}
+.demo[data-demo="pdf-analyzer"] .pa-det summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.demo[data-demo="pdf-analyzer"] .pa-det[open] summary{margin-bottom:6px}
+.demo[data-demo="pdf-analyzer"] .pa-checks{margin:0;padding:0;list-style:none;font:11.5px/1.6 var(--mono)}
+.demo[data-demo="pdf-analyzer"] .pa-checks .ok{color:var(--green)}
+.demo[data-demo="pdf-analyzer"] .pa-checks .bad{color:var(--orange)}
+.demo[data-demo="pdf-analyzer"] .pa-json{max-height:280px;font-size:11px}
+
+@media (max-width:760px){
+  .demo[data-demo="pdf-analyzer"] .demo-ctl select{flex:1 1 180px}
+  .demo[data-demo="pdf-analyzer"] .pa-pick{display:flex;flex:1 1 100%}
+  .demo[data-demo="pdf-analyzer"] .pa-pick select{width:100%;min-height:44px}
+  .demo[data-demo="pdf-analyzer"] .demo-ctl .demo-btn{flex:1 1 auto}
+  .demo[data-demo="pdf-analyzer"] .pa-sheet svg{min-width:720px}
+}
+@media (prefers-reduced-motion:reduce){
+  .demo[data-demo="pdf-analyzer"] .pa-anim{animation:none}
+  .demo[data-demo="pdf-analyzer"] .pa-box{transition:none}
+}

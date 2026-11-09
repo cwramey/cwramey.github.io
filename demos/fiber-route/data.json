@@ -1,0 +1,47 @@
+{
+  "about": "Synthetic sample data in local feet (x right, y down). Fictional names. No client data.",
+  "asOf": "2026-11-01",
+  "origin": { "lon": -97.48, "lat": 35.02, "name": "Riverton (fictional)" },
+  "extent": [4800, 3000],
+  "cityLimit": [[2550, 0], [2550, 1200], [2650, 1200], [2650, 3000]],
+  "layers": [
+    { "id": "roads", "label": "Roads", "kind": "line", "lastEdit": "2026-10-12", "features": [
+      { "id": "R1", "name": "Oak Ave", "cls": "city", "owner": "City of Riverton Public Works", "coords": [[800, 0], [800, 3000]] },
+      { "id": "R2", "name": "Elm St", "cls": "city", "owner": "City of Riverton Public Works", "coords": [[1700, 0], [1700, 3000]] },
+      { "id": "R3", "name": "Main St", "cls": "city", "owner": "City of Riverton Public Works", "coords": [[0, 900], [2550, 900]] },
+      { "id": "R4", "name": "Pine St", "cls": "city", "owner": "City of Riverton Public Works", "coords": [[0, 2300], [2650, 2300]] },
+      { "id": "R5", "name": "CR-210", "cls": "county", "owner": "Bell County Road Dept.", "coords": [[3400, 0], [3400, 3000]] },
+      { "id": "R6", "name": "CR-115", "cls": "county", "owner": "Bell County Road Dept.", "coords": [[2550, 600], [4800, 600]] },
+      { "id": "R7", "name": "CR-118", "cls": "county", "owner": "Bell County Road Dept.", "coords": [[2650, 2600], [4800, 2600]] }
+    ]},
+    { "id": "dot", "label": "DOT roads", "kind": "line", "cls": "dot", "lastEdit": "2026-09-28", "features": [
+      { "id": "D1", "name": "SR-14", "owner": "State DOT District 3", "coords": [[0, 1500], [4800, 1500]] }
+    ]},
+    { "id": "rail", "label": "Rail", "kind": "line", "cls": "rail", "lastEdit": "2026-07-15", "features": [
+      { "id": "T1", "name": "Coastline mainline", "owner": "Coastline Rail Co.", "coords": [[0, 2900], [4800, 700]] },
+      { "id": "T2", "name": "Yard spur 4", "owner": null, "coords": [[3600, 1000], [4200, 1540]] }
+    ]},
+    { "id": "water", "label": "Water", "kind": "line", "cls": "water", "lastEdit": "2026-05-02", "features": [
+      { "id": "W1", "name": "Mill River", "owner": "State Dept. of Natural Resources", "coords": [[3000, 0], [2850, 500], [2950, 1000], [2700, 1500], [2600, 2000], [2450, 2500], [2350, 3000]] }
+    ]},
+    { "id": "bridge", "label": "Bridges", "kind": "polygon", "cls": "bridge", "lastEdit": "2026-08-20", "features": [
+      { "id": "B1", "name": "SR-14 Mill River bridge", "owner": "State DOT Bridge Unit", "ring": [[2600, 1440], [2800, 1440], [2800, 1560], [2600, 1560]] }
+    ]},
+    { "id": "pipeline", "label": "Pipelines", "kind": "line", "cls": "pipeline", "lastEdit": "2025-09-03", "features": [
+      { "id": "P1", "name": "Line 7 gas transmission", "owner": "Tri-County Gas Transmission", "coords": [[1200, 3000], [4800, 2100]] }
+    ]},
+    { "id": "parcels", "label": "Parcels", "kind": "zones", "lastEdit": "2026-10-30", "features": [
+      { "id": "PA-101", "owner": "Riverton Downtown Assoc.", "jurisdiction": "City of Riverton", "ring": [[0, 0], [1300, 0], [1300, 1200], [0, 1200]] },
+      { "id": "PA-102", "owner": "Northside Holdings LLC", "jurisdiction": "City of Riverton", "ring": [[1300, 0], [2550, 0], [2550, 1200], [1300, 1200]] },
+      { "id": "PA-103", "owner": "Riverton Public Works", "jurisdiction": "City of Riverton", "ring": [[0, 1200], [1300, 1200], [1300, 3000], [0, 3000]] },
+      { "id": "PA-104", "owner": null, "jurisdiction": "City of Riverton", "ring": [[1300, 1200], [2650, 1200], [2650, 3000], [1300, 3000]] },
+      { "id": "PA-201", "owner": "Harlan Farms LLC", "jurisdiction": "Bell County", "ring": [[2550, 0], [4800, 0], [4800, 1200], [2550, 1200]] },
+      { "id": "PA-202", "owner": "Kestrel Industrial Park", "jurisdiction": "Bell County", "ring": [[2650, 1200], [4800, 1200], [4800, 3000], [2650, 3000]] }
+    ]}
+  ],
+  "routes": [
+    { "id": "A", "name": "Route A · Downtown", "coords": [[200, 400], [1000, 400], [1000, 1800], [2100, 1800]] },
+    { "id": "B", "name": "Route B · River corridor", "coords": [[1500, 500], [2300, 700], [3300, 1100], [4300, 1300], [4500, 2400]] },
+    { "id": "C", "name": "Route C · Rail yard", "coords": [[2000, 1530], [3100, 1530], [3700, 1250], [4400, 1250], [4400, 2500]] }
+  ]
+}

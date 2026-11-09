@@ -16,6 +16,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="redesign.css">
+  <link rel="stylesheet" href="demos/sandbox.css">
 </head>
 <body>
   <nav id="nav" class="site-header">
@@ -42,7 +43,7 @@
         <span><span>Status </span>In production, under active development</span>
       </div>
       <div class="tag-row"><span class="tech-tag">React 19</span><span class="tech-tag">ArcGIS Maps SDK for JS</span><span class="tech-tag">Express</span><span class="tech-tag">PostgreSQL + PostGIS</span><span class="tech-tag">GDAL</span><span class="tech-tag">LibreDWG</span><span class="tech-tag">Entra ID SSO</span><span class="tech-tag">Docker</span></div>
-      <p class="case-note">Internal application · shown through screenshots, capabilities and metrics only</p>
+      <p class="case-note">Internal application · the demo below runs the same logic on sample data</p>
     </section>
 
     <section class="wrap" style="padding-bottom:56px" aria-label="Results">
@@ -55,10 +56,11 @@
     </section>
 
     <section class="wrap" style="padding-bottom:72px">
-      <figure class="case-shot">
-        <img src="assets/screenshots/canvas/canvas-qc-review.png" alt="Canvas review view: a fiber layout being edited, the layer list on the left and QC findings on the right">
-        <figcaption>Review tab: editing a drop on the map while QC findings list what to fix, each with a suggested fix and status.</figcaption>
-      </figure>
+      <div class="demo" data-demo="canvas" id="demo">
+        <div class="demo-frame">
+          <div class="demo-pane" data-pane="live"></div>
+        </div>
+      </div>
     </section>
 
     <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
@@ -115,9 +117,11 @@ GDAL + LibreDWG (file ingest, CRS detection and reprojection)</pre>
       <div class="wrap pad-sm stack stack--lg">
         <p class="eyebrow">// Screenshots</p>
         <div class="shot-grid">
-          <figure class="shot"><a href="assets/screenshots/canvas/splicing.png" target="_blank" rel="noopener"><img src="assets/screenshots/canvas/splicing.png" alt="Splice Case Designer linking source fibers to output fibers tube by tube" loading="lazy"></a><figcaption>Splice Case Designer: fiber-by-fiber splicing between source and output cables.</figcaption></figure>
-          <figure class="shot"><a href="assets/screenshots/canvas/splicing2.png" target="_blank" rel="noopener"><img class="shot--contain" src="assets/screenshots/canvas/splicing2.png" alt="Job splice schematic generated from every splice case on the job" loading="lazy"></a><figcaption>Job splice schematic, generated from every splice case on the job.</figcaption></figure>
-          <figure class="shot"><a href="assets/screenshots/canvas/QC2.png" target="_blank" rel="noopener"><img src="assets/screenshots/canvas/QC2.png" alt="QC rule editor with versioned attribute, geometry, topology and engineering checks" loading="lazy"></a><figcaption>QC rules: versioned checks across attributes, geometry, topology and engineering.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/canvas/01-overview.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/canvas/01-overview.webp" alt="Overview: the job map, splice closure SC-01 and the fiber-by-fiber splice tray." loading="lazy" width="1152"></a><figcaption>Overview: the job map, splice closure SC-01 and the fiber-by-fiber splice tray.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/canvas/02-fiber-trace.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/canvas/02-fiber-trace.webp" alt="Fiber trace: a drop traced end to end back to the CO, with every hop listed." loading="lazy" width="1152"></a><figcaption>Fiber trace: a drop traced end to end back to the CO, with every hop listed.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/canvas/03-bill-of-materials.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/canvas/03-bill-of-materials.webp" alt="Bill of materials generated from the design: footage, closures, splices and cost." loading="lazy" width="1152"></a><figcaption>Bill of materials generated from the design: footage, closures, splices and cost.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/canvas/04-qc-blocker.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/canvas/04-qc-blocker.webp" alt="QC: an unspliced fiber feeding a drop raises a Blocker, and Submit stays disabled." loading="lazy" width="1152"></a><figcaption>QC: an unspliced fiber feeding a drop raises a Blocker, and Submit stays disabled.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/canvas/05-qc-cleared-submit.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/canvas/05-qc-cleared-submit.webp" alt="QC cleared: after auto-splicing, no Blockers remain and Submit is enabled." loading="lazy" width="1152"></a><figcaption>QC cleared: after auto-splicing, no Blockers remain and Submit is enabled.</figcaption></figure>
         </div>
       </div>
     </section>
@@ -140,5 +144,6 @@ GDAL + LibreDWG (file ingest, CRS detection and reprojection)</pre>
   </main>
 
   <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
+  <script type="module" src="demos/sandbox.js"></script>
 </body>
 </html>

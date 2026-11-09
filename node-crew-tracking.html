@@ -16,6 +16,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="redesign.css">
+  <link rel="stylesheet" href="demos/sandbox.css">
 </head>
 <body>
   <nav id="nav" class="site-header">
@@ -42,7 +43,7 @@
         <span><span>Status </span>In production, under active development</span>
       </div>
       <div class="tag-row"><span class="tech-tag">TypeScript</span><span class="tech-tag">React 19</span><span class="tech-tag">ArcGIS Maps SDK for JS</span><span class="tech-tag">Calcite</span><span class="tech-tag">Fastify</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Field Maps</span><span class="tech-tag">ArcGIS Enterprise</span><span class="tech-tag">Katapult Pro</span></div>
-      <p class="case-note">Internal application · shown through screenshots, capabilities and metrics only</p>
+      <p class="case-note">Internal application · the demo below runs the same logic on sample data</p>
     </section>
 
     <section class="wrap" style="padding-bottom:56px" aria-label="Results">
@@ -55,10 +56,11 @@
     </section>
 
     <section class="wrap" style="padding-bottom:72px">
-      <figure class="case-shot">
-        <img src="assets/screenshots/node/node-01-dashboard-overview.png" alt="Node dispatch view: status cards, progress and regions beside the live crew map">
-        <figcaption>Today's summary beside the live map. Demo data: fictional contractors and crews.</figcaption>
-      </figure>
+      <div class="demo" data-demo="node" id="demo">
+        <div class="demo-frame">
+          <div class="demo-pane" data-pane="live"></div>
+        </div>
+      </div>
     </section>
 
     <section class="wrap wrap--narrow stack" style="padding-bottom:64px">
@@ -116,9 +118,11 @@
       <div class="wrap pad-sm stack stack--lg">
         <p class="eyebrow">// Screenshots</p>
         <div class="shot-grid">
-          <figure class="shot"><a href="assets/screenshots/node/node-03-job-detail.png" target="_blank" rel="noopener"><img src="assets/screenshots/node/node-03-job-detail.png" alt="Job detail with the job's design-feature area outlined on the map" loading="lazy"></a><figcaption>Job detail: status, due date and the job's design-feature area outlined on the map.</figcaption></figure>
-          <figure class="shot"><a href="assets/screenshots/node/node-02-trends-7-days.png" target="_blank" rel="noopener"><img src="assets/screenshots/node/node-02-trends-7-days.png" alt="Trends tab showing work by hour of day over seven days" loading="lazy"></a><figcaption>Trends: work by hour of day across a 7-day window.</figcaption></figure>
-          <figure class="shot"><a href="assets/screenshots/node/Regional.png" target="_blank" rel="noopener"><img src="assets/screenshots/node/Regional.png" alt="Open jobs filtered to the South region, with crews on the regional map" loading="lazy"></a><figcaption>Region filter: open jobs and working crews in the South.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/node/01-overview.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/node/01-overview.webp" alt="Overview at midday: live crew map, status counts, crew cards and reports by hour." loading="lazy" width="1152"></a><figcaption>Overview at midday: live crew map, status counts, crew cards and reports by hour.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/node/02-region-filter.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/node/02-region-filter.webp" alt="Region filter: dispatch narrowed to the East region’s crews." loading="lazy" width="1152"></a><figcaption>Region filter: dispatch narrowed to the East region’s crews.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/node/03-crew-timeline.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/node/03-crew-timeline.webp" alt="Crew timeline: one crew’s shift, reports and output for the day." loading="lazy" width="1152"></a><figcaption>Crew timeline: one crew’s shift, reports and output for the day.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/node/04-crew-message.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/node/04-crew-message.webp" alt="Crew message: a dispatcher message and the crew’s acknowledgement." loading="lazy" width="1152"></a><figcaption>Crew message: a dispatcher message and the crew’s acknowledgement.</figcaption></figure>
+          <figure class="shot"><a href="assets/screenshots/demos/node/05-end-of-day.webp" target="_blank" rel="noopener"><img src="assets/screenshots/demos/node/05-end-of-day.webp" alt="End of day: crews done for the day and the full hour-by-hour histogram." loading="lazy" width="1152"></a><figcaption>End of day: crews done for the day and the full hour-by-hour histogram.</figcaption></figure>
         </div>
       </div>
     </section>
@@ -141,5 +145,6 @@
   </main>
 
   <footer class="site-footer"><div class="site-footer-inner"><p class="site-footer-copy">© 2026 Charles Ramey. Engineering for Geospatial Precision.</p></div></footer>
+  <script type="module" src="demos/sandbox.js"></script>
 </body>
 </html>

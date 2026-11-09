@@ -1,0 +1,95 @@
+/* Shared chrome for embedded demos. Tokens come from styles.css :root (--blue, --surface, --line, --mono ...).
+   Demo-specific styles go in demos/<key>/demo.css, scoped under .demo[data-demo="<key>"]. */
+
+.demo{position:relative;display:flex;flex-direction:column;gap:10px;scroll-margin-top:90px}
+
+
+/* Frame */
+.demo-frame{border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.demo-pane[data-pane=live]{display:flex;flex-direction:column;min-height:540px}
+.demo-pane[hidden]{display:none!important}
+.demo-loading{margin:auto;padding:40px;color:var(--muted);font:13px var(--mono);text-align:center}
+
+/* Controls row */
+.demo-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;border-bottom:1px solid var(--line);background:rgba(6,14,32,.35)}
+.demo-steps{display:flex;flex-wrap:wrap;gap:4px 14px;list-style:none;margin:0;padding:0;counter-reset:s;font:12px/1.4 var(--mono);color:var(--muted)}
+.demo-steps li{counter-increment:s}
+.demo-steps li::before{content:counter(s);display:inline-grid;place-items:center;width:18px;height:18px;margin-right:6px;border:1px solid var(--blue);border-radius:50%;color:var(--blue);font-size:11px}
+.demo-steps li.done{color:var(--green)}
+.demo-steps li.done::before{content:'✓';border-color:var(--green);color:var(--green)}
+.demo-spacer{flex:1}
+
+/* Buttons and inputs */
+.demo-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:9px 14px;border:1px solid var(--blue);border-radius:4px;background:transparent;color:var(--blue);font:600 12px/1 var(--mono);letter-spacing:.03em;cursor:pointer;transition:background .2s,color .2s,opacity .2s}
+.demo-btn:hover:not(:disabled){background:rgba(56,189,248,.1)}
+.demo-btn--primary{background:var(--blue);color:#00354a}
+.demo-btn--primary:hover:not(:disabled){background:#7dd3fc}
+.demo-btn:disabled{opacity:.4;cursor:not-allowed}
+.demo-btn[aria-pressed=true]{background:rgba(56,189,248,.18);color:var(--text)}
+.demo select,.demo input[type=text],.demo input[type=number],.demo textarea{min-height:40px;padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:var(--lowest);color:var(--text);font:13px var(--mono)}
+.demo select:focus-visible,.demo input:focus-visible,.demo textarea:focus-visible,.demo-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.demo-chk{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono);color:var(--muted);cursor:pointer}
+.demo-chk input{accent-color:var(--blue);width:16px;height:16px}
+
+/* Layout */
+.demo-split{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);flex:1;min-height:0}
+.demo-view{position:relative;min-height:360px;overflow:auto;background:var(--lowest)}
+.demo-view svg{display:block;width:100%;height:auto}
+.demo-out{display:flex;flex-direction:column;gap:12px;padding:14px;overflow:auto;border-left:1px solid var(--line);max-height:640px}
+.demo-status{margin:0;font:13px/1.5 var(--mono);color:var(--muted)}
+.demo-status.ok{color:var(--green)}
+.demo-status.warn{color:var(--orange)}
+
+/* Stats */
+.demo-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px}
+.demo-stats div{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(6,14,32,.4)}
+.demo-stats span{display:block;font:11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.demo-stats b{font:700 18px/1.3 var(--display);color:var(--text)}
+
+/* Tables */
+.demo-table{width:100%;border-collapse:collapse;font:12.5px/1.45 var(--mono)}
+.demo-table th,.demo-table td{padding:6px 8px;border-bottom:1px solid rgba(62,72,79,.6);text-align:left;vertical-align:top}
+.demo-table th{color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.demo-table tbody tr{cursor:default}
+.demo-table tbody tr[tabindex]{cursor:pointer}
+.demo-table tbody tr[tabindex]:hover,.demo-table tbody tr.sel{background:rgba(56,189,248,.08)}
+.demo-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Badges */
+.demo-badge{display:inline-block;padding:2px 7px;border-radius:999px;font:600 11px/1.5 var(--mono);border:1px solid currentColor}
+.demo-badge--high,.demo-badge--blocker{color:#f87171}
+.demo-badge--med,.demo-badge--major{color:var(--orange)}
+.demo-badge--low,.demo-badge--minor{color:var(--green)}
+.demo-badge--info{color:var(--blue)}
+
+/* Callouts */
+.demo-callout{padding:10px 12px;border:1px solid rgba(245,158,11,.45);border-left-width:3px;border-radius:6px;background:rgba(245,158,11,.06);font:12.5px/1.5 var(--mono);color:var(--text)}
+.demo-callout--ok{border-color:rgba(86,229,169,.45);background:rgba(86,229,169,.06)}
+
+/* Code / log panels */
+.demo-code{margin:0;padding:12px;max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:6px;background:var(--lowest);font:12px/1.55 var(--mono);color:var(--text);white-space:pre;tab-size:4}
+.tk-kw{color:#c792ea}.tk-str{color:#c3e88d}.tk-num{color:#f78c6c}.tk-com{color:#6b7a90;font-style:italic}.tk-fn{color:#82aaff}.tk-key{color:#7dd3fc}
+
+/* Downloads row */
+.demo-dl{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Footer note */
+.demo-foot{margin:0;padding:10px 12px;border-top:1px solid var(--line);font:11.5px/1.5 var(--mono);color:var(--muted)}
+
+/* Toast */
+.demo-toast{position:absolute;right:16px;bottom:16px;z-index:5;max-width:min(360px,calc(100% - 32px));padding:10px 14px;border:1px solid var(--green);border-radius:6px;background:var(--surface-hi);color:var(--text);font:12.5px/1.45 var(--mono);box-shadow:0 10px 30px rgba(0,0,0,.4);animation:demo-in .2s ease-out}
+@keyframes demo-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* One-time attention pulse on the first primary action */
+@keyframes demo-pulse{0%{box-shadow:0 0 0 0 rgba(56,189,248,.55)}100%{box-shadow:0 0 0 12px rgba(56,189,248,0)}}
+.demo-pulse{animation:demo-pulse 1.4s ease-out 2}
+
+@media (max-width:760px){
+  .demo-split{grid-template-columns:1fr}
+  .demo-out{border-left:0;border-top:1px solid var(--line);max-height:none}
+  .demo-view{min-height:260px}
+  .demo-pane[data-pane=live]{min-height:0}
+  .demo-ctl{gap:6px}
+  .demo-btn{min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){.demo-pulse,.demo-toast{animation:none}}
