@@ -97,9 +97,6 @@
 .case-meta{display:flex;flex-wrap:wrap;gap:10px 28px;padding-top:6px;font-size:.9rem}
 .case-meta span span{color:#7f8ea3;font-family:var(--mono)}
 .case-note{align-self:flex-start;margin:0;padding:10px 14px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font:12.5px/1.5 var(--mono)}
-.case-shot{display:flex;flex-direction:column;gap:10px;margin:0}
-.case-shot img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
-.case-shot figcaption{color:#7f8ea3;font:12.5px/1.5 var(--mono)}
 .challenge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
 .challenge{display:flex;flex-direction:column;gap:8px;padding:22px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
 .challenge h3{margin:0;font-size:1.15rem}
@@ -110,7 +107,6 @@
 .shot a{display:block;overflow:hidden;border:1px solid var(--line);border-radius:6px;transition:border-color .2s}
 .shot a:hover{border-color:var(--blue)}
 .shot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top}
-.shot img.shot--contain{object-fit:contain;background:#fff}
 .shot figcaption{color:var(--muted);font-size:.9rem}
 .impact-rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .impact-row{display:flex;flex-wrap:wrap;gap:8px 24px;padding:14px 0;border-bottom:1px solid var(--line)}
