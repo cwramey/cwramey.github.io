@@ -4,15 +4,6 @@
   flex-direction: column;
 }
 
-.contact-page::before {
-  opacity: 0.55;
-  background-image:
-    linear-gradient(rgba(62, 72, 79, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(62, 72, 79, 0.15) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: linear-gradient(to bottom, #000 10%, transparent 88%);
-}
-
 .contact-main {
   width: 100%;
   max-width: 1050px;
