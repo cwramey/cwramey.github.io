@@ -27,7 +27,7 @@
 /* Home hero */
 .home-hero{display:flex;flex-direction:column;gap:22px;padding-top:96px;padding-bottom:64px}
 .home-eyebrow{margin:0;color:var(--muted);font:500 13px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.home-title{margin:0;color:var(--green);max-width:980px;font:800 clamp(2.6rem,6.4vw,4.75rem)/1.04 var(--display);letter-spacing:-.03em;text-wrap:balance}
+.home-title{margin:0;color:var(--blue);max-width:980px;font:800 clamp(2.6rem,6.4vw,4.75rem)/1.04 var(--display);letter-spacing:-.03em;text-wrap:balance}
 .home-lead{margin:0;max-width:720px;color:var(--muted);font-size:1.18rem;line-height:1.7}
 
 /* Results strip */
