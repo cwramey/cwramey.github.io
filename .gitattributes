@@ -1,0 +1,3 @@
+# Keep LF line endings in every checkout, including Windows with core.autocrlf=true,
+# so local files match what GitHub Pages serves and the demo tests read the same text.
+* text=auto eol=lf
