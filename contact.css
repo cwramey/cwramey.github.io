@@ -117,15 +117,6 @@
   font: 600 11px/1.4 var(--mono);
 }
 
-.contact-status i {
-  width: 9px;
-  height: 9px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 0 4px rgba(86, 229, 169, 0.1);
-}
-
 .contact-status span {
   color: #aebbd0;
 }
