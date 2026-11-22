@@ -25,7 +25,7 @@ export async function mount(el, ctx) {
   el.innerHTML = `
   <div class="demo-ctl"><ol class="demo-steps"><li>Press Play</li><li>Open a crew</li><li>Message or export</li></ol></div>
   <div class="demo-ctl nd-ctl">
-    <button class="demo-btn demo-btn--primary demo-pulse" data-a="play" aria-pressed="false">▶ Play</button>
+    <button class="demo-btn demo-btn--primary demo-pulse" data-a="play" aria-pressed="false">Play</button>
     <span class="nd-clock" aria-hidden="true">06:00</span>
     <input class="nd-scrub" type="range" min="${D0}" max="${D1}" step="0.5" value="${D0}" aria-label="Simulated time of day">
     <button class="demo-btn" data-a="speed" aria-label="Playback speed">${SPEEDS[0]}×</button>
@@ -215,13 +215,13 @@ export async function mount(el, ctx) {
       return;
     }
     playing = true; autoPaused = false;
-    playBtn.textContent = '❚❚ Pause'; playBtn.setAttribute('aria-pressed', 'true');
+    playBtn.textContent = 'Pause'; playBtn.setAttribute('aria-pressed', 'true');
     lastTs = performance.now();
     raf = requestAnimationFrame(frame);
   }
   function pause() {
     playing = false; cancelAnimationFrame(raf);
-    playBtn.textContent = '▶ Play'; playBtn.setAttribute('aria-pressed', 'false');
+    playBtn.textContent = 'Play'; playBtn.setAttribute('aria-pressed', 'false');
   }
   const resume = () => { if (autoPaused && !paneHidden()) play(); };
   document.addEventListener('visibilitychange', resume);

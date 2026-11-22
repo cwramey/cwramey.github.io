@@ -35,7 +35,7 @@ export async function mount(el, ctx) {
         <button type="button" class="demo-btn" data-cancel>Cancel</button>
       </span>
       <span class="demo-spacer"></span>
-      <button type="button" class="demo-btn demo-btn--primary" data-run>▶ Run analysis</button>
+      <button type="button" class="demo-btn demo-btn--primary" data-run>Run analysis</button>
     </div>
     <fieldset class="demo-ctl fr-layers"><legend>Reference layers</legend>
       ${data.layers.map(l => `<label class="demo-chk"><input type="checkbox" data-layer="${l.id}" checked><i class="fr-sw fr-sw--${l.id}"></i>${esc(l.label)}</label>`).join('')}

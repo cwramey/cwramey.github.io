@@ -17,7 +17,7 @@ export async function mount(el, ctx) {
     <ol class="demo-steps"><li>Pick a profile</li><li>Run suite</li><li>Download the report</li></ol>
     <span class="demo-spacer"></span>
     <label class="qa-pick">Profile <select aria-label="Config profile">${PROFILES.map(p => `<option>${p}</option>`).join('')}</select></label>
-    <button type="button" class="demo-btn demo-btn--primary qa-run">▶ Run suite</button>
+    <button type="button" class="demo-btn demo-btn--primary qa-run">Run suite</button>
   </div>
   <div class="qa-top">
     <section class="qa-cfg" aria-label="Configuration">
