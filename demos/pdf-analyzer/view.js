@@ -46,8 +46,8 @@ export async function mount(el, ctx) {
           <details class="pa-det"><summary>Cross-checks</summary><ul class="pa-checks" data-checks></ul></details>
           <details class="pa-det" open><summary>JSON output</summary><pre class="demo-code pa-json" data-json></pre></details>
           <div class="demo-dl">
-            <button class="demo-btn" data-dl="json">↓ JSON</button>
-            <button class="demo-btn" data-dl="csv">↓ CSV</button>
+            <button class="demo-btn" data-dl="json">JSON</button>
+            <button class="demo-btn" data-dl="csv">CSV</button>
           </div>
         </div>
       </div>

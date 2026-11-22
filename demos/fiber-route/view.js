@@ -55,10 +55,10 @@ export async function mount(el, ctx) {
             <thead><tr><th>ID</th><th>Permit</th><th>Risk</th><th>Owner</th><th class="num">Conf.</th></tr></thead><tbody></tbody></table></div>
         </div>
         <div class="demo-dl" role="group" aria-label="Downloads">
-          <button type="button" class="demo-btn" data-dl="geojson" disabled>⇩ GeoJSON</button>
-          <button type="button" class="demo-btn" data-dl="csv" disabled>⇩ CSV</button>
-          <button type="button" class="demo-btn" data-dl="md" disabled>⇩ Permit summary .md</button>
-          <button type="button" class="demo-btn" data-dl="kml" disabled>⇩ KML</button>
+          <button type="button" class="demo-btn" data-dl="geojson" disabled>GeoJSON</button>
+          <button type="button" class="demo-btn" data-dl="csv" disabled>CSV</button>
+          <button type="button" class="demo-btn" data-dl="md" disabled>Permit summary .md</button>
+          <button type="button" class="demo-btn" data-dl="kml" disabled>KML</button>
         </div>
       </div>
     </div>

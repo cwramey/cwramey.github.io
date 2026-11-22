@@ -31,7 +31,7 @@ export async function mount(el, ctx) {
     <button class="demo-btn" data-a="speed" aria-label="Playback speed">${SPEEDS[0]}×</button>
     <label class="nd-reg">Region <select data-a="region"><option value="all">All regions</option>${day.regions.map(r => `<option value="${r.id}">${r.name}</option>`).join('')}</select></label>
     <span class="demo-spacer"></span>
-    <button class="demo-btn" data-a="export">⬇ Export today</button>
+    <button class="demo-btn" data-a="export">Export today</button>
   </div>
   <div class="demo-split">
     <div class="demo-view nd-left">
