@@ -20,7 +20,6 @@
 
 /* Status pills */
 .status-pill{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;margin:0;padding:7px 14px;border:1px solid rgba(86,229,169,.4);border-radius:999px;color:var(--green);font:500 12px/1.3 var(--mono)}
-.status-pill i{width:8px;height:8px;border-radius:50%;background:var(--green);animation:status-pulse 1.8s ease-out infinite}
 .badge-live{display:inline-flex;align-items:center;gap:7px;padding:3px 10px;border:1px solid rgba(86,229,169,.4);border-radius:999px;color:var(--green);font:500 11px/1.3 var(--mono)}
 .badge-live:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green)}
 
@@ -185,6 +184,6 @@
   .feature-card>img{min-height:220px}
   .about-hero{gap:32px;padding-top:56px}
 }
-@media(prefers-reduced-motion:reduce){.status-pill i{animation:none}.flagship-card,.rw-code .ln{transition:none}}
+@media(prefers-reduced-motion:reduce){.flagship-card,.rw-code .ln{transition:none}}
 /* Five-up screenshot grid: two wide shots, then three */
 @media (min-width:761px){.shot-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.shot-grid>:nth-child(-n+2){grid-column:span 3}.shot-grid>:nth-child(n+3){grid-column:span 2}}
